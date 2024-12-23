@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/template/aixin/css/style.css?v1.0.269">
+    <title>林紫静</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://web2.20it.cn/static/back/back780.jpg') no-repeat;
+            background-size: 100%;
+        }
+
+        #contentToWrite {
+            color: pink;
+            text-align: center; /* 将文本水平居中 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: bounce 2s infinite; /* 添加跃动动画 */
+            font-size: 40px; /* 调大字体大小 */
+        }
+
+        #canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 添加其他样式，如果需要的话 */
+        @keyframes bounce {
+            0% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop muted>
+        <source src="C:\Users\DELL\Downloads\Rendez-Vous.mp4" type="audio/mpeg">
+    </audio>
+    <div id="contentToWrite" class="comments">
+        <!-- 文本 "我爱你" -->
+        林紫静，生日快乐！
+    </div>
+    <canvas id="pinkboard" width="1920" height="947" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
+    <canvas id="canvas" width="1920" height="947"></canvas>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script type="text/javascript" src="https://web.20it.cn/template/aixin/js/main.js?v1.0.269"></script> 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setViewportMeta();
+        });
+
+        function setViewportMeta() {
+            var viewportContent = "width=device-width, initial-scale=1";
+            var metaTag = document.createElement("meta");
+            metaTag.name = "viewport";
+            metaTag.content = viewportContent;
+            document.head.appendChild(metaTag);
+        }
+    </script>
+</body>
