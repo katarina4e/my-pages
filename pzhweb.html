@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攀枝花文旅 | 阳光花城·康养胜地</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF7E00', // 温暖橙色作为主色调(阳光主题)
+                        secondary: '#3498db', // 蓝色作为辅助色
+                        accent: '#2c3e50', // 深色强调
+                        light: '#f8f9fa', // 浅色背景
+                        dark: '#333333', // 深色文本
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Playfair Display"', 'serif'] // 标题字体
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+            .btn-hover {
+                transition: all 0.3s ease;
+            }
+            .btn-hover:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-light text-dark">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="bg-primary text-white shadow-md">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fa fa-sun-o text-2xl mr-2 text-yellow-300"></i>
+                    <h1 class="text-2xl font-bold font-display">攀枝花文旅</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#top" class="hover:text-yellow-300 transition-colors">首页</a>
+                    <a href="#attractions" class="hover:text-yellow-300 transition-colors">景点推荐</a>
+                    <a href="#food" class="hover:text-yellow-300 transition-colors">美食文化</a>
+                    <a href="#culture" class="hover:text-yellow-300 transition-colors">民族风情</a>
+                    <a href="#guide" class="hover:text-yellow-300 transition-colors">旅游攻略</a>
+                </nav>
+                <button class="md:hidden text-white text-xl" id="menuToggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden bg-white shadow-lg absolute w-full left-0 transform -translate-y-full transition-transform duration-300 ease-in-out" id="mobileMenu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="py-2 border-b border-gray-100 hover:text-primary transition-colors">首页</a>
+                <a href="#attractions" class="py-2 border-b border-gray-100 hover:text-primary transition-colors">景点推荐</a>
+                <a href="#food" class="py-2 border-b border-gray-100 hover:text-primary transition-colors">美食文化</a>
+                <a href="#culture" class="py-2 border-b border-gray-100 hover:text-primary transition-colors">民族风情</a>
+                <a href="#guide" class="py-2 hover:text-primary transition-colors">旅游攻略</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 轮播图 -->
+    <section class="relative h-[80vh] overflow-hidden">
+        <div id="carousel" class="flex h-full">
+            <!-- 攀枝花 -->
+            <div class="carousel-item w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://img1.qunarzz.com/travel/poi/201408/07/60cf12f13d33c5ccc8d65eac.jpg')">
+                <div class="h-full w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-[clamp(3rem,10vw,6rem)] font-display font-bold text-white text-shadow mb-6 leading-tight tracking-wider">攀枝花</h2>
+                        <p class="text-[clamp(1.5rem,4vw,2.5rem)] font-display text-white text-shadow max-w-3xl mx-auto mb-10">阳光花城，康养胜地</p>
+                        <a href="https://baike.baidu.com/item/%E6%94%80%E6%9E%9D%E8%8A%B1%E5%B8%82/494060" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-xl transition-all hover:scale-105 transform hover:shadow-2xl" target="_blank">
+                            探索城市 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 二滩国家森林公园  -->
+            <div class="carousel-item w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://imgs.qunarzz.com/sight/p0/201403/07/ac4934828db8632d0b4ffb775d241841.jpg_750x500_86548c73.jpg')">
+                <div class="h-full w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-[clamp(3rem,10vw,6rem)] font-display font-bold text-white text-shadow mb-6 leading-tight tracking-wider">二滩国家森林公园</h2>
+                        <p class="text-[clamp(1.5rem,4vw,2.5rem)] font-display text-white text-shadow max-w-3xl mx-auto mb-10">高峡平湖，壮美山河</p>
+                        <a href="https://baike.baidu.com/item/%E4%BA%8C%E6%BB%A9%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD/1930972" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-xl transition-all hover:scale-105 transform hover:shadow-2xl" target="_blank">
+                            走进自然 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 迤沙拉古村落 -->
+            <div class="carousel-item w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://x0.ifengimg.com/res/2023/B4244514F9E4714BB5D4EA00A7AC9A5879D525E5_size91_w1080_h519.jpg')">
+                <div class="h-full w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-[clamp(3rem,10vw,6rem)] font-display font-bold text-white text-shadow mb-6 leading-tight tracking-wider">迤沙拉古村落</h2>
+                        <p class="text-[clamp(1.5rem,4vw,2.5rem)] font-display text-white text-shadow max-w-3xl mx-auto mb-10">彝族风情，千年古村</p>
+                        <a href="https://baike.baidu.com/item/%E8%BF%A4%E6%B2%99%E6%8B%89%E6%9D%91/2163655" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-xl transition-all hover:scale-105 transform hover:shadow-2xl" target="_blank">
+                            文化之旅 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三线建设博物馆 -->
+            <div class="carousel-item w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://so1.360tres.com/t019fef28615df76957.jpg')">
+                <div class="h-full w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-[clamp(3rem,10vw,6rem)] font-display font-bold text-white text-shadow mb-6 leading-tight tracking-wider">三线建设博物馆</h2>
+                        <p class="text-[clamp(1.5rem,4vw,2.5rem)] font-display text-white text-shadow max-w-3xl mx-auto mb-10">传承红色记忆，弘扬三线精神</p>
+                        <a href="https://baike.baidu.com/item/%E6%94%80%E6%9E%9D%E8%8A%B1%E4%B8%AD%E5%9B%BD%E4%B8%89%E7%BA%BF%E5%BB%BA%E8%AE%BE%E5%8D%9A%E7%89%A9%E9%A6%86/19543666" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-xl transition-all hover:scale-105 transform hover:shadow-2xl" target="_blank">
+                            历史回顾 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 颛顼龙洞景区-->
+            <div class="carousel-item w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('http://img.mp.itc.cn/upload/20160628/2d427b0857dc4d6ba501eb23e2f4d75b_th.jpg')">
+                <div class="h-full w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-[clamp(3rem,10vw,6rem)] font-display font-bold text-white text-shadow mb-6 leading-tight tracking-wider">颛顼龙洞景区</h2> 
+                    <p class="text-[clamp(1.5rem,4vw,2.5rem)] font-display text-white text-shadow max-w-3xl mx-auto mb-10">溶洞奇观·负氧秘境<br>探寻喀斯特地质传奇</p> 
+                    <a href="https://baike.baidu.com/item/%E9%A2%9B%E9%A1%BC%E9%BE%99%E6%B4%9E/19483523" class="inline-block bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-xl transition-all hover:scale-105 transform hover:shadow-2xl" target="_blank">
+                        探秘溶洞 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 控制按钮 -->
+        <button id="prev" class="absolute top-1/2 left-4 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center backdrop-blur-sm text-white shadow-lg transition-all focus:outline-none text-2xl">
+            <i class="fa fa-angle-left"></i>
+        </button>
+        <button id="next" class="absolute top-1/2 right-4 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center backdrop-blur-sm text-white shadow-lg transition-all focus:outline-none text-2xl">
+            <i class="fa fa-angle-right"></i>
+        </button>
+
+        <!-- 指示点 -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+            <button class="w-4 h-4 rounded-full bg-white/50 hover:bg-white active transition-all duration-300" data-index="0"></button>
+            <button class="w-4 h-4 rounded-full bg-white/50 hover:bg-white transition-all duration-300" data-index="1"></button>
+            <button class="w-4 h-4 rounded-full bg-white/50 hover:bg-white transition-all duration-300" data-index="2"></button>
+            <button class="w-4 h-4 rounded-full bg-white/50 hover:bg-white transition-all duration-300" data-index="3"></button>
+            <button class="w-4 h-4 rounded-full bg-white/50 hover:bg-white transition-all duration-300" data-index="4"></button>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
+            const indicators = document.querySelectorAll('button[data-index]');
+            const items = document.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+            const totalItems = items.length;
+
+            // 更新轮播图位置
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // 更新指示点状态
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('bg-white');
+                        indicator.classList.remove('bg-white/50');
+                        indicator.classList.add('scale-125');
+                    } else {
+                        indicator.classList.remove('bg-white');
+                        indicator.classList.add('bg-white/50');
+                        indicator.classList.remove('scale-125');
+                    }
+                });
+            }
+
+            // 下一张
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }
+
+            // 上一张
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            }
+
+            // 点击指示点切换
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = parseInt(indicator.dataset.index);
+                    updateCarousel();
+                });
+            });
+
+            // 自动轮播
+            let interval = setInterval(nextSlide, 5000);
+
+            // 按钮事件
+            prevBtn.addEventListener('click', () => {
+                clearInterval(interval);
+                prevSlide();
+                interval = setInterval(nextSlide, 5000);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                clearInterval(interval);
+                nextSlide();
+                interval = setInterval(nextSlide, 5000);
+            });
+
+            // 鼠标悬停暂停自动轮播
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(interval);
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                interval = setInterval(nextSlide, 5000);
+            });
+        });
+    </script>
+
+    <!-- 景点推荐 -->
+    <section id="attractions" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-accent font-display mb-4">必游景点</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">探索攀枝花的自然风光和人文景观，感受这座阳光花城的独特魅力</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 二滩国家森林公园 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.ctnews.com.cn/zt/pic/2023-04/28/141339_173eb782-3943-41e7-84f9-2061c4543949.jpg" alt="二滩国家森林公园" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold">二滩国家森林公园</h3>
+                                <p class="text-white/80 text-sm">高山湖泊，峡谷风光</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">二滩国家森林公园</h3>
+                        <p class="text-gray-600 mb-4">拥有壮丽的高山湖泊和峡谷景观，是攀西旅游线上一颗璀璨的明珠。这里的自然风光美不胜收，是摄影爱好者和户外探险者的天堂。</p>
+                        <a href="https://you.ctrip.com/sight/yanbian3139/61152.html?renderPlatform=" class="text-primary font-medium inline-flex items-center" target="_blank">
+                            了解详情 <i class="fa fa-long-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 颛顼龙洞景区-->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbbs/1510/31/c29/14716617_1446276124310.jpg" alt="颛顼龙洞景区" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold">颛顼龙洞景区</h3>
+                                <p class="text-white/80 text-sm">喀斯特奇观，溶洞秘境</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">颛顼龙洞景区</h3>
+                        <p class="text-gray-600 mb-4">
+                            颛顼龙洞是攀西地区典型的喀斯特地貌溶洞，洞内钟乳石千姿百态，"水帘洞""龙宫""瑶池"等景观鬼斧神工。洞外瀑布飞泻，植被茂密，负氧离子含量极高，是集科考、观光、避暑于一体的自然奇观。
+                        </p>
+                        <a href="https://you.ctrip.com/sight/miyi3097/61163.html?renderPlatform=#ctm_ref=www_hp_bs_lst" class="text-primary font-medium inline-flex items-center" target="_blank"> 
+                            了解详情 <i class="fa fa-long-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 格萨拉生态旅游区 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="http://news.cjn.cn/zjjjdpd/pzh/202208/W020220831573750440109.jpg" alt="格萨拉生态旅游区" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold">格萨拉生态旅游区</h3>
+                                <p class="text-white/80 text-sm">天坑地漏，高山草甸</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">格萨拉生态旅游区</h3>
+                        <p class="text-gray-600 mb-4">以天坑地漏、岩溶景观和高山草甸为主要特色，被誉为"天然地质博物馆"。这里的生态环境原始而优美，是亲近自然的理想之地。</p>
+                        <a href="https://you.ctrip.com/sight/yanbian3139/61159.html?renderPlatform=" class="text-primary font-medium inline-flex items-center" target="_blank">
+                            了解详情 <i class="fa fa-long-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://you.ctrip.com/sight/panzhihua786.html" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-8 py-3 rounded-full shadow-lg btn-hover" target="_blank">
+                    查看更多景点 <i class="fa fa-compass ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食文化 -->
+    <section id="food" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-accent font-display mb-4">特色美食</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">品尝攀枝花的地道美食，感受独特的味觉盛宴</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 盐边羊肉米线  -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://img.pddpic.com/mms-material-img/2020-08-20/9c6dd863-5886-4802-8f75-cfa7d68df939.jpeg.a.jpeg" alt="盐边羊肉米线" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">
+                            必尝
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">盐边羊肉米线</h3>
+                        <p class="text-gray-600 mb-4">攀枝花家喻户晓的美食，汤鲜肉嫩，香气扑鼻。选用当地优质羊肉，配以独特的调料，口感醇厚，让人回味无穷。</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">4.8 (235条评价)</span>
+                        </div>
+                        <a href="https://www.dianping.com/search/keyword/239/0_%E7%9B%90%E8%BE%B9%E7%BE%8A%E8%82%89%E7%B1%B3%E7%BA%BF" class="text-primary font-medium inline-flex items-center"  target="_blank">
+                           了解详情 <i class="fa fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 攀枝花芒果-->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://p0.itc.cn/q_70/images03/20200820/6c6a11c217484d48827e4b19e661bcc1.jpeg" alt="攀枝花芒果" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">攀枝花芒果</h3>
+                        <p class="text-gray-600 mb-4">攀枝花是中国著名的芒果之乡，所产芒果果大核小、色泽鲜艳、甜香浓郁。这里独特的地理环境和气候条件造就了芒果的优良品质。</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">5.0 (187条评价)</span>
+                        </div>
+                        <a href="https://www.dianping.com/search/keyword/239/10_%E8%8A%92%E6%9E%9C" class="text-primary font-medium inline-flex items-center" target="_blank">
+                            了解详情 <i class="fa fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 爬沙虫 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://pic.nximg.cn/file/20200302/25779729_153319689030_2.jpg" alt="爬沙虫" class="w-full h-full object-cover" target="_blank">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-accent mb-2">爬沙虫</h3>
+                        <p class="text-gray-600 mb-4">生长在雅砻江支流安宁河中的珍稀昆虫，营养丰富，味道鲜美。爬沙虫是当地的特色美食，具有独特的口感和风味。</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">4.2 (156条评价)</span>
+                        </div>
+                        <a href="https://www.dianping.com/panzhihua/ch10" class="text-primary font-medium inline-flex items-center" target="_blank">
+                            了解详情 <i class="fa fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.dianping.com/panzhihua/ch10" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-8 py-3 rounded-full shadow-lg btn-hover" target="_blank">
+                    探索更多美食 <i class="fa fa-cutlery ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 民族风情 -->
+   <section id="culture" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-accent font-display mb-4">民族风情</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">体验攀枝花丰富多彩的民族文化和传统习俗</p>
+            <div class="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- 彝族部分 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-16">
+            <!-- 彝族文字内容（order-2 md:order-1） -->
+            <div class="order-2 md:order-1">
+                <h3 class="text-2xl font-bold text-accent mb-4">彝族风情</h3>
+                <p class="text-gray-600 mb-6">
+                    彝族是攀枝花的主要少数民族之一，拥有千年历史与独特火塘文化。他们聚居山间，以毕摩文化为精神纽带，传统服饰、火把节、口弦音乐构成神秘文化图谱，被誉为"火的民族"。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-music text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">传统音乐</h4>
+                            <p class="text-gray-600">
+                                彝族口弦、月琴音色空灵，《阿细跳月》节奏热烈，舞者围火而歌，羊皮鼓与铜铃声交织，传递着对自然的敬畏与生活的热爱。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-paint-brush text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">服饰文化</h4>
+                            <p class="text-gray-600">
+                                彝族服饰以黑红为主色调，男子头缠英雄结，女子戴五彩鸡冠帽，衣襟刺绣火镰纹、星辰纹，银饰叮当间展现"衣饰即史书"的千年传承。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-calendar text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">火把节盛典</h4>
+                            <p class="text-gray-600">
+                                农历六月二十四火把节，彝族村寨火光冲天，青年男女跳达体舞、赛歌摔跤，火把巡游驱邪祈福，尽显"火之民族"的热情与彪悍。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 彝族图片（order-1 md:order-2，添加动画层） -->
+            <div class="order-1 md:order-2 rounded-2xl overflow-hidden shadow-xl relative group cursor-pointer">
+                <a href="https://you.ctrip.com/sight/panzhihua786/5072776.html?scene=online" target="_blank" class="absolute inset-0 z-10"></a>
+                <img src="https://n.sinaimg.cn/sinacn20190723s/765/w2015h1150/20190723/8c52-iafwsqp0043093.jpg" alt="彝族风情" class="w-full h-auto"> <!-- 替换为真实图片 -->
+                
+                <!-- 悬停动画层 -->
+                <div class="absolute inset-0 bg-primary/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div class="text-center text-white">
+                        <h2 class="text-2xl font-bold text-shadow group-hover:scale-125 transition-transform duration-300">
+                            点击走进迤沙拉民族文化村
+                        </h2>
+                        <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            探秘火塘文明与毕摩文化
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 苴却砚部分 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-16">
+            <a href="https://you.ctrip.com/sight/panzhihua786/1841735.html?renderPlatform=" target="_blank" class="relative inline-block overflow-hidden rounded-2xl shadow-xl transition-shadow duration-300 group">
+                <img src="https://imgs.zsbeike.com/imgs/J/J08098/j08098.0068.0[1102a87484b4].jpg" alt="苴却砚文化" class="w-full h-auto object-cover">
+                
+                <div class="absolute inset-0 bg-primary/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div class="text-center text-white">
+                        <h2 class="text-2xl font-bold text-shadow group-hover:scale-125 transition-transform duration-300">
+                            点击了解攀枝花苴却砚博物馆
+                        </h2>
+                        <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            探索砚林奇葩的前世今生
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <div>
+                <h3 class="text-2xl font-bold text-accent mb-4">苴却砚文化</h3>
+                <p class="text-gray-600 mb-6">
+                    苴却砚位列中国“四大名砚”之外的“砚林奇葩”，产自攀枝花金沙江畔苴却山。其石质集端砚之润、歙砚之坚于一体，石中天然形成的“石眼”“火捺”“金星”等纹理如天成画卷，加之百年传承的雕刻技艺，使其成为兼具实用价值与艺术收藏价值的文化瑰宝。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-cube text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">石质优良</h4>
+                            <p class="text-gray-600">
+                                砚石取自海拔1400米以上的苴却岩层，经亿年地质变迁形成。其石质细密如婴儿肌肤，叩之有声清越似磬，储墨不腐可历旬月，研墨时“发墨如油，停墨如漆”，连被誉为“文房瑰宝”的狼毫笔锋亦能长久保持锐利。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-scissors text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">雕刻精美</h4>
+                            <p class="text-gray-600">
+                                匠人以刀代笔，依石纹走势雕刻：取“石眼”为巧雕核心，化作孔雀翎羽、麒麟瞳仁；将“火捺”纹理幻化为山峦云雾、烛影摇红；even 花鸟题材中，牡丹花瓣细如发丝，荷叶脉络清晰可辨，每一件砚台都是“天人共塑”的艺术品。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 p-3 rounded-full mr-4">
+                            <i class="fa fa-history text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-accent">历史悠久</h4>
+                            <p class="text-gray-600">
+                                据《云南通志》记载，苴却砚在清咸丰年间已奉为贡品，潘祖荫、张之洞等文人皆曾题铭赞誉。抗战时期，因产地交通阻断一度失传，直至20世纪80年代重新发掘，如今其制作工艺已列入四川省非物质文化遗产名录，续写着百年砚史传奇。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 全局动画样式 -->
+<style>
+.text-shadow {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.group:hover {
+    box-shadow: 0 12px 24px rgba(255, 126, 0, 0.2);
+}
+</style>
+    <!-- 旅游攻略 -->
+    <section id="guide" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-accent font-display mb-4">旅游攻略</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">为您的攀枝花之旅提供实用指南和建议</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-calendar text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-accent mb-4">最佳旅行时间</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                            <span>攀枝花四季分明，冬季温暖，是避寒胜地</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                            <span>最佳旅游季节为11月至次年3月</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                            <span>夏季凉爽，适合避暑和户外活动</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                            <span>春秋季气候宜人，适合观光和文化体验</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-map-o text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-accent mb-4">行程推荐</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-yellow-400 mt-1 mr-2"></i>
+                            <span>Day 1: 市区游览，参观三线建设博物馆</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-yellow-400 mt-1 mr-2"></i>
+                            <span>Day 2: 前往二滩国家森林公园，欣赏湖光山色</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-yellow-400 mt-1 mr-2"></i>
+                            <span>Day 3: 探访迤沙拉古村落，体验彝族文化</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-yellow-400 mt-1 mr-2"></i>
+                            <span>Day 4: 格萨拉生态旅游区一日游</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-info-circle text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-accent mb-4">实用信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                            <span>市区到主要景点均有旅游专线和班车</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-hotel text-primary mt-1 mr-2"></i>
+                            <span>住宿选择多样，从高档酒店到特色民宿一应俱全</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-credit-card text-primary mt-1 mr-2"></i>
+                            <span>市区和景区周边有银行和ATM，支付方式便捷</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-medkit text-primary mt-1 mr-2"></i>
+                            <span>市区有多家综合性医院，医疗设施完善</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-white rounded-2xl overflow-hidden shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-2 p-0">
+                        <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbbs/1503/18/c38/4053722_1426663156184_mthumb.jpg" alt="攀枝花风景" class="w-full h-full object-cover"> <!-- 需替换为真实图片 -->
+                    </div>
+                    <div class="md:col-span-3 p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-accent mb-6">联系我们</h3>
+                        <p class="text-gray-600 mb-8">如果您有任何关于攀枝花旅游的问题或需要帮助，欢迎随时联系我们。</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                    <i class="fa fa-phone text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">电话咨询</h4>
+                                    <p class="text-gray-600">0812-xxxxxxx</p> <!-- 需替换为真实电话号码 -->
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                    <i class="fa fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">电子邮件</h4>
+                                    <p class="text-gray-600">info@pzhwenlv.com</p> <!-- 需替换为真实邮箱 -->
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                    <i class="fa fa-map-marker text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">地址</h4>
+                                    <p class="text-gray-600">四川省攀枝花市东区</p> <!-- 需替换为真实地址 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary/90 text-white py-12 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">攀枝花文旅</h3>
+                    <p class="text-gray-200 mb-4">探索阳光花城，体验康养胜地的独特魅力。</p>
+                    <div class="flex space-x-4">
+                        <a href="https://weibo.com/yglypzh" class="text-gray-200 hover:text-white transition-all duration-300 hover:scale-110" target="_blank">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 首页</a></li>
+                        <li><a href="#attractions" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 景点推荐</a></li>
+                        <li><a href="#food" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 美食文化</a></li>
+                        <li><a href="#culture" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 民族风情</a></li>
+                        <li><a href="#guide" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 旅游攻略</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-2 text-yellow-300"></i>
+                            <span class="text-gray-200">0812-xxxxxxx</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-2 text-yellow-300"></i>
+                            <span class="text-gray-200">pzhswgl@163.com</span> 
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker mr-2 text-yellow-300"></i>
+                            <span class="text-gray-200">四川省攀枝花市东区</span> 
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">旅游资源</h3>
+                    <ul class="space-y-2">
+                        <!-- 需替换为真实链接 -->
+                        <li><a href="https://map.cd-star.com.cn/mapH5/" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center" target="_blank">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 旅游地图</a></li>
+                        <li><a href="http://www.nmc.cn/publish/forecast/ASC/panzhihua.html" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center" target="_blank">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 天气预报</a></li>
+                        <li><a href="http://panzhihua.gongjiao.com/" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center" target="_blank">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 交通指南</a></li>
+                        <li><a href="https://hotels.ctrip.com/hotels/list?countryId=1&city=1097&optionId=1097&optionType=City&display=%E6%94%80%E6%9E%9D%E8%8A%B1" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center" target="_blank">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 住宿预订</a></li>
+                        <li><a href="https://jbts.mct.gov.cn/home" class="text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center"  target="_blank">
+                            <i class="fa fa-angle-right mr-1 text-xs"></i> 旅游投诉</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700/50 mt-12 pt-8 text-center text-gray-300/80">
+                <p>&copy; 2025 攀枝花文旅网 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300
