@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>攀枝花旅游景点介绍</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF7E00', 
+                        secondary: '#3498db', 
+                        accent: '#2c3e50', 
+                        light: '#f8f9fa', 
+                        dark: '#333333', 
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            }
+            .rating-stars {
+                color: #ffc107;
+            }
+            .tag {
+                @apply px-2 py-1 rounded-full text-xs font-medium;
+            }
+            .tag-primary {
+                @apply bg-primary/10 text-primary;
+            }
+            .tag-secondary {
+                @apply bg-secondary/10 text-secondary;
+            }
+            .tag-accent {
+                @apply bg-accent/10 text-accent;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans text-dark">
+    <!-- 导航栏 -->
+     <div id="header"></div>
+    <!-- 页面头部 -->
+    <header class="relative h-64 md:h-80 bg-cover bg-center flex items-center" style="background-image: url('https://pic.baike.soso.com/p/20131231/20131231154514-1564532924.jpg');">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/70"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white text-shadow mb-2">攀枝花旅游景点</h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl">探索自然与人文的完美融合，感受攀枝花的独特魅力</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 景点列表 -->
+        <div class="space-y-8">
+            <!-- 二滩国家森林公园 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://www.ctnews.com.cn/zt/pic/2023-04/28/141339_173eb782-3943-41e7-84f9-2061c4543949.jpg" alt="二滩国家森林公园" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa fa-tree mr-2"></i>二滩国家森林公园
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.5 (328条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">自然景观</span>
+                            <span class="tag tag-secondary">避暑胜地</span>
+                            <span class="tag tag-accent">森林氧吧</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">二滩国家森林公园位于攀枝花市盐边县，面积达60多万亩，森林覆盖率87.15%。景区内山奇、水秀、林幽，有"天然氧吧"之称，是亲近自然、避暑度假的理想之地。公园内分布着多个景点，包括二滩水电站、菩萨岩、高峡平湖等。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：可从攀枝花市区乘坐前往盐边县的班车，在二滩森林公园路口下车<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：从市区出发约40分钟车程，沿途风景优美
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 门票：50元/人<br>
+                                        <i class="fa fa-map-signs text-primary mr-1"></i> 观光车票：20元/人<br>
+                                        <i class="fa fa-calendar text-primary mr-1"></i> 开放时间：08:30-17:30（全年开放）
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1005/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">李明</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">湖水清澈见底，周边群山环绕，空气清新，是周末放松的好去处。景区设施完善，适合全家出游。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 颛顼龙洞景区 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbbs/1510/31/c29/14716617_1446276124310.jpg" alt="颛顼龙洞景区" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa-solid fa-mountain mr-2"></i>颛顼龙洞景区
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.0 (256条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">喀斯特地貌</span>
+                            <span class="tag tag-secondary">地下溶洞</span>
+                            <span class="tag tag-accent">瀑布奇观</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">颛顼龙洞是我国著名的喀斯特溶洞，洞内景观奇特，石笋、石柱、石幔遍布，形态各异。洞中暗河潺潺，瀑布飞泻，被誉为"西南第一洞"。洞内常年恒温18℃，冬暖夏凉，是避暑避寒的绝佳地点。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：从攀枝花市区乘坐到米易县的班车，在龙洞景区路口下车<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：需1小时左右，道路平坦，景区有停车场
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 门票：60元/人<br>
+                                        <i class="fa fa-user text-primary mr-1"></i> 导游服务：50元/次（可议价）<br>
+                                        <i class="fa fa-calendar text-primary mr-1"></i> 开放时间：09:00-17:00（全年开放）
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1006/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">王芳</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">洞内景色壮观，钟乳石形态各异，配上灯光效果非常漂亮。导游讲解也很专业，值得一去。不过洞内比较湿滑，建议穿防滑鞋。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 格萨拉生态旅游区 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://p1.ssl.qhimg.com/t01960c13349f25dc51.jpg" alt="格萨拉生态旅游区" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa fa-leaf mr-2"></i>格萨拉生态旅游区
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.2 (198条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">自然风光</span>
+                            <span class="tag tag-secondary">彝族文化</span>
+                            <span class="tag tag-accent">高山草甸</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">格萨拉生态旅游区位于攀枝花市西北部，景区以天坑、地漏、岩溶、峡谷、彝族风情为特色，被誉为"天然地质博物馆"。每年5-6月，景区内索玛花盛开，漫山遍野，景色迷人。此外，这里还有独特的彝族民俗文化，游客可以体验彝族的传统生活方式。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：从市区乘车到盐边县，再转乘前往格萨拉的专线车<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：约2小时车程，山路崎岖，需谨慎驾驶
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 门票：40元/人<br>
+                                        <i class="fa fa-map-signs text-primary mr-1"></i> 景区内观光车：30元/人<br>
+                                        <i class="fa fa-calendar text-primary mr-1"></i> 开放时间：08:00-18:00（全年开放）
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1012/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">张伟</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">5月份去的，满山遍野的索玛花非常漂亮，简直是花的海洋。当地彝族同胞很热情，烤全羊味道很棒。唯一缺点是路途较远，自驾要注意安全。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三线建设博物馆 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://k.sinaimg.cn/n/sinacn/w1000h800/20180305/6a89-fxipenn3162692.jpg/w700d1q75cms.jpg" alt="三线建设博物馆" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa fa-industry mr-2"></i>三线建设博物馆
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.6 (412条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">历史文化</span>
+                            <span class="tag tag-secondary">爱国主义</span>
+                            <span class="tag tag-accent">工业遗产</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">攀枝花中国三线建设博物馆是国内面积最大、展陈最全、影响最广的三线建设专题博物馆。馆内收藏了大量三线建设时期的文物和资料，生动展现了那段艰苦卓绝的历史。博物馆分为多个展厅，通过实物、图片、影像等多种形式，全面展示了三线建设的历史背景、决策过程和建设成就。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：位于市区炳草岗大街，交通便利，多路公交车可达，如2路、6路、11路等<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：市区内可直接导航，有停车场
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 免费开放（需携带身份证）<br>
+                                        <i class="fa fa-user text-primary mr-1"></i> 讲解服务：50元/次<br>
+                                        <i class="fa fa-calendar text-primary mr-1"></i> 开放时间：09:00-17:00（周二至周日），周一闭馆
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1025/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">李强</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">非常震撼的博物馆，详细展示了三线建设那段历史，让人深受教育。馆内藏品丰富，讲解员也很专业，能生动地讲述那段艰苦岁月。适合带孩子来了解历史。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 迤沙拉古村落 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://tr-osdcp.qunarzz.com/tr-osd-tr-space/img/f0fef09443b74837ca642fac36adeb35.jpg" alt="迤沙拉古村落" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa fa-home mr-2"></i>迤沙拉古村落
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.1 (235条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">历史文化</span>
+                            <span class="tag tag-secondary">彝族风情</span>
+                            <span class="tag tag-accent">古村落</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">迤沙拉是我国最大的彝族自然村，素有"天下彝家第一村"之称。村落里有600余户人家，房屋建筑风格融合了彝族和汉族的特色，独具魅力。这里还保留着丰富多彩的彝族民间文化，如谈经古乐、彝族歌舞等。游客可以深入体验彝族的传统生活方式和民俗文化。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：从攀枝花市区乘坐前往平地镇的班车，再转乘到迤沙拉村的小巴<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：约1.5小时车程，沿途可欣赏乡村风光
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 免费开放<br>
+                                        <i class="fa fa-music text-primary mr-1"></i> 民俗表演：30元/人（需提前预约）<br>
+                                        <i class="fa fa-clock-o text-primary mr-1"></i> 开放时间：全天开放；民俗表演时间：10:00和15:00
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1062/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">赵琳</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">古村落保存得很好，建筑风格独特，彝族同胞非常热情好客。看了一场民俗表演，非常精彩。村里的农家乐味道也不错，推荐品尝当地的特色美食。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 阿署达四季花海 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://epaper.scdaily.cn/scrb/20250206/84c127c9efdcaabb58c482ae05f8f12f.jpg" alt="阿署达四季花海" class="w-full h-64 md:h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <div class="flex flex-wrap items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-primary flex items-center">
+                                <i class="fa-solid fa-seedling mr-2"></i>阿署达四季花海
+                            </h2>
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">4.0 (287条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag tag-primary">花卉观光</span>
+                            <span class="tag tag-secondary">休闲度假</span>
+                            <span class="tag tag-accent">亲子游玩</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">基本信息</h3>
+                                <p class="text-gray-600">阿署达四季花海景区以花卉观光、休闲度假为主题，园内种植了郁金香、玫瑰、薰衣草等多种花卉，四季花开不断。景区内还有休闲步道、亲子乐园、露营基地等设施，是家庭出游、情侣约会的好去处。此外，景区还经常举办各种花卉展览和主题活动。</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">交通指南</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-bus text-primary mr-1"></i> 公交：市区乘坐25路公交车直达景区门口<br>
+                                        <i class="fa fa-car text-primary mr-1"></i> 自驾：约20分钟车程，景区停车场免费
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-1">门票信息</h3>
+                                    <p class="text-gray-600">
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 旺季（3-5月、9-11月）：50元/人<br>
+                                        <i class="fa fa-ticket text-primary mr-1"></i> 淡季：30元/人<br>
+                                        <i class="fa fa-calendar text-primary mr-1"></i> 开放时间：08:30-18:00（全年开放）
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">游客评价</h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="flex items-start mb-3">
+                                        <img src="https://picsum.photos/id/1074/100/100" alt="用户头像" class="w-10 h-10 rounded-full mr-3">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <span class="font-medium">陈佳</span>
+                                                <div class="rating-stars ml-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">3月份去的，郁金香开得正盛，非常漂亮。景区内设施完善，有很多适合拍照的地方。亲子乐园也不错，孩子玩得很开心。唯一不足是节假日人有点多。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 旅游小贴士 -->
+        <div class="mt-16 bg-primary/5 rounded-xl p-6 border-l-4 border-primary">
+            <h2 class="text-xl font-bold text-primary mb-4 flex items-center">
+                <i class="fa fa-info-circle mr-2"></i>旅游小贴士
+            </h2>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                    <span>攀枝花紫外线较强，出行请携带防晒霜、太阳镜等防晒用品</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                    <span>前往山区景点（如格萨拉、二滩）建议穿着舒适的运动鞋</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                    <span>在彝族聚居区游览时，请尊重当地风俗习惯</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                    <span>景区内餐饮条件有限，建议自备一些零食和饮用水</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                    <span>提前查询各景区官方网站或电话，了解最新开放时间和门票信息</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- 回到主页面 -->
+<button id="backToHome" class="fixed bottom-6 right-6 bg-primary text-white rounded-full p-3 shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="fa fa-arrow-left mr-1"></i> 首页
+</button>
+
+<script>
+    // 回到主页面
+    const backToHomeBtn = document.getElementById('backToHome');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToHomeBtn.classList.remove('opacity-0', 'invisible');
+            backToHomeBtn.classList.add('opacity-100', 'visible');
+        } else {
+            backToHomeBtn.classList.remove('opacity-100', 'visible');
+            backToHomeBtn.classList.add('opacity-0', 'invisible');
+        }
+    });
+    
+    backToHomeBtn.addEventListener('click', () => {
+        window.location.href = 'index.html#attractions';
+    });
+</script>
+    <!-- 引入尾部 -->
+    <div id="footer"></div>
+
+    <script>
+        // 动态加载头部和尾部
+        fetch('header.html')
+           .then(response => response.text())
+           .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+
+        fetch('footer.html')
+           .then(response => response.text())
+           .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

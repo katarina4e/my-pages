@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>攀枝花旅游攻略</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF7D00', 
+            secondary: '#007B5A', 
+            accent: '#1E3A8A', 
+            neutral: {
+              100: '#F8FAFC',
+              200: '#E2E8F0',
+              300: '#CBD5E1',
+              700: '#334155',
+              800: '#1E293B',
+              900: '#0F172A',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .bg-gradient-overlay {
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      .animate-slide-up {
+        animation: slideUp 0.6s ease-out;
+      }
+      .animate-slide-right {
+        animation: slideRight 0.6s ease-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      @keyframes slideRight {
+        from { transform: translateX(-30px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+    }
+  </style>
+</head>
+<body class="bg-light font-sans text-dark">
+
+  <!-- 导航栏 -->
+     <div id="header"></div>
+    <!-- 页面头部 -->
+    <header class="relative h-64 md:h-80 bg-cover bg-center flex items-center" style="background-image: url('https://pic.baike.soso.com/p/20131231/20131231154514-1564532924.jpg');">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/70"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white text-shadow mb-2">攀枝花详细旅游攻略</h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl"> 阳光花城的四季之旅，让你感受到自然的魅力与绿色的氛围。</p>
+        </div>
+    </header>
+
+  <!-- 最佳旅行时间 -->
+  <section id="seasons" class="py-20 bg-neutral-100">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">最佳旅行时间</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-lg text-neutral-700 max-w-3xl mx-auto">
+          攀枝花四季分明，每个季节都有独特的魅力。了解不同季节的特点，选择最适合你的旅行时间。
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- 冬季卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="relative h-56">
+            <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbbs/2001/15/c11/188978792_1579065670675_mthumb.jpg" alt="冬季攀枝花" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-overlay flex items-end">
+              <h3 class="text-xl font-bold text-white p-6">冬季 (11-3月)</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-neutral-700 mb-4">温暖少雨，日均气温15-25℃，是避寒胜地。</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">泡红格温泉，享受冬日温暖</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">芒果、草莓等热带水果采摘</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">观赏二滩湖候鸟迁徙</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-neutral-500">平均温度: 18°C</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">避寒首选</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 春季卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="relative h-56">
+            <img src="https://img95.699pic.com/photo/50089/3335.jpg_wh860.jpg" alt="春季攀枝花" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-overlay flex items-end">
+              <h3 class="text-xl font-bold text-white p-6">春季 (4-5月)</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-neutral-700 mb-4">阳光充足，花开满城，气温舒适。</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">欣赏攀枝花市花（木棉）盛开</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">参与彝族火把节预热活动</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">探访百年梧桐古村落</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-neutral-500">平均温度: 22°C</span>
+              <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">赏花佳期</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 夏季卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="relative h-56">
+            <img src="https://bpic.588ku.com/back_origin_min_pic/19/10/22/13394827d0dea90a4320ee587aaec99f.jpg" alt="夏季攀枝花" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-overlay flex items-end">
+              <h3 class="text-xl font-bold text-white p-6">夏季 (6-8月)</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-neutral-700 mb-4">凉爽多雨，平均气温25℃左右，避暑胜地。</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">二滩森林公园乘船避暑</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">格萨拉生态旅游区滑草</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">金沙江漂流体验</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-neutral-500">平均温度: 25°C</span>
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">避暑玩水</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 秋季卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+          <div class="relative h-56">
+            <img src="https://bpic.588ku.com/back_origin_min_pic/21/07/30/998652be8b33adc0dae34fc7a2ba3578.jpg" alt="秋季攀枝花" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-overlay flex items-end">
+              <h3 class="text-xl font-bold text-white p-6">秋季 (9-10月)</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-neutral-700 mb-4">气候宜人，瓜果丰收，适合田园体验。</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">石榴、火龙果等水果采摘</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">徒步马鹿寨高山草甸</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                <span class="text-neutral-700">参加傈僳族新米节</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-neutral-500">平均温度: 23°C</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">丰收季节</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行程推荐 -->
+   <section id="itinerary" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">精选行程推荐</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-lg text-neutral-700 max-w-3xl mx-auto">
+          为您精心设计的攀枝花深度游路线，带您领略这座阳光城市的自然美景与人文风情。
+        </p>
+      </div>
+      
+      <!-- 行程选项卡 -->
+      <div class="mb-12">
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          <button class="itinerary-tab px-6 py-3 rounded-full bg-primary text-white font-medium" data-tab="classic">
+            经典5日游
+          </button>
+        </div>
+        
+        <!-- 经典5日游 -->
+        <div class="itinerary-content" id="classic">
+          <div class="relative">
+            <!-- 时间线 -->
+            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-primary/20 transform md:-translate-x-1/2"></div>
+            
+            <!-- 第1天 -->
+            <div class="relative z-10 mb-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-neutral-800 mb-4">Day 1: 三线文化探秘</h3>
+                    <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">参观三线建设博物馆，了解攀枝花开发建设历史<br>
+                        <small class="text-sm text-neutral-500">馆内珍藏2万余件文物，通过场景复原、多媒体互动等形式，再现上世纪60年代数十万建设者“艰苦创业、无私奉献”的激情岁月，感受“三线精神”的时代内涵。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">游览攀枝花中国苴却砚博物馆，欣赏国家级非物质文化遗产<br>
+                        <small class="text-sm text-neutral-500">馆内陈列千余方苴却砚珍品，其石质温润如玉，石眼璀璨如星，被誉为“砚中珍品”。可近距离观摩匠人雕刻技艺，感受千年砚文化与攀西地质奇观的完美融合。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-cutlery text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">晚餐品尝当地特色菜：盐边牛肉、爬沙虫<br>
+                        <small class="text-sm text-neutral-500">盐边牛肉以秘制香料卤制，肉质鲜嫩多汁；爬沙虫富含蛋白质，油炸后外酥里嫩（可根据口味选择尝试），搭配本地酸角汁解腻，体验独特的川滇风味。</small></span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-8 h-8 bg-primary rounded-full transform md:-translate-x-1/2 flex items-center justify-center text-white">
+                <i class="fa fa-flag"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 mt-8 md:mt-0">
+                <img src="https://n.sinaimg.cn/sinacn/w1000h800/20180305/ab05-fxipenn3170388.jpg" alt="三线建设博物馆" class="w-full h-auto rounded-xl shadow-lg">
+                <div class="mt-4 text-sm text-neutral-500">三线建设博物馆实景：锈迹斑斑的机械设备与历史展板交相辉映，诉说着攀枝花“因矿建厂、因厂设市”的传奇历程。</div>
+                </div>
+            </div>
+            </div>
+
+            <!-- 第2天 -->
+            <div class="relative z-10 mb-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 order-2 md:order-1 mt-8 md:mt-0">
+                <img src="https://seopic.699pic.com/photo/50067/6511.jpg_wh1200.jpg" alt="二滩国家森林公园" class="w-full h-auto rounded-xl shadow-lg">
+                <div class="mt-4 text-sm text-neutral-500">二滩高坝实景：高240米的亚洲第一高坝巍峨耸立，湖水湛蓝如宝石，乘船时可偶遇盘旋的白鹭与岸边嬉戏的猕猴群。</div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-8 h-8 bg-primary rounded-xl transform md:-translate-x-1/2 flex items-center justify-center text-white">
+                <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-neutral-800 mb-4">Day 2: 二滩湖生态之旅</h3>
+                    <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">游览二滩国家森林公园，参观亚洲第一高坝<br>
+                        <small class="text-sm text-neutral-500">登上观景台俯瞰雅砻江峡谷，听讲解员讲述高坝建设的“水电奇迹”，感受人类工程与自然景观的震撼碰撞。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">乘船游览二滩湖，观赏湖光山色和野生猕猴<br>
+                        <small class="text-sm text-neutral-500">乘坐游船深入湖区，两岸青山对峙，湖面碧波如镜。在猕猴半岛可投喂野生猕猴（注意保持安全距离），体验人与自然的和谐共处。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">入住欧方营地，体验法式风情度假村<br>
+                        <small class="text-sm text-neutral-500">营地保留了上世纪90年代中外合作建设高坝时的法式建筑群，红瓦白墙点缀于青山绿水间，晚餐可尝试营地特色烤羊排，夜晚在星空下聆听雅砻江的涛声。</small></span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- 第3天 -->
+            <div class="relative z-10 mb-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-neutral-800 mb-4">Day 3: 古村与星空浪漫</h3>
+                    <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">探访迤沙拉古村，漫步"中国第一彝族自然村"<br>
+                        <small class="text-sm text-neutral-500">古村始建于明朝，聚居着600余户俚颇彝族，村落布局呈“九宫十八院”，青石板路蜿蜒交错，百年古树与土掌房相映成趣，仿佛穿越回茶马古道的繁华岁月。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">欣赏古村民居壁画，聆听俚颇语民谣<br>
+                        <small class="text-sm text-neutral-500">民居外墙上绘有彝族图腾、农耕场景等壁画，色彩鲜艳生动。傍晚时分，围坐在百年核桃树下，听村民用俚颇语演唱古老民谣，感受非遗文化的独特魅力。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">夜宿星空帐篷营地，观赏璀璨银河<br>
+                        <small class="text-sm text-neutral-500">营地位于古村后山开阔地，配备专业天文望远镜。躺在帐篷外的躺椅上，仰望纯净星空，夏季可观测到银河横跨天际，冬季可见猎户座清晰轮廓，适合摄影爱好者捕捉星轨。</small></span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-8 h-8 bg-primary rounded-xl transform md:-translate-x-1/2 flex items-center justify-center text-white">
+                <i class="fa fa-tree"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 mt-8 md:mt-0">
+                <img src="https://n.sinaimg.cn/sinakd20201127ac/534/w1280h854/20201127/9b0d-kentcvx7036863.jpg" alt="迤沙拉古村" class="w-full h-auto rounded-xl shadow-lg">
+                <div class="mt-4 text-sm text-neutral-500">星空露营地实景：白色帐篷散落草场，观星台望远镜静待银河。天窗直对星轨，篝火余温混着草香，流星掠过惊起虫鸣，古村灯火与星空遥相闪烁。</div>
+                </div>
+            </div>
+            </div>
+
+            <!-- 第4天 -->
+            <div class="relative z-10 mb-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 order-2 md:order-1 mt-8 md:mt-0">
+                <img src="https://bpic.588ku.com/back_list_pic/22/06/09/9039a9a8946dfe207ff5a9f657beda3a.jpg" alt="格萨拉生态旅游区" class="w-full h-auto rounded-xl shadow-lg">
+                <div class="mt-4 text-sm text-neutral-500">格萨拉绿石林实景：千万年地质运动形成的“石头森林”千姿百态，藤蔓缠绕其间，雨季时还可偶遇野生菌群落（需在向导指导下采摘）。</div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-8 h-8 bg-primary rounded-xl transform md:-translate-x-1/2 flex items-center justify-center text-white">
+                <i class="fa fa-mountain"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-neutral-800 mb-4">Day 4: 格萨拉地质奇观</h3>
+                    <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">游览格萨拉生态旅游区，探索"地心裂谷"栈道<br>
+                        <small class="text-sm text-neutral-500">沿悬空栈道深入裂谷底部，两侧峭壁如刀削，潺潺溪流穿过溶洞，阳光透过缝隙洒下，形成奇幻的“一线天”景观，感受喀斯特地貌的鬼斧神工。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">观赏万亩盘松林海，探寻原始森林秘境<br>
+                        <small class="text-sm text-neutral-500">盘松是格萨拉特有的珍稀树种，树干虬曲如龙，成片生长于海拔3000米以上的高山草甸。徒步其间，可遇见牦牛群、藏猕猴，夏季还能采摘野生蓝莓。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">体验绿石林景区喀斯特地貌，寻找野生菌<br>
+                        <small class="text-sm text-neutral-500">在当地向导带领下穿梭于石柱之间，辨识可食用的青冈菌、鸡枞菌（注意：野生菌需充分煮熟后方可食用），感受“舌尖上的自然馈赠”。</small></span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- 第5天 -->
+            <div class="relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold text-neutral-800 mb-4">Day 5: 城市慢生活</h3>
+                    <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">沿迤沙拉大道骑行，欣赏冬季异木棉或春季三角梅<br>
+                        <small class="text-sm text-neutral-500">冬季（12-1月）异木棉灿若云霞，粉色花海铺满街道；春季（3-4月）三角梅攀满围栏，热烈奔放。可租一辆共享单车，感受“阳光花城”的慵懒时光。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-map-marker text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">逛炳草岗步行街，选购芒果干、苴却砚等特色伴手礼<br>
+                        <small class="text-sm text-neutral-500">步行街汇集攀枝花优质农产品：香甜的凯特芒果干、醇厚的酸角糕、精美的苴却砚摆件。推荐在老字号“攀果源”选购现烤芒果干，果香浓郁无添加。</small></span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-plane text-primary mt-1 mr-2"></i>
+                        <span class="text-neutral-700">带着美好回忆，返程或继续川滇之旅<br>
+                        <small class="text-sm text-neutral-500">若时间充裕，可从攀枝花出发，自驾2小时前往云南元谋（土林地质公园）或四川泸沽湖，延续川滇交界处的奇妙旅程。</small></span>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="absolute left-0 md:left-1/2 w-8 h-8 bg-primary rounded-xl transform md:-translate-x-1/2 flex items-center justify-center text-white">
+                <i class="fa fa-home"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 mt-8 md:mt-0">
+                <img src="https://p3.ifengimg.com/a/2017_19/8bbe06a1bae062f_size850_w2455_h1561.jpg" alt="攀枝花市区" class="w-full h-auto rounded-xl shadow-lg">
+                <div class="mt-4 text-sm text-neutral-500">攀枝花市区街景：阳光穿透三角梅的花帘，洒在整洁的街道上，街边小馆飘出麻辣鲜香的攀枝花米线香气，为旅程画上温馨句号。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+            
+
+        
+  <!-- 实用信息升级 -->
+    <section id="practical" class="py-20 bg-neutral-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">实用信息升级</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-600 max-w-3xl mx-auto">出行前了解这些实用信息，让你的旅行更加便捷顺畅</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 左侧：实用信息表格 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-primary/10 text-primary">
+                                    <th class="px-6 py-3 rounded-tl-lg">类别</th>
+                                    <th class="px-6 py-3 rounded-tr-lg">详细说明</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-neutral-200">
+                                <tr class="hover:bg-neutral-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium">交通指南</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-start mb-2">
+                                            <i class="fa fa-plane text-accent mt-1 mr-2"></i>
+                                            <span>机场：攀枝花保安营机场，直飞成都、重庆、西安等城市</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fa fa-car text-accent mt-1 mr-2"></i>
+                                            <span>市区：公交/打车便捷，推荐租电动车（阳光充足，适合兜风）</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-neutral-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium">住宿推荐</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-start mb-2">
+                                            <i class="fa fa-hotel text-accent mt-1 mr-2"></i>
+                                            <span>高端：红格温泉假日酒店（泡私汤+高尔夫）</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fa fa-home text-accent mt-1 mr-2"></i>
+                                            <span>特色：迤沙拉村民宿（如“俚颇小院”，体验彝族火塘文化）</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-neutral-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium">必备物品</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-start mb-2">
+                                            <i class="fa-solid fa-sun text-accent mt-1 mr-2"></i>
+                                            <span>防晒霜、墨镜（紫外线强）</span>
+                                        </div>
+                                        <div class="flex items-start mb-2">
+                                            <i class="fa fa-shoe-prints text-accent mt-1 mr-2"></i>
+                                            <span>舒适运动鞋（多山路）</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fa-solid fa-umbrella text-accent mt-1 mr-2"></i>
+                                            <span>薄外套（昼夜温差较大）</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-neutral-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium">注意事项</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-start mb-2">
+                                            <i class="fa fa-info-circle text-accent mt-1 mr-2"></i>
+                                            <span>少数民族地区尊重习俗（如进彝族家门需脱鞋，忌摸头）</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fa fa-cloud-rain text-accent mt-1 mr-2"></i>
+                                            <span>夏季多雨，山区道路偶有塌方，提前查路况</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 右侧：月度天气与推荐活动 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-primary mb-6">月度天气与推荐活动</h3>
+                    <div class="h-80">
+                        <canvas id="weatherChart"></canvas>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <div class="bg-neutral-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-secondary mb-2">最佳旅行月</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs">11月</span>
+                                <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs">12月</span>
+                                <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs">1月</span>
+                                <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs">2月</span>
+                                <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs">3月</span>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-secondary mb-2">旺季提醒</h4>
+                            <p class="text-sm text-neutral-600">冬季避寒高峰期（12-2月），酒店需提前预订</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 摄影&打卡地图 -->
+    <section id="photospots" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">摄影&打卡地图</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-600 max-w-3xl mx-auto">记录美好瞬间，这些打卡点让你的旅行照片更加出彩</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- 日出最佳点 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+        <div class="relative h-70">
+            <img src="https://pic.52112.com/180518/JPG-180518_330/jWaY4iIeSS_small.jpg" alt="日出最佳点" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                <div class="p-6"> 
+                    <h3 class="text-white font-bold text-xl">日出最佳点</h3>
+                    <p class="text-white/80 text-base">炳草岗大桥</p> 
+                </div>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-neutral-600 text-base"> 
+                拍摄城市与金沙江日出的绝佳位置，清晨时分，金色阳光洒在江面和城市建筑上，美轮美奂。
+            </p>
+            <div class="mt-4 flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">最佳时间：5:30-7:00（根据季节调整）</span>
+            </div>
+            <div class="mt-2 flex items-center">
+                <i class="fa fa-camera text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">拍摄建议：广角镜头，三脚架</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 日落秘境 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+        <div class="relative h-70"> 
+            <img src="https://p7.itc.cn/images01/20220511/91dd2f44ad6447368e2abdfca132838d.jpeg" alt="日落秘境" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                <div class="p-6"> 
+                    <h3 class="text-white font-bold text-xl">日落秘境</h3>
+                    <p class="text-white/80 text-base">迤沙拉村后山</p> 
+                </div>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-neutral-600 text-base"> 
+                俯瞰古村全景和金色麦田的最佳地点，夕阳余晖洒在青瓦白墙上，勾勒出一幅宁静的田园画卷。
+            </p>
+            <div class="mt-4 flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">最佳时间：17:30-19:00（根据季节调整）</span>
+            </div>
+            <div class="mt-2 flex items-center">
+                <i class="fa fa-camera text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">拍摄建议：中长焦镜头，渐变灰滤镜</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 夜景推荐 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+        <div class="relative h-70"> 
+            <img src="https://www.2008php.com/2019_Website_appreciate/2019-07-12/201907121432496uAjb.jpg" alt="夜景推荐" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                <div class="p-6"> 
+                    <h3 class="text-white font-bold text-xl">夜景推荐</h3>
+                    <p class="text-white/80 text-base">金雅仙客观景台</p> 
+                </div>
+            </div>
+        </div>
+        <div class="p-6">
+            <p class="text-neutral-600 text-base"> 
+                360°俯瞰攀枝花“山城灯火”的绝佳位置，夜晚城市灯火辉煌，与星空交相辉映。
+            </p>
+            <div class="mt-4 flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">最佳时间：20:00-22:00</span>
+            </div>
+            <div class="mt-2 flex items-center">
+                <i class="fa fa-camera text-secondary mr-2"></i>
+                <span class="text-sm text-neutral-600">拍摄建议：广角镜头，三脚架，低ISO</span>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- 行程贴士 -->
+    <section id="tips" class="py-20 bg-primary/5">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full -mr-16 -mt-16"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-primary/10 rounded-full -ml-12 -mb-12"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="bg-secondary/20 p-3 rounded-full inline-block">
+                            <i class="fa-solid fa-lightbulb text-2xl text-secondary"></i>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary text-center mb-8">行程贴士</h2>
+                    
+                    <div class="max-w-3xl mx-auto">
+                        <p class="text-lg text-neutral-700 mb-6 leading-relaxed">
+                            攀枝花景点分布较分散，建议预留1-2天灵活时间，深度感受“阳光小城”的慢节奏。如果时间充裕，可延伸至邻近的云南元谋（土林）或四川泸沽湖，开启川滇跨省之旅～ 🌞
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-neutral-50 p-5 rounded-lg">
+                                <h3 class="font-bold text-primary mb-3 flex items-center">
+                                    <i class="fa fa-check-circle text-secondary mr-2"></i>
+                                    行程规划建议
+                                </h3>
+                                <ul class="space-y-2 text-neutral-700">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>冬季前往需提前预订温泉酒店</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>山区景点建议自驾或包车，公共交通较少</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>参与少数民族活动时，提前了解习俗禁忌</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-neutral-50 p-5 rounded-lg">
+                                <h3 class="font-bold text-primary mb-3 flex items-center">
+                                    <i class="fa fa-star text-secondary mr-2"></i>
+                                    特色体验推荐
+                                </h3>
+                                <ul class="space-y-2 text-neutral-700">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>参加彝族火把节（农历六月二十四）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>品尝当季新鲜水果（冬季芒果、春季草莓）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-angle-right text-secondary mt-1 mr-2"></i>
+                                        <span>体验二滩水电站工业旅游</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- 回到主页面 -->
+<button id="backToHome" class="fixed bottom-6 right-6 bg-primary text-white rounded-full p-3 shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="fa fa-arrow-left mr-1"></i> 首页
+</button>
+
+    <script>
+        // 天气图表
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('weatherChart').getContext('2d');
+            
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    datasets: [
+                        {
+                            label: '平均高温 (°C)',
+                            data: [22, 24, 27, 30, 32, 31, 30, 30, 28, 26, 24, 22],
+                            backgroundColor: 'rgba(249, 115, 22, 0.7)',
+                            borderColor: 'rgba(249, 115, 22, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '平均低温 (°C)',
+                            data: [9, 11, 14, 17, 20, 21, 21, 20, 18, 15, 11, 8],
+                            backgroundColor: 'rgba(14, 165, 233, 0.7)',
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '降水量 (mm)',
+                            data: [10, 15, 20, 30, 80, 150, 180, 160, 90, 40, 20, 10],
+                            backgroundColor: 'rgba(30, 58, 138, 0.7)',
+                            borderColor: 'rgba(30, 58, 138, 1)',
+                            borderWidth: 1,
+                            type: 'line',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '温度 (°C)'
+                            }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '降水量 (mm)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script>
+    const backToHomeBtn = document.getElementById('backToHome');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 3500) {
+            backToHomeBtn.classList.remove('opacity-0', 'invisible');
+            backToHomeBtn.classList.add('opacity-100', 'visible');
+        } else {
+            backToHomeBtn.classList.remove('opacity-100', 'visible');
+            backToHomeBtn.classList.add('opacity-0', 'invisible');
+        }
+    });
+    
+    backToHomeBtn.addEventListener('click', () => {
+        window.location.href = 'index.html#guide';
+    });
+</script>
+    <!-- 引入尾部 -->
+    <div id="footer"></div>
+
+    <script>
+        // 动态加载头部和尾部
+        fetch('header.html')
+           .then(response => response.text())
+           .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+
+        fetch('footer.html')
+           .then(response => response.text())
+           .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
+    
