@@ -1279,6 +1279,7 @@
             }
         }
     </style>
+<base target="_blank">
 </head>
 
 <body>
@@ -2208,6 +2209,433 @@
         // 滚动时实时检测
         window.addEventListener('scroll', checkFade);
     </script>
+
+    <!-- 页面翻译功能 -->
+    <div id="translate-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 99999;">
+        <button id="translate-btn" onclick="toggleTranslateMenu()" style="
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #cfff33, #bfff33);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(207, 255, 51, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            color: #111;
+            font-weight: bold;
+        " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(207, 255, 51, 0.6)'" 
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(207, 255, 51, 0.4)'">
+            🌐
+        </button>
+        <div id="translate-menu" style="
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 12px;
+            min-width: 180px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid rgba(207, 255, 51, 0.2);
+        ">
+            <div style="color: #cfff33; font-size: 14px; font-weight: 600; margin-bottom: 10px; padding: 4px 8px; border-bottom: 1px solid rgba(207, 255, 51, 0.2);">
+                🌐 选择语言 / Select Language
+            </div>
+            <button onclick="doTranslate('zh-CN')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇨🇳 简体中文 (Chinese)
+            </button>
+            <button onclick="doTranslate('en')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇺🇸 English
+            </button>
+            <button onclick="doTranslate('ja')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇯🇵 日本語 (Japanese)
+            </button>
+            <button onclick="doTranslate('ko')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇰🇷 한국어 (Korean)
+            </button>
+            <button onclick="doTranslate('es')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇪🇸 Español (Spanish)
+            </button>
+            <button onclick="doTranslate('fr')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇫🇷 Français (French)
+            </button>
+            <button onclick="doTranslate('de')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇩🇪 Deutsch (German)
+            </button>
+            <button onclick="doTranslate('pt')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇵🇹 Português (Portuguese)
+            </button>
+            <button onclick="doTranslate('ar')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇸🇦 العربية (Arabic)
+            </button>
+            <button onclick="doTranslate('ru')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇷🇺 Русский (Russian)
+            </button>
+            <button onclick="doTranslate('it')" class="lang-option" style="
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                margin: 4px 0;
+                background: transparent;
+                border: none;
+                color: white;
+                text-align: left;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
+                🇮🇹 Italiano (Italian)
+            </button>
+        </div>
+    </div>
+
+    <!-- Google Translate 隐藏元素 -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        // ===== Google Translate 初始化 =====
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'zh-CN',
+                includedLanguages: 'zh-CN,en,ja,ko,es,fr,de,pt,ar,ru,it',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+
+            console.log('Google Translate 初始化完成');
+            window.googleTranslateLoaded = true;
+
+            // 如果有待执行的翻译，立即执行
+            if (window.pendingTranslateLang) {
+                setTimeout(function() {
+                    executeTranslate(window.pendingTranslateLang);
+                    window.pendingTranslateLang = null;
+                }, 500);
+            }
+        };
+
+        // ===== 切换翻译菜单 =====
+        function toggleTranslateMenu() {
+            const menu = document.getElementById('translate-menu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(10px)';
+                setTimeout(function() {
+                    menu.style.transition = 'all 0.3s ease';
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(10px)';
+                setTimeout(function() {
+                    menu.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // ===== 执行翻译 =====
+        function doTranslate(lang) {
+            // 隐藏菜单
+            const menu = document.getElementById('translate-menu');
+            menu.style.opacity = '0';
+            menu.style.transform = 'translateY(10px)';
+            setTimeout(function() {
+                menu.style.display = 'none';
+            }, 300);
+
+            // 显示加载提示
+            showNotification('🔄 正在翻译页面... / Translating...');
+
+            // 检查Google Translate是否已加载
+            if (window.googleTranslateLoaded) {
+                executeTranslate(lang);
+            } else {
+                // 如果未加载，先等待
+                window.pendingTranslateLang = lang;
+                // 尝试强制触发Google Translate
+                forceGoogleTranslate(lang);
+            }
+
+            // 保存语言偏好
+            localStorage.setItem('preferred_language', lang);
+        }
+
+        // ===== 强制触发Google Translate =====
+        function forceGoogleTranslate(lang) {
+            // 方法1: 通过修改cookie触发
+            var googTransCookie = '/zh-CN/' + lang;
+            document.cookie = 'googtrans=' + googTransCookie + '; path=/; domain=' + window.location.hostname;
+            document.cookie = 'googtrans=' + googTransCookie + '; path=/; domain=.' + window.location.hostname;
+
+            // 方法2: 通过URL参数触发
+            var currentUrl = window.location.href;
+            if (currentUrl.indexOf('?') === -1) {
+                // 不刷新页面，使用iframe方法
+            }
+
+            // 方法3: 尝试直接操作Google Translate控件
+            setTimeout(function() {
+                var select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.value = lang;
+                    select.dispatchEvent(new Event('change'));
+                    showTranslateSuccess(lang);
+                } else {
+                    // 如果控件不存在，使用iframe方法
+                    useIframeTranslate(lang);
+                }
+            }, 1500);
+        }
+
+        // ===== 使用iframe进行翻译（备用方案）=====
+        function useIframeTranslate(lang) {
+            // 创建一个隐藏的iframe来触发翻译
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'https://translate.google.com/translate?sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href);
+            document.body.appendChild(iframe);
+
+            setTimeout(function() {
+                iframe.remove();
+                showTranslateSuccess(lang);
+            }, 3000);
+        }
+
+        // ===== 执行翻译（通过Google Translate控件）=====
+        function executeTranslate(lang) {
+            var select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+                showTranslateSuccess(lang);
+            } else {
+                // 如果找不到控件，尝试其他方法
+                forceGoogleTranslate(lang);
+            }
+        }
+
+        // ===== 显示翻译成功提示 =====
+        function showTranslateSuccess(lang) {
+            var langNames = {
+                'zh-CN': '简体中文',
+                'en': 'English',
+                'ja': '日本語',
+                'ko': '한국어',
+                'es': 'Español',
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'pt': 'Português',
+                'ar': 'العربية',
+                'ru': 'Русский',
+                'it': 'Italiano'
+            };
+            showNotification('✅ 已切换至 ' + (langNames[lang] || lang));
+        }
+
+        // ===== 显示通知 =====
+        function showNotification(text) {
+            var existing = document.getElementById('translate-notification');
+            if (existing) existing.remove();
+
+            var notification = document.createElement('div');
+            notification.id = 'translate-notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-20px);
+                background: rgba(20, 20, 20, 0.95);
+                backdrop-filter: blur(12px);
+                color: #cfff33;
+                padding: 14px 28px;
+                border-radius: 50px;
+                font-size: 15px;
+                font-weight: 500;
+                z-index: 999999;
+                border: 1px solid rgba(207, 255, 51, 0.3);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                opacity: 0;
+                transition: all 0.4s ease;
+                white-space: nowrap;
+            `;
+            notification.textContent = text;
+            document.body.appendChild(notification);
+
+            setTimeout(function() {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(-50%) translateY(0)';
+            }, 10);
+
+            setTimeout(function() {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(function() { notification.remove(); }, 400);
+            }, 2500);
+        }
+
+        // ===== 页面加载时恢复语言设置 =====
+        document.addEventListener('DOMContentLoaded', function() {
+            var savedLang = localStorage.getItem('preferred_language');
+            if (savedLang && savedLang !== 'zh-CN') {
+                setTimeout(function() {
+                    doTranslate(savedLang);
+                }, 3000);
+            }
+        });
+
+        // ===== 点击页面其他地方关闭菜单 =====
+        document.addEventListener('click', function(e) {
+            var container = document.getElementById('translate-container');
+            var menu = document.getElementById('translate-menu');
+            if (container && !container.contains(e.target) && menu.style.display === 'block') {
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(10px)';
+                setTimeout(function() {
+                    menu.style.display = 'none';
+                }, 300);
+            }
+        });
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 </body>
 
 </html>
