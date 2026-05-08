@@ -14,17 +14,36 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
+        /* 主容器 Banner - 新增/修改部分 */
         .hero {
             width: 100%;
             min-height: 100vh;
+            color: white;
+            position: relative;
+            padding-bottom: 1rem;
+            overflow: hidden;
+            /* 防止模糊溢出 */
+        }
+
+        /* 抽离背景图到伪元素，单独控制模糊 */
+        .hero::before {
+            content: '';
+            position: fixed;
+            /* 固定背景，滚动时不跟随 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url('https://1837570490.v.123pan.cn/1837570490/29470337');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: white;
-            position: relative;
-            padding-bottom: 1rem;
+            z-index: -1;
+            /* 放在内容下方 */
+            transition: filter 0.5s ease;
+            /* 模糊过渡动画 */
+            filter: blur(var(--bg-blur, 0px));
         }
 
         /* 导航栏 */
@@ -114,6 +133,10 @@
 
         .nav-link:hover::after {
             width: 80%;
+        }
+        .nav-link.active {
+            background: rgba(207, 255, 51, 0.25);
+            border-color: #cfff33;
         }
 
         /* 倒计时 */
@@ -981,70 +1004,62 @@
 
 <body>
 
-    <div class="hero">
-        <!-- 导航栏 - 左侧添加图片 + 全宽度填充版本 -->
+        <div class="hero">
+        <!-- 导航栏 -->
         <nav>
-            <!-- 左侧：图片+2026美加墨世界杯文字 -->
             <div class="nav-left">
                 <img src="https://1837570490.v.123pan.cn/1837570490/29803213" alt="世界杯图标" class="nav-logo">
-                2026美加墨世界杯
+                <span class="i18n" data-i18n="2026美加墨世界杯">2026美加墨世界杯</span>
             </div>
 
-            <!-- 中间：导航菜单 -->
             <div class="nav-center">
-                <a href="index.html" class="nav-link">首页</a>
-                <a href="info.html" class="nav-link">赛事</a>
-                <a href="schedule.html" class="nav-link">赛程</a>
-                <a href="teams.html" class="nav-link">球队</a>
+                <a href="index.html" class="nav-link i18n" data-i18n="首页">首页</a>
+                <a href="info.html" class="nav-link i18n active" data-i18n="赛事">赛事</a>
+                <a href="schedule.html" class="nav-link i18n" data-i18n="赛程">赛程</a>
+                <a href="teams.html" class="nav-link i18n" data-i18n="球队">球队</a>
+                <a href="data.html" class="nav-link i18n" data-i18n="数据">数据</a>
             </div>
 
-            <!-- 右侧：倒计时 -->
             <div class="nav-right">
-                <!-- 世界杯倒计时模块 -->
                 <div class="countdown">
-                    <span class="countdown-label">开赛倒计时：</span>
-                    <span class="countdown-num" id="days">44</span><span class="countdown-text">天</span>
-                    <span class="countdown-num" id="hours">06</span><span class="countdown-text">小时</span>
-                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text">分钟</span>
-                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text">秒</span>
+                    <span class="countdown-label i18n" data-i18n="开赛倒计时：">开赛倒计时：</span>
+                    <span class="countdown-num" id="days">44</span><span class="countdown-text i18n" data-i18n="天">天</span>
+                    <span class="countdown-num" id="hours">06</span><span class="countdown-text i18n" data-i18n="时">时</span>
+                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text i18n" data-i18n="分">分</span>
+                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text i18n" data-i18n="秒">秒</span>
                 </div>
             </div>
         </nav>
 
         <div class="page-header fade-scroll">
-            <h1 class="page-title">2026世界杯 · 赛事全介绍</h1>
-            <p class="page-subtitle">赛事文化 | 赛制规则 | 场馆分布 | 中国观赛指南</p>
+            <h1 class="page-title i18n" data-i18n="page_info_title">2026世界杯 · 赛事全介绍</h1>
+            <p class="page-subtitle i18n" data-i18n="page_info_subtitle">赛事文化 | 赛制规则 | 场馆分布 | 中国观赛指南</p>
         </div>
 
         <!-- 赛事文化 -->
         <section class="section fade-scroll">
-            <h2 class="section-title">赛事文化</h2>
+            <h2 class="section-title i18n" data-i18n="section_culture">赛事文化</h2>
 
             <div class="culture-timeline">
-
                 <!-- 比赛用球 -->
                 <div class="timeline-item">
                     <div class="timeline-image">
                         <img src="https://1837570490.v.123pan.cn/1837570490/29527417">
-                        <div class="item-badge">官方用球</div>
+                        <div class="item-badge i18n" data-i18n="badge_official_ball">官方用球</div>
                     </div>
-
                     <div class="timeline-icon"><i class="bi bi-dribbble"></i></div>
                     <div class="timeline-dot"></div>
-
                     <div class="timeline-content">
                         <div class="content-header">
-                            <span class="time-tag">2026 世界杯</span>
-                            <h3>比赛用球 · TRIONDA</h3>
+                            <span class="time-tag i18n" data-i18n="tag_2026_wc">2026 世界杯</span>
+                            <h3 class="i18n" data-i18n="ball_title">比赛用球 · TRIONDA</h3>
                         </div>
-
                         <div class="info-line">
-                            <div class="info-item"><i class="bi bi-cpu"></i> 500Hz 传感芯片</div>
-                            <div class="info-item"><i class="bi bi-lightning-charge"></i> 超轻科技材质</div>
+                            <div class="info-item"><i class="bi bi-cpu"></i> <span class="i18n" data-i18n="ball_chip">500Hz 传感芯片</span></div>
+                            <div class="info-item"><i class="bi bi-lightning-charge"></i> <span class="i18n" data-i18n="ball_material">超轻科技材质</span></div>
                         </div>
-
-                        <p>2026世界杯官方比赛用球名称：阿迪达斯 TRIONDA（三重浪），设计：红/绿/蓝三色，嵌枫叶、美洲豹纹、白头海雕元素；采用轻量化科技材质与稳定飞行结构，兼顾速度与精准。</p>
-                        <p>球身配色融合现代美学与足球传统，象征团结、创新与突破，是世界杯扩军新时代的标志性比赛装备。</p>
+                        <p class="i18n" data-i18n="ball_desc1">2026世界杯官方比赛用球名称：阿迪达斯 TRIONDA（三重浪），设计：红/绿/蓝三色，嵌枫叶、美洲豹纹、白头海雕元素；采用轻量化科技材质与稳定飞行结构，兼顾速度与精准。</p>
+                        <p class="i18n" data-i18n="ball_desc2">球身配色融合现代美学与足球传统，象征团结、创新与突破，是世界杯扩军新时代的标志性比赛装备。</p>
                     </div>
                 </div>
 
@@ -1052,132 +1067,142 @@
                 <div class="timeline-item flip">
                     <div class="timeline-image">
                         <img src="https://1837570490.v.123pan.cn/1837570490/29470338">
-                        <div class="item-badge">三国联名</div>
+                        <div class="item-badge i18n" data-i18n="badge_three_countries">三国联名</div>
                     </div>
-
                     <div class="timeline-icon"><i class="bi bi-emoji-smile"></i></div>
                     <div class="timeline-dot"></div>
-
                     <div class="timeline-content">
                         <div class="content-header">
-                            <span class="time-tag">2025 正式发布</span>
-                            <h3>赛事吉祥物</h3>
+                            <span class="time-tag i18n" data-i18n="tag_2025_release">2025 正式发布</span>
+                            <h3 class="i18n" data-i18n="mascot_title">赛事吉祥物</h3>
                         </div>
-
                         <div class="info-line">
-                            <div class="info-item"><i class="bi bi-geo-alt"></i> 美加墨联合</div>
-                            <div class="info-item"><i class="bi bi-people"></i> 3 大角色</div>
+                            <div class="info-item"><i class="bi bi-geo-alt"></i> <span class="i18n" data-i18n="mascot_usacamex">美加墨联合</span></div>
+                            <div class="info-item"><i class="bi bi-people"></i> <span class="i18n" data-i18n="mascot_3roles">3 大角色</span></div>
                         </div>
-
-                        <p>本届吉祥物由美加墨三国联合设计，以北美特色动物为原型，充满活力、勇气与友好气质。</p>
-                        <p>萨尤（Zayu）：墨西哥美洲豹，绿色，前锋（9号），寓意团结欢乐。梅普尔（Maple）：加拿大驼鹿，红色，门将（1号），象征枫叶与创造力。克拉奇（Clutch）：美国白头海雕，蓝色，中场（10号），象征无畏与领导力。
-                        </p>
+                        <p class="i18n" data-i18n="mascot_desc1">本届吉祥物由美加墨三国联合设计，以北美特色动物为原型，充满活力、勇气与友好气质。</p>
+                        <p class="i18n" data-i18n="mascot_desc2">萨尤（Zayu）：墨西哥美洲豹，绿色，前锋（9号），寓意团结欢乐。梅普尔（Maple）：加拿大驼鹿，红色，门将（1号），象征枫叶与创造力。克拉奇（Clutch）：美国白头海雕，蓝色，中场（10号），象征无畏与领导力。</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- 场馆 -->
         <section class="section fade-scroll">
-            <h2 class="section-title">十六大赛场介绍</h2>
+            <h2 class="section-title i18n" data-i18n="section_stadiums">十六大赛场介绍</h2>
             <div class="stadium-grid">
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349426">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349426">
                     <div class="overlay">
-                        <div class="name">纽约大都会人寿体育场</div>
-                        <div class="desc">决赛举办地！容量8.2w+</div>
+                        <div class="name i18n" data-i18n="stadium_ny">纽约大都会人寿体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_ny_desc">决赛举办地！容量8.2w+</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29439527">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29439527">
                     <div class="overlay">
-                        <div class="name">洛杉矶SoFi体育场</div>
-                        <div class="desc">造价55亿美元，8场比赛含一场半决赛</div>
+                        <div class="name i18n" data-i18n="stadium_la">洛杉矶SoFi体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_la_desc">造价55亿美元，8场比赛含一场半决赛</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29439525">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29439525">
                     <div class="overlay">
-                        <div class="name">达拉斯AT&T体育场</div>
-                        <div class="desc">容量最大！可塞进10W人，橄榄球圣殿</div>
+                        <div class="name i18n" data-i18n="stadium_dallas">达拉斯AT&T体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_dallas_desc">容量最大！可塞进10W人，橄榄球圣殿</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349425">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349425">
                     <div class="overlay">
-                        <div class="name">迈阿密硬石体育场</div>
-                        <div class="desc">举办7场比赛，阿根廷小组赛大概率在此</div>
+                        <div class="name i18n" data-i18n="stadium_miami">迈阿密硬石体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_miami_desc">举办7场比赛，阿根廷小组赛大概率在此</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29495853">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29495853">
                     <div class="overlay">
-                        <div class="name">亚特兰大奔驰体育场</div>
-                        <div class="desc">可开合屋顶，烈日暴雨都不怕</div>
+                        <div class="name i18n" data-i18n="stadium_atlanta">亚特兰大奔驰体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_atlanta_desc">可开合屋顶，烈日暴雨都不怕</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29495851">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29495851">
                     <div class="overlay">
-                        <div class="name">波士顿吉列体育场</div>
-                        <div class="desc">六座新英格兰风情场馆</div>
+                        <div class="name i18n" data-i18n="stadium_boston">波士顿吉列体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_boston_desc">六座新英格兰风情场馆</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29558125">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29558125">
                     <div class="overlay">
-                        <div class="name">费城林肯金融球场</div>
-                        <div class="desc">美国经典专业足球场</div>
+                        <div class="name i18n" data-i18n="stadium_philly">费城林肯金融球场</div>
+                        <div class="desc i18n" data-i18n="stadium_philly_desc">美国经典专业足球场</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349429">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349429">
                     <div class="overlay">
-                        <div class="name">休斯顿NRG体育场</div>
-                        <div class="desc">德州最大体育场馆之一</div>
+                        <div class="name i18n" data-i18n="stadium_houston">休斯顿NRG体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_houston_desc">德州最大体育场馆之一</div>
                     </div>
                 </div>
             </div>
             <div class="stadium-grid">
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349424">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349424">
                     <div class="overlay">
-                        <div class="name">堪萨斯城箭头体育场</div>
-                        <div class="desc">美式足球氛围最热烈主场</div>
+                        <div class="name i18n" data-i18n="stadium_kc">堪萨斯城箭头体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_kc_desc">美式足球氛围最热烈主场</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349424">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349424">
                     <div class="overlay">
-                        <div class="name">西雅图流明体育场</div>
-                        <div class="desc">海景球场，观赛体验极佳</div>
+                        <div class="name i18n" data-i18n="stadium_seattle">西雅图流明体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_seattle_desc">海景球场，观赛体验极佳</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29558130">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29558130">
                     <div class="overlay">
-                        <div class="name">旧金山李维斯体育场</div>
-                        <div class="desc">硅谷科技感现代化球场</div>
+                        <div class="name i18n" data-i18n="stadium_sf">旧金山李维斯体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_sf_desc">硅谷科技感现代化球场</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29558136">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29558136">
                     <div class="overlay">
-                        <div class="name">温哥华BC体育馆</div>
-                        <div class="desc">标志性充气圆顶，加拿大地标</div>
+                        <div class="name i18n" data-i18n="stadium_van">温哥华BC体育馆</div>
+                        <div class="desc i18n" data-i18n="stadium_van_desc">标志性充气圆顶，加拿大地标</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29349420">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29349420">
                     <div class="overlay">
-                        <div class="name">多伦多BMO球场</div>
-                        <div class="desc">加拿大最“潮”主场</div>
+                        <div class="name i18n" data-i18n="stadium_toronto">多伦多BMO球场</div>
+                        <div class="desc i18n" data-i18n="stadium_toronto_desc">加拿大最"潮"主场</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29408820">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29408820">
                     <div class="overlay">
-                        <div class="name">墨西哥城阿兹特克</div>
-                        <div class="desc">足球圣殿！两次世界杯决赛场地</div>
+                        <div class="name i18n" data-i18n="stadium_mexico_city">墨西哥城阿兹特克</div>
+                        <div class="desc i18n" data-i18n="stadium_mexico_city_desc">足球圣殿！两次世界杯决赛场地</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29470336">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29470336">
                     <div class="overlay">
-                        <div class="name">瓜达拉哈拉阿克伦体育场</div>
-                        <div class="desc">墨西哥现代化专业球场</div>
+                        <div class="name i18n" data-i18n="stadium_guadalajara">瓜达拉哈拉阿克伦体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_guadalajara_desc">墨西哥现代化专业球场</div>
                     </div>
                 </div>
-                <div class="stadium-oval"><img src="https://1837570490.v.123pan.cn/1837570490/29558132">
+                <div class="stadium-oval">
+                    <img src="https://1837570490.v.123pan.cn/1837570490/29558132">
                     <div class="overlay">
-                        <div class="name">蒙特雷BBVA体育场</div>
-                        <div class="desc">墨西哥北部顶级球场</div>
+                        <div class="name i18n" data-i18n="stadium_monterrey">蒙特雷BBVA体育场</div>
+                        <div class="desc i18n" data-i18n="stadium_monterrey_desc">墨西哥北部顶级球场</div>
                     </div>
                 </div>
             </div>
@@ -1185,136 +1210,130 @@
 
         <!--赛制 & 流程-->
         <section class="section fade-scroll">
-            <h2 class="section-title">赛制 · 晋级流程</h2>
+            <h2 class="section-title i18n" data-i18n="section_system">赛制 · 晋级流程</h2>
             <div class="system-cards">
                 <div class="system-card">
-                    <h3>⚽ 赛制规模</h3>
-                    <p>2026世界杯共48支球队，分为16个小组，每组3队，单循环对决。每场比赛90分钟，分上下半场。</p>
+                    <h3 class="i18n" data-i18n="system_scale_title">⚽ 赛制规模</h3>
+                    <p class="i18n" data-i18n="system_scale_desc">2026世界杯共48支球队，分为16个小组，每组3队，单循环对决。每场比赛90分钟，分上下半场。</p>
                 </div>
                 <div class="system-card">
-                    <h3>📊 积分规则</h3>
-                    <p>90分钟内进球多的一方获胜，进球一样则为平局。胜一场3分，平一场1分，负0分。小组积分前两名晋级淘汰赛。</p>
+                    <h3 class="i18n" data-i18n="system_points_title">📊 积分规则</h3>
+                    <p class="i18n" data-i18n="system_points_desc">90分钟内进球多的一方获胜，进球一样则为平局。胜一场3分，平一场1分，负0分。小组积分前两名晋级淘汰赛。</p>
                 </div>
                 <div class="system-card">
-                    <h3>👥 球队组成</h3>
-                    <p>每队26人，上场11人，位置：门将、后卫、中场、前锋。后卫负责防守，中场负责组织传球，前锋负责进攻射门，门将负责守门。</p>
+                    <h3 class="i18n" data-i18n="system_team_title">👥 球队组成</h3>
+                    <p class="i18n" data-i18n="system_team_desc">每队26人，上场11人，位置：门将、后卫、中场、前锋。后卫负责防守，中场负责组织传球，前锋负责进攻射门，门将负责守门。</p>
                 </div>
                 <div class="system-card">
-                    <h3>🥅 点球规则</h3>
-                    <p>禁区内犯规会判罚球点球：球员在12码处无人阻挡直接射门。小组赛平局直接结束；淘汰赛90分钟打平→踢30分钟加时，再平就进入点球大战，轮流罚球分胜负。</p>
+                    <h3 class="i18n" data-i18n="system_penalty_title">🥅 点球规则</h3>
+                    <p class="i18n" data-i18n="system_penalty_desc">禁区内犯规会判罚球点球：球员在12码处无人阻挡直接射门。小组赛平局直接结束；淘汰赛90分钟打平→踢30分钟加时，再平就进入点球大战，轮流罚球分胜负。</p>
                 </div>
             </div>
 
             <div class="flow-horizontal">
-                <div class="flow-item">小组赛</div>
+                <div class="flow-item i18n" data-i18n="flow_group">小组赛</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-item">32强</div>
+                <div class="flow-item i18n" data-i18n="flow_32">32强</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-item">16强</div>
+                <div class="flow-item i18n" data-i18n="flow_16">16强</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-item">8强</div>
+                <div class="flow-item i18n" data-i18n="flow_8">8强</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-item">半决赛</div>
+                <div class="flow-item i18n" data-i18n="flow_semi">半决赛</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-item active">决赛 🏆</div>
+                <div class="flow-item active i18n" data-i18n="flow_final">决赛 🏆</div>
             </div>
         </section>
 
         <!-- 观赛指南 -->
         <section class="section fade-scroll">
-            <h2 class="section-title">🇨🇳 中国球迷观赛指南</h2>
+            <h2 class="section-title i18n" data-i18n="section_guide">🇨🇳 中国球迷观赛指南</h2>
 
             <div class="guide-section">
                 <div class="guide-card">
-                    <h3><i class="bi bi-clock"></i> 北京时间 · 焦点战</h3>
+                    <h3 class="i18n" data-i18n="guide_time_title"><i class="bi bi-clock"></i> 北京时间 · 焦点战</h3>
                     <div class="time-table">
-                        <p><span style="color:#cfff33;">🕒 揭幕战：</span>6月12日 周四 3:00 (北京时间)</p>
-                        <p><span style="color:#cfff33;">🌙 多数比赛：</span>凌晨3:00 / 上午9:00 / 中午11:30</p>
-                        <p><span style="color:#cfff33;">🌟 黄金时段：</span>周末上午场次友好，适合中国球迷</p>
+                        <p><span style="color:#cfff33;">🕒 <span class="i18n" data-i18n="guide_opener">揭幕战：</span></span><span class="i18n" data-i18n="guide_opener_time">6月12日 周四 3:00 (北京时间)</span></p>
+                        <p><span style="color:#cfff33;">🌙 <span class="i18n" data-i18n="guide_most">多数比赛：</span></span><span class="i18n" data-i18n="guide_most_time">凌晨3:00 / 上午9:00 / 中午11:30</span></p>
+                        <p><span style="color:#cfff33;">🌟 <span class="i18n" data-i18n="guide_golden">黄金时段：</span></span><span class="i18n" data-i18n="guide_golden_desc">周末上午场次友好，适合中国球迷</span></p>
                     </div>
-                    <p style="font-size:0.9rem; margin-top:1rem;">*因北美时差，部分重要淘汰赛安排在美东时间下午，对应北京凌晨至上午。</p>
+                    <p style="font-size:0.9rem; margin-top:1rem;" class="i18n" data-i18n="guide_note">*因北美时差，部分重要淘汰赛安排在美东时间下午，对应北京凌晨至上午。</p>
                 </div>
 
                 <div class="guide-card">
-                    <h3><i class="bi bi-play-circle"></i> 哪里看比赛</h3>
-                    <p style="margin-bottom: 1rem;">国内持权转播商预计为：</p>
+                    <h3 class="i18n" data-i18n="guide_watch_title"><i class="bi bi-play-circle"></i> 哪里看比赛</h3>
+                    <p style="margin-bottom: 1rem;" class="i18n" data-i18n="guide_watch_desc">国内持权转播商预计为：</p>
                     <div>
-                        <span class="platform-badge">央视CCTV5</span>
-                        <span class="platform-badge">咪咕视频</span>
-                        <span class="platform-badge">抖音</span>
-                        <span class="platform-badge">央视频APP</span>
+                        <a href="https://tv.cctv.com/live/cctv5/" target="_blank" class="platform-badge i18n" data-i18n="platform_cctv">央视CCTV5</a>
+                        <a href="https://www.miguvideo.com/" target="_blank" class="platform-badge i18n" data-i18n="platform_migu">咪咕视频</a>
+                        <a href="https://www.douyin.com/" target="_blank" class="platform-badge i18n" data-i18n="platform_douyin">抖音</a>
+                        <a href="https://www.yangshipin.cn/" target="_blank" class="platform-badge i18n" data-i18n="platform_yangshipin">央视频APP</a>
                     </div>
-                    <p style="margin-top: 1.2rem;">线下观赛活动：北京、上海、广州等城市将设立官方球迷广场，大屏直播+足球嘉年华。</p>
-                    <div
-                        style="margin-top: 1rem; background: rgba(207,255,51,0.12); padding: 0.8rem; border-radius: 14px;">
-                        <i class="bi bi-airplane"></i> <strong>赴美现场观赛：</strong>需持有效美国签证/加拿大签证，建议通过FIFA官网抽签购票。
+                    <p style="margin-top: 1.2rem;" class="i18n" data-i18n="guide_offline">线下观赛活动：北京、上海、广州等城市将设立官方球迷广场，大屏直播+足球嘉年华。</p>
+                    <div style="margin-top: 1rem; background: rgba(207,255,51,0.12); padding: 0.8rem; border-radius: 14px;">
+                        <i class="bi bi-airplane"></i> <strong class="i18n" data-i18n="guide_travel_title">赴美现场观赛：</strong><span class="i18n" data-i18n="guide_travel_desc">需持有效美国签证/加拿大签证，建议通过FIFA官网抽签购票。</span>
                     </div>
                 </div>
 
                 <div class="guide-card" style="flex:0.8;">
-                    <h3>📅 关键日期提醒</h3>
+                    <h3 class="i18n" data-i18n="guide_dates_title">📅 关键日期提醒</h3>
                     <ul style="list-style: none; padding: 0; line-height: 2;">
-                        <li>• 6.12 揭幕战 美国vs墨西哥</li>
-                        <li>• 6.25 小组赛结束</li>
-                        <li>• 7.4-7.8 四分之一决赛</li>
-                        <li>• 7.15 半决赛</li>
-                        <li>• 7.20 决赛 (北京凌晨3:00)</li>
+                        <li class="i18n" data-i18n="date_opener">• 6.12 揭幕战 美国vs墨西哥</li>
+                        <li class="i18n" data-i18n="date_group_end">• 6.25 小组赛结束</li>
+                        <li class="i18n" data-i18n="date_quarter">• 7.4-7.8 四分之一决赛</li>
+                        <li class="i18n" data-i18n="date_semi">• 7.15 半决赛</li>
+                        <li class="i18n" data-i18n="date_final">• 7.20 决赛 (北京凌晨3:00)</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="btn-center fade-scroll" style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 4rem 0;
-    ">
-                <a href="index.html#info" class="back-btn">
-                    <i class="bi bi-arrow-left"></i> 返回首页
-                </a>
+            <div class="btn-center fade-scroll" style="display: flex; justify-content: center; align-items: center; margin: 4rem 0;">
+                <a href="index.html#info" class="back-btn i18n" data-i18n="btn_back_home"><i class="bi bi-arrow-left"></i> 返回首页</a>
             </div>
         </section>
 
         <footer class="footer fade-scroll">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>快速导航</h3>
+                    <h3 class="i18n" data-i18n="快速导航">快速导航</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="info.html">赛事信息</a></li>
-                        <li><a href="schedule.html">赛事赛程</a></li>
-                        <li><a href="teams.html">参赛球队</a></li>
+                        <li><a href="index.html" class="i18n" data-i18n="首页">首页</a></li>
+                        <li><a href="info.html" class="i18n" data-i18n="赛事信息">赛事信息</a></li>
+                        <li><a href="schedule.html" class="i18n" data-i18n="赛程安排">赛程安排</a></li>
+                        <li><a href="teams.html" class="i18n" data-i18n="参赛球队">参赛球队</a></li>
+                        <li><a href="data.html" class="i18n" data-i18n="数据洞察">数据洞察</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>主办信息</h3>
+                    <h3 class="i18n" data-i18n="主办信息">主办信息</h3>
                     <ul class="footer-links">
-                        <li><a href="https://www.ussoccer.com/">美国足协</a></li>
-                        <li><a href="https://canadasoccer.com/">加拿大足协</a></li>
-                        <li><a href="https://fmf.mx/">墨西哥足协</a></li>
-                        <li><a href="https://www.fifa.com/">国际足联(FIFA)</a></li>
+                        <li><a href="https://www.ussoccer.com/" class="i18n" data-i18n="美国足协">美国足协</a></li>
+                        <li><a href="https://canadasoccer.com/" class="i18n" data-i18n="加拿大足协">加拿大足协</a></li>
+                        <li><a href="https://fmf.mx/" class="i18n" data-i18n="墨西哥足协">墨西哥足协</a></li>
+                        <li><a href="https://www.fifa.com/" class="i18n" data-i18n="国际足联(FIFA)">国际足联(FIFA)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>联系我们</h3>
+                    <h3 class="i18n" data-i18n="联系我们">联系我们</h3>
                     <div class="footer-contact">
-                        <p>邮箱：contact@2026worldcup.com</p>
-                        <p>电话：+1 202-555-0199</p>
-                        <p>地址：美国纽约曼哈顿第五大道</p>
+                        <p class="i18n" data-i18n="邮箱：contact@2026worldcup.com">邮箱：contact@2026worldcup.com</p>
+                        <p class="i18n" data-i18n="电话：+1 202-555-0199">电话：+1 202-555-0199</p>
+                        <p class="i18n" data-i18n="地址：美国纽约曼哈顿第五大道">地址：美国纽约曼哈顿第五大道</p>
                     </div>
                     <div class="footer-social">
-                        <a href="#" class="social-icon">📱</a>
-                        <a href="#" class="social-icon">🔵</a>
-                        <a href="#" class="social-icon">📷</a>
-                        <a href="#" class="social-icon">𝕏</a>
+                        <a href="#" class="social-icon i18n" data-i18n="📱">📱</a>
+                        <a href="#" class="social-icon i18n" data-i18n="🔵">🔵</a>
+                        <a href="#" class="social-icon i18n" data-i18n="📷">📷</a>
+                        <a href="#" class="social-icon i18n" data-i18n="𝕏">𝕏</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2026 美加墨世界杯官方网站 版权所有</p>
-                <p>本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
+                <p class="copyright i18n" data-i18n="© 2026 美加墨世界杯官方网站 版权所有">© 2026 美加墨世界杯官方网站 版权所有</p>
+                <p class="i18n" data-i18n="本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有">本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
             </div>
         </footer>
+    </div>
 
     </div>
 
@@ -1355,8 +1374,20 @@
         }
         window.addEventListener('scroll', check);
         window.addEventListener('load', check);
+
+        // 1. 背景模糊效果
+        const heroBg = document.querySelector('.hero::before'); // 伪元素无法直接获取，通过根元素控制
+        const heroElement = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const blurValue = scrollY > 250 ? 8 : 0;
+
+            heroElement.style.setProperty('--bg-blur', `${blurValue}px`);
+        });
     </script>
 
+    <script src="i18n-lang.js"></script>
 </body>
 
 </html>
