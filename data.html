@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <title data-i18n="page_title">数据洞察 - 2026美加墨世界杯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* 主容器 - 背景模糊效果 */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            padding-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://1837570490.v.123pan.cn/1837570490/29530806');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            transition: filter 0.5s ease;
+            filter: blur(var(--bg-blur, 0px));
+        }
+
+
+        /* 导航栏 */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+            width: 100%;
+        }
+
+        .nav-left {
+            flex: 1;
+            white-space: nowrap;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.8rem;
+        }
+
+        .nav-logo {
+            width: 35px;
+            height: 57px;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .nav-center {
+            flex: 3;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 8px;
+            padding: 0 10px;
+        }
+
+        .nav-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            justify-content: flex-end;
+            font-size: 1.35rem;
+        }
+
+        /* 导航链接 */
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.35rem;
+            opacity: 0.9;
+            transition: all 0.3s;
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            flex: none;
+            text-align: center;
+            position: relative;
+            background: rgba(255, 255, 250, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            background: rgba(207, 255, 51, 0.15);
+            border-color: rgba(207, 255, 51, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #cfff33;
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+        .nav-link.active {
+            background: rgba(207, 255, 51, 0.25);
+            border-color: #cfff33;
+        }
+
+        /* 倒计时 */
+        .countdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: 500;
+        }
+
+        .countdown-num {
+            color: #cfff33;
+            font-weight: 600;
+        }
+
+        .countdown-label,
+        .countdown-num,
+        .countdown-text {
+            font-size: inherit;
+            opacity: 0.9;
+        }
+
+        /* 🔥 统一页面标题样式 */
+        .page-header {
+            text-align: center;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            color: #cfff33;
+            margin-bottom: 0.8rem;
+            background: none;
+            -webkit-text-fill-color: initial;
+            background-clip: initial;
+        }
+
+        .page-header p {
+            font-size: 1.35rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .data-section {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .viz-block {
+            margin-bottom: 3rem;
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .viz-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .viz-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* 模块标题样式*/
+        .viz-title {
+            font-size: 2.4rem;
+            color: #cfff33;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+            border-left: 4px solid #cfff33;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .viz-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-top: 0.2rem;
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .chart-container.half {
+            height: 380px;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* ===== 1. 荣誉殿堂时间轴 ===== */
+        .viz-module {
+            margin-bottom: 3rem;
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        /* 去掉内部时间轴的背景模糊，避免双层，同时修复溢出 */
+        .champions-timeline {
+            background: transparent !important;
+            border: none !important;
+            backdrop-filter: none !important;
+            padding: 1rem 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #cfff33, transparent);
+            transform: translateY(-50%);
+        }
+
+        .timeline-items {
+            display: flex;
+            gap: 2rem;
+            animation: scrollTimeline 40s linear infinite;
+            width: max-content;
+            padding: 1rem 0;
+        }
+
+        .timeline-items:hover {
+            animation-play-state: paused;
+        }
+
+        .timeline-item {
+            flex-shrink: 0;
+            width: 170px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #cfff33;
+            border-radius: 50%;
+            margin: 0 auto 0.8rem;
+            border: 3px solid rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(207, 255, 51, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            box-shadow: 0 0 20px rgba(207, 255, 51, 0.8);
+            transform: scale(1.2);
+        }
+
+        .timeline-flag {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            border: 2px solid #cfff33;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .timeline-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timeline-year {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #cfff33;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-country {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .timeline-stars {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-top: 0.3rem;
+        }
+
+        @keyframes scrollTimeline {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* 控制面板 */
+        .control-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .control-bar label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .control-select {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(207, 255, 51, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .control-select option {
+            background: #1a1a2e;
+        }
+
+        .vs-pill {
+            background: rgba(207, 255, 51, 0.15);
+            color: #cfff33;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(207, 255, 51, 0.3);
+        }
+
+        /* 热力图网格 */
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 3px;
+            padding: 1rem;
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.15);
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .heatmap-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            border: 1px solid rgba(207, 255, 51, 0.3);
+        }
+
+        .heatmap-cell:hover .heatmap-tooltip {
+            opacity: 1;
+        }
+
+        /* 桑基图容器 */
+        .sankey-container {
+            width: 100%;
+            height: 500px;
+        }
+
+        /* 词云容器 */
+        .wordcloud-container {
+            width: 100%;
+            height: 350px;
+        }
+
+        /* 数字计数器 */
+        .counter-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .counter-item:hover {
+            border-color: rgba(207, 255, 51, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .counter-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #cfff33;
+            line-height: 1;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        .counter-delta {
+            font-size: 0.8rem;
+            color: #2ecc71;
+            margin-top: 0.3rem;
+        }
+
+        /* 交锋矩阵 */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .matrix-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .matrix-cell:hover {
+            transform: scale(1.1);
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(207, 255, 51, 0.3);
+        }
+
+        .matrix-cell.header {
+            background: rgba(207, 255, 51, 0.15);
+            color: #cfff33;
+            font-size: 0.75rem;
+        }
+
+        .matrix-cell.self {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .matrix-cell.empty {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /*页脚*/
+        .footer {
+            width: 95%;
+            margin: 8rem auto 1rem;
+            padding: 3rem 2.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            color: #cfff33;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #cfff33;
+            border-radius: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links li a::before {
+            content: "⚽";
+            font-size: 1.0rem;
+            opacity: 0.7;
+        }
+
+        .footer-links li a:hover {
+            color: #cfff33;
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #cfff33;
+            color: #111;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(207, 255, 51, 0.3);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 1.05rem;
+            opacity: 0.8;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom .copyright {
+            color: #cfff33;
+            font-weight: 500;
+        }
+
+        .fade-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease-out;
+        }
+
+        .fade-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.4rem;
+            background: #cfff33;
+            color: #111;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(207, 255, 51, 0.35);
+        }
+
+        .btn-center {
+            text-align: center;
+            margin: 2rem 0 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-center {
+                flex: 2;
+            }
+
+            .nav-left,
+            .nav-right {
+                flex: 1.5;
+            }
+
+            .nav-link {
+                font-size: 1.15rem;
+                padding: 0.5rem 1.5rem;
+            }
+
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+
+            .counter-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .matrix-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .timeline-entry,
+            .timeline-entry:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-content {
+                padding: 0;
+                text-align: center;
+            }
+
+            .timeline-entry:nth-child(even) .timeline-content {
+                padding: 0;
+                text-align: center;
+            }
+
+            .timeline-spine {
+                left: 20px;
+            }
+
+            .timeline-year-badge {
+                left: -10px !important;
+                right: auto !important;
+            }
+
+            .countdown {
+                padding: 0.5rem 1.5rem;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+                flex-wrap: wrap;
+                position: relative;
+                min-height: 80px;
+                gap: 0.5rem;
+            }
+
+            .nav-left {
+                width: 100%;
+                flex: none;
+                text-align: center;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .nav-logo {
+                width: 28px;
+                height: 28px;
+            }
+
+            .nav-center {
+                width: 100%;
+                flex: none;
+                gap: 4px;
+                margin-bottom: 0.5rem;
+            }
+
+            .nav-right {
+                width: 100%;
+                flex: none;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 0.4rem 1.2rem;
+            }
+
+            .viz-block {
+                padding: 1.2rem;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .counter-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .control-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .countdown {
+                padding: 0.4rem 1.2rem;
+                gap: 4px;
+            }
+
+            .footer {
+                padding: 1.5rem 1rem;
+                margin: 3rem auto 0.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .footer-col h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.4rem;
+            }
+
+            .footer-links li a,
+            .footer-contact p {
+                font-size: 0.85rem;
+            }
+
+            .footer-links {
+                gap: 0.6rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+                padding-top: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <nav>
+            <div class="nav-left">
+                <img src="https://1837570490.v.123pan.cn/1837570490/29803213" alt="世界杯图标" class="nav-logo">
+                <span class="i18n" data-i18n="2026美加墨世界杯">2026美加墨世界杯</span>
+            </div>
+            <div class="nav-center">
+                <a class="nav-link i18n" href="index.html">首页</a>
+                <a class="nav-link i18n" href="info.html">赛事</a>
+                <a class="nav-link i18n" href="schedule.html">赛程</a>
+                <a class="nav-link i18n" href="teams.html">球队</a>
+                <a class="nav-link i18n active" href="data.html">数据</a>
+            </div>
+            <div class="nav-right">
+                <div class="countdown">
+                    <span class="countdown-label i18n">开赛倒计时：</span>
+                    <span class="countdown-num" id="days">00</span><span class="countdown-text i18n">天</span>
+                    <span class="countdown-num" id="hours">00</span><span class="countdown-text i18n">时</span>
+                    <span class="countdown-num" id="minutes">00</span><span class="countdown-text i18n">分</span>
+                    <span class="countdown-num" id="seconds">00</span><span class="countdown-text i18n">秒</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-header fade-scroll">
+            <div class="page-tag" data-i18n="page_tag">📊 深度数据分析</div>
+            <h1 data-i18n="page_header_title">2026世界杯数据洞察中心</h1>
+            <p data-i18n="page_header_desc">用数据讲述足球故事 — 从历届王朝更迭到实时战力博弈</p>
+        </div>
+
+        <div class="data-section">
+
+            <!-- 1. 历届冠军荣誉殿堂 + 队徽时间轴 -->
+            <h3 class="viz-title"><i class="bi bi-trophy-fill"></i> <span data-i18n="module1_title">历届冠军荣誉殿堂</span></h3>
+            <p style="font-size:1rem; opacity:0.7; margin:-0.8rem 0 1.2rem 1.5rem; line-height:1.5;" data-i18n="module1_desc">
+                ⭐ 星级代表该国家队累计获得的世界杯冠军次数（五星巴西为历史最高）
+            </p>
+            <div class="viz-module">
+                <div class="champions-timeline">
+                    <div class="timeline-track"></div>
+                    <div class="timeline-items" id="timelineItems">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 冠军分布桑基图 -->
+            <h3 class="viz-title"><i class="bi bi-diagram-3"></i> <span data-i18n="module2_title">冠军流向图谱</span></h3>
+            <div class="viz-block fade-scroll">
+                <div class="viz-header">
+                    <div>
+                        <div class="viz-subtitle" data-i18n="module2_subtitle">各大洲冠军归属与夺冠次数流向</div>
+                    </div>
+                </div>
+                <div class="sankey-container" id="sankeyChart"></div>
+            </div>
+
+            <!-- 3. 战力对比 -->
+            <h3 class="viz-title"><i class="bi bi-radar"></i> <span data-i18n="module3_title">球队战力多维博弈</span></h3>
+            <div class="viz-block fade-scroll">
+                <div class="viz-header">
+                    <div>
+                        <div class="viz-subtitle" data-i18n="module3_subtitle">攻防速度体能传球五维雷达对比</div>
+                    </div>
+                </div>
+                <div class="control-bar">
+                    <label data-i18n="team_a_label">球队A</label>
+                    <select id="radarTeam1" class="control-select">
+                        <option value="france" selected data-i18n="team_france_flag">🇫🇷 法国</option>
+                        <option value="spain" data-i18n="team_spain_flag">🇪🇸 西班牙</option>
+                        <option value="england" data-i18n="team_england_flag">Eng 英格兰</option>
+                        <option value="argentina" data-i18n="team_argentina_flag">🇦🇷 阿根廷</option>
+                        <option value="brazil" data-i18n="team_brazil_flag">🇧🇷 巴西</option>
+                        <option value="germany" data-i18n="team_germany_flag">🇩🇪 德国</option>
+                        <option value="portugal" data-i18n="team_portugal_flag">🇵🇹 葡萄牙</option>
+                        <option value="netherlands" data-i18n="team_netherlands_flag">🇳🇱 荷兰</option>
+                    </select>
+                    <span class="vs-pill" data-i18n="vs_label">VS</span>
+                    <label data-i18n="team_b_label">球队B</label>
+                    <select id="radarTeam2" class="control-select">
+                        <option value="spain" selected data-i18n="team_spain_flag">🇪🇸 西班牙</option>
+                        <option value="france" data-i18n="team_france_flag">🇫🇷 法国</option>
+                        <option value="england" data-i18n="team_england_flag">Eng 英格兰</option>
+                        <option value="argentina" data-i18n="team_argentina_flag">🇦🇷 阿根廷</option>
+                        <option value="brazil" data-i18n="team_brazil_flag">🇧🇷 巴西</option>
+                        <option value="germany" data-i18n="team_germany_flag">🇩🇪 德国</option>
+                        <option value="portugal" data-i18n="team_portugal_flag">🇵🇹 葡萄牙</option>
+                        <option value="netherlands" data-i18n="team_netherlands_flag">🇳🇱 荷兰</option>
+                    </select>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-container half" id="radarChart"></div>
+                    <div class="chart-container half" id="barChart"></div>
+                </div>
+            </div>
+
+            <!-- 4. 球员热力矩阵 -->
+            <h3 class="viz-title"><i class="bi bi-grid-3x3-gap"></i> <span data-i18n="module4_title">球员表现热力矩阵</span></h3>
+            <div class="viz-block fade-scroll">
+                <div class="viz-header">
+                    <div>
+                        <div class="viz-subtitle" data-i18n="module4_subtitle">TOP12球星五维能力值可视化</div>
+                    </div>
+                </div>
+                <div class="control-bar">
+                    <button class="control-select" onclick="renderHeatmap('shoot', event)"
+                        style="border-color:#cfff33;color:#cfff33;" data-i18n="btn_shoot">⚽ 射门</button>
+                    <button class="control-select" onclick="renderHeatmap('pass', event)" data-i18n="btn_pass">🅰️传球</button>
+                    <button class="control-select" onclick="renderHeatmap('speed', event)" data-i18n="btn_speed">📈速度</button>
+                    <button class="control-select" onclick="renderHeatmap('defend', event)" data-i18n="btn_defend">🧤防守</button>
+                    <button class="control-select" onclick="renderHeatmap('stamina', event)" data-i18n="btn_stamina">🏃体能</button>
+                </div>
+                <div id="heatmapChart" style="width:100%;height:680px;"></div>
+                <div style="margin-top:12px; font-size:1rem; opacity:0.85; line-height:1.5;" data-i18n="heatmap_note">
+                    说明：数字代表能力值，颜色越亮表示能力值越高
+                </div>
+            </div>
+
+            <!-- 5. 历史交锋矩阵 -->
+            <h3 class="viz-title"><i class="bi bi-intersect"></i> <span data-i18n="module5_title">豪门交锋矩阵</span></h3>
+            <div class="viz-block fade-scroll">
+                <div class="viz-header">
+                    <div>
+                        <div class="viz-subtitle" data-i18n="module5_subtitle">8支传统强队历史对战胜率热力图</div>
+                    </div>
+                </div>
+                <div id="matrixChart" style="width:100%;height:630px;"></div>
+                <div style="margin-top:12px; font-size:1rem; opacity:0.85; line-height:1.5;" data-i18n="matrix_note">
+                    说明：数字代表胜场数，颜色越亮表示胜场越多。
+                </div>
+            </div>
+
+            <!-- 6. 夺冠趋势折线 -->
+            <h3 class="viz-title"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="module6_title">夺冠势力变迁</span></h3>
+            <div class="viz-block fade-scroll">
+                <div class="viz-header">
+                    <div>
+                        <div class="viz-subtitle" data-i18n="module6_subtitle">各大洲冠军数量随时间演变趋势</div>
+                    </div>
+                </div>
+                <div class="chart-container" id="trendChart"></div>
+            </div>
+
+        </div>
+
+        <div class="btn-center fade-scroll" style="display: flex; justify-content: center; align-items: center; margin: 4rem 0;">
+            <a href="index.html" class="back-btn">
+                <i class="bi bi-arrow-left"></i> <span data-i18n="back_home">返回首页</span>
+            </a>
+        </div>
+
+        <footer class="footer fade-scroll">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="i18n">快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-i18n="首页">首页</a></li>
+                        <li><a href="info.html" data-i18n="赛事信息">赛事信息</a></li>
+                        <li><a href="schedule.html" data-i18n="赛程安排">赛程安排</a></li>
+                        <li><a href="teams.html" data-i18n="参赛球队">参赛球队</a></li>
+                        <li><a href="data.html" data-i18n="数据洞察">数据洞察</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="i18n">主办信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.ussoccer.com/" data-i18n="美国足协">美国足协</a></li>
+                        <li><a href="https://canadasoccer.com/" data-i18n="加拿大足协">加拿大足协</a></li>
+                        <li><a href="https://fmf.mx/" data-i18n="墨西哥足协">墨西哥足协</a></li>
+                        <li><a href="https://www.fifa.com/" data-i18n="国际足联(FIFA)">国际足联(FIFA)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-i18n="footer_contact_title">联系我们</h3>
+                    <div class="footer-contact">
+                        <p data-i18n="邮箱：contact@2026worldcup.com">邮箱：contact@2026worldcup.com</p>
+                        <p data-i18n="电话：+1 202-555-0199">电话：+1 202-555-0199</p>
+                        <p data-i18n="地址：美国纽约曼哈顿第五大道">地址：美国纽约曼哈顿第五大道</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">📱</a>
+                        <a href="#" class="social-icon">🔵</a>
+                        <a href="#" class="social-icon">📷</a>
+                        <a href="#" class="social-icon">𝕏</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="© 2026 美加墨世界杯官方网站 版权所有">© 2026 美加墨世界杯官方网站 版权所有</p>
+                <p data-i18n="本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有">本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
+            </div>
+        </footer>
+        <script src="i18n-lang.js"></script>
+        <script>
+            // ==================== 数据获取函数（每次都重新获取翻译） ====================
+            function getChampionsData() {
+                return [
+                    { year: 1930, country: i18n.getText("team_uruguay"), flag: "uy", stars: 2 },
+                    { year: 1934, country: i18n.getText("team_italy"), flag: "it", stars: 4 },
+                    { year: 1938, country: i18n.getText("team_italy"), flag: "it", stars: 4 },
+                    { year: 1950, country: i18n.getText("team_uruguay"), flag: "uy", stars: 2 },
+                    { year: 1954, country: i18n.getText("team_germany"), flag: "de", stars: 4 },
+                    { year: 1958, country: i18n.getText("team_brazil"), flag: "br", stars: 5 },
+                    { year: 1962, country: i18n.getText("team_brazil"), flag: "br", stars: 5 },
+                    { year: 1966, country: i18n.getText("team_england"), flag: "gb-eng", stars: 1 },
+                    { year: 1970, country: i18n.getText("team_brazil"), flag: "br", stars: 5 },
+                    { year: 1974, country: i18n.getText("team_germany"), flag: "de", stars: 4 },
+                    { year: 1978, country: i18n.getText("team_argentina"), flag: "ar", stars: 3 },
+                    { year: 1982, country: i18n.getText("team_italy"), flag: "it", stars: 4 },
+                    { year: 1986, country: i18n.getText("team_argentina"), flag: "ar", stars: 3 },
+                    { year: 1990, country: i18n.getText("team_germany"), flag: "de", stars: 4 },
+                    { year: 1994, country: i18n.getText("team_brazil"), flag: "br", stars: 5 },
+                    { year: 1998, country: i18n.getText("team_france"), flag: "fr", stars: 2 },
+                    { year: 2002, country: i18n.getText("team_brazil"), flag: "br", stars: 5 },
+                    { year: 2006, country: i18n.getText("team_italy"), flag: "it", stars: 4 },
+                    { year: 2010, country: i18n.getText("team_spain"), flag: "es", stars: 1 },
+                    { year: 2014, country: i18n.getText("team_germany"), flag: "de", stars: 4 },
+                    { year: 2018, country: i18n.getText("team_france"), flag: "fr", stars: 2 },
+                    { year: 2022, country: i18n.getText("team_argentina"), flag: "ar", stars: 3 }
+                ];
+            }
+
+            function getRadarData() {
+                return {
+                    france: { name: i18n.getText("team_france"), color: "#3498db", data: [94, 90, 93, 91, 86] },
+                    spain: { name: i18n.getText("team_spain"), color: "#e74c3c", data: [88, 86, 84, 85, 94] },
+                    england: { name: i18n.getText("team_england"), color: "#e67e22", data: [90, 88, 89, 87, 85] },
+                    argentina: { name: i18n.getText("team_argentina"), color: "#87ceeb", data: [89, 85, 83, 84, 90] },
+                    brazil: { name: i18n.getText("team_brazil"), color: "#f1c40f", data: [90, 85, 91, 88, 84] },
+                    germany: { name: i18n.getText("team_germany"), color: "#9b59b6", data: [86, 87, 85, 86, 88] },
+                    portugal: { name: i18n.getText("team_portugal"), color: "#2ecc71", data: [88, 84, 87, 85, 86] },
+                    netherlands: { name: i18n.getText("team_netherlands"), color: "#e74c3c", data: [84, 90, 86, 85, 85] }
+                };
+            }
+
+            function getRadarLabels() {
+                return [
+                    i18n.getText("radar_attack"),
+                    i18n.getText("radar_defense"),
+                    i18n.getText("radar_speed"),
+                    i18n.getText("radar_stamina"),
+                    i18n.getText("radar_pass")
+                ];
+            }
+
+            function getMatrixTeams() {
+                return [
+                    i18n.getText("team_argentina"),
+                    i18n.getText("team_brazil"),
+                    i18n.getText("team_germany"),
+                    i18n.getText("team_france"),
+                    i18n.getText("team_italy"),
+                    i18n.getText("team_england"),
+                    i18n.getText("team_spain"),
+                    i18n.getText("team_netherlands")
+                ];
+            }
+
+            function getMatrixData() {
+                return [
+                    [null, 39, 10, 7, 0, 0, 0, 2],
+                    [44, null, 0, 6, 0, 0, 0, 0],
+                    [7, 0, null, 0, 0, 13, 0, 0],
+                    [3, 6, 0, null, 0, 0, 0, 0],
+                    [0, 0, 0, 0, null, 0, 10, 0],
+                    [0, 0, 13, 0, 0, null, 0, 0],
+                    [0, 0, 0, 0, 13, 0, null, 0],
+                    [3, 0, 0, 0, 0, 0, 0, null]
+                ];
+            }
+
+            //冠军时间轴
+            function renderTimeline() {
+                const container = document.getElementById('timelineItems');
+                const championsData = getChampionsData();
+                let html = '';
+
+                [...championsData, ...championsData].forEach(item => {
+                    const stars = '★'.repeat(item.stars);
+                    html += `
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-flag">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/${item.flag}.svg" alt="${item.country}">
+                </div>
+                <div class="timeline-year">${item.year}</div>
+                <div class="timeline-country">${item.country}</div>
+                <div class="timeline-stars">${stars}</div>
+            </div>
+        `;
+                });
+
+                container.innerHTML = html;
+            }
+
+            // ==================== 2. 桑基图 ====================
+            function initSankey() {
+                const dom = document.getElementById('sankeyChart');
+                if (!dom) return;
+                const oldChart = echarts.getInstanceByDom(dom);
+                if (oldChart) oldChart.dispose();
+                
+                const chart = echarts.init(dom);
+                const option = {
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'item', formatter: '{b}: {c}' + i18n.getText('win_suffix') },
+                    series: [{
+                        type: 'sankey',
+                        layout: 'force',
+                        left:'14%',
+                        emphasis: { focus: 'adjacency' },
+                        data: [
+                            { name: i18n.getText("continent_south_america"), itemStyle: { color: '#2ecc71' } },
+                            { name: i18n.getText("continent_europe"), itemStyle: { color: '#3498db' } },
+                            { name: i18n.getText("team_brazil"), itemStyle: { color: '#f1c40f' } },
+                            { name: i18n.getText("team_argentina"), itemStyle: { color: '#87ceeb' } },
+                            { name: i18n.getText("team_uruguay"), itemStyle: { color: '#1abc9c' } },
+                            { name: i18n.getText("team_germany"), itemStyle: { color: '#9b59b6' } },
+                            { name: i18n.getText("team_italy"), itemStyle: { color: '#e74c3c' } },
+                            { name: i18n.getText("team_france"), itemStyle: { color: '#3498db' } },
+                            { name: i18n.getText("team_england"), itemStyle: { color: '#e67e22' } },
+                            { name: i18n.getText("team_spain"), itemStyle: { color: '#e74c3c' } },
+                            { name: i18n.getText("stars_5"), itemStyle: { color: '#ffd700' } },
+                            { name: i18n.getText("stars_4"), itemStyle: { color: '#c0c0c0' } },
+                            { name: i18n.getText("stars_3"), itemStyle: { color: '#cd7f32' } },
+                            { name: i18n.getText("stars_2"), itemStyle: { color: '#b87333' } },
+                            { name: i18n.getText("stars_1"), itemStyle: { color: '#a0a0a0' } }
+                        ],
+                        links: [
+                            { source: i18n.getText("continent_south_america"), target: i18n.getText("team_brazil"), value: 5 },
+                            { source: i18n.getText("continent_south_america"), target: i18n.getText("team_argentina"), value: 3 },
+                            { source: i18n.getText("continent_south_america"), target: i18n.getText("team_uruguay"), value: 2 },
+                            { source: i18n.getText("continent_europe"), target: i18n.getText("team_germany"), value: 4 },
+                            { source: i18n.getText("continent_europe"), target: i18n.getText("team_italy"), value: 4 },
+                            { source: i18n.getText("continent_europe"), target: i18n.getText("team_france"), value: 2 },
+                            { source: i18n.getText("continent_europe"), target: i18n.getText("team_england"), value: 1 },
+                            { source: i18n.getText("continent_europe"), target: i18n.getText("team_spain"), value: 1 },
+                            { source: i18n.getText("team_brazil"), target: i18n.getText("stars_5"), value: 5 },
+                            { source: i18n.getText("team_germany"), target: i18n.getText("stars_4"), value: 4 },
+                            { source: i18n.getText("team_italy"), target: i18n.getText("stars_4"), value: 4 },
+                            { source: i18n.getText("team_argentina"), target: i18n.getText("stars_3"), value: 3 },
+                            { source: i18n.getText("team_uruguay"), target: i18n.getText("stars_2"), value: 2 },
+                            { source: i18n.getText("team_france"), target: i18n.getText("stars_2"), value: 2 },
+                            { source: i18n.getText("team_england"), target: i18n.getText("stars_1"), value: 1 },
+                            { source: i18n.getText("team_spain"), target: i18n.getText("stars_1"), value: 1 }
+                        ],
+                        lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.4 },
+                        label: { color: '#fff', fontSize: 13, fontWeight: 'bold' }
+                    }]
+                };
+                chart.setOption(option);
+                window.addEventListener('resize', () => chart.resize());
+            }
+
+            // ==================== 3. 雷达图 ====================
+            let radarChart, barChart;
+            function initRadar() {
+                const radarDom = document.getElementById('radarChart');
+                const barDom = document.getElementById('barChart');
+                if (!radarDom || !barDom) return;
+                
+                const oldRadar = echarts.getInstanceByDom(radarDom);
+                if (oldRadar) oldRadar.dispose();
+                const oldBar = echarts.getInstanceByDom(barDom);
+                if (oldBar) oldBar.dispose();
+                
+                radarChart = echarts.init(radarDom);
+                barChart = echarts.init(barDom);
+                updateRadar();
+                window.addEventListener('resize', () => { 
+                    radarChart && radarChart.resize(); 
+                    barChart && barChart.resize(); 
+                });
+            }
+
+            function updateRadar() {
+                const t1 = document.getElementById('radarTeam1').value;
+                const t2 = document.getElementById('radarTeam2').value;
+                const radarData = getRadarData();
+                const radarLabels = getRadarLabels();
+                const d1 = radarData[t1];
+                const d2 = radarData[t2];
+
+                if (!radarChart || !barChart) return;
+
+                const radarOption = {
+                    backgroundColor: 'transparent',
+                    tooltip: {},
+                    legend: { data: [d1.name, d2.name], textStyle: { color: '#fff' }, bottom: 5 },
+                    radar: {
+                        indicator: radarLabels.map(l => ({ name: l, max: 100 })),
+                        shape: 'polygon',
+                        splitNumber: 5,
+                        axisName: { color: '#fff', fontSize: 12 },
+                        splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } },
+                        splitArea: { areaStyle: { color: ['rgba(207,255,51,0.02)', 'rgba(207,255,51,0.05)'] } },
+                        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } }
+                    },
+                    series: [{
+                        type: 'radar',
+                        data: [
+                            { value: d1.data, name: d1.name, areaStyle: { color: d1.color + '40' }, lineStyle: { color: d1.color, width: 2 }, itemStyle: { color: d1.color } },
+                            { value: d2.data, name: d2.name, areaStyle: { color: d2.color + '40' }, lineStyle: { color: d2.color, width: 2 }, itemStyle: { color: d2.color } }
+                        ]
+                    }]
+                };
+                radarChart.setOption(radarOption);
+
+                const barOption = {
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                    legend: { data: [d1.name, d2.name], textStyle: { color: '#fff' }, top: 5 },
+                    grid: { left: '3%', right: '4%', bottom: '3%', top: '15%', containLabel: true },
+                    xAxis: { type: 'category', data: radarLabels, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } }, axisLabel: { color: '#fff' } },
+                    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }, axisLabel: { color: '#fff' } },
+                    series: [
+                        { name: d1.name, type: 'bar', data: d1.data, itemStyle: { color: d1.color, borderRadius: [4, 4, 0, 0] }, barWidth: '30%' },
+                        { name: d2.name, type: 'bar', data: d2.data, itemStyle: { color: d2.color, borderRadius: [4, 4, 0, 0] }, barWidth: '30%' }
+                    ]
+                };
+                barChart.setOption(barOption);
+            }
+
+            // ==================== 4. 热力矩阵 ====================
+            function initHeatmap() {
+                const dom = document.getElementById('heatmapChart');
+                if (!dom) return;
+                const oldChart = echarts.getInstanceByDom(dom);
+                if (oldChart) oldChart.dispose();
+                
+                window.heatmapChart = echarts.init(dom);
+                renderHeatmap('shoot', null);
+                window.addEventListener('resize', () => window.heatmapChart && window.heatmapChart.resize());
+            }
+
+            function renderHeatmap(type, evt) {
+                if (!window.heatmapChart) return;
+                
+                const playerData = [
+                    { name: i18n.getText("player_mbappe"), shoot: 95, pass: 78, speed: 98, defend: 45, stamina: 92 },
+                    { name: i18n.getText("player_haaland"), shoot: 96, pass: 65, speed: 88, defend: 40, stamina: 90 },
+                    { name: i18n.getText("player_messi"), shoot: 91, pass: 95, speed: 80, defend: 38, stamina: 85 },
+                    { name: i18n.getText("player_kane"), shoot: 92, pass: 80, speed: 78, defend: 48, stamina: 88 },
+                    { name: i18n.getText("player_vinicius"), shoot: 88, pass: 75, speed: 97, defend: 43, stamina: 91 },
+                    { name: i18n.getText("player_ronaldo"), shoot: 93, pass: 70, speed: 85, defend: 45, stamina: 86 },
+                    { name: i18n.getText("player_yamal"), shoot: 82, pass: 85, speed: 94, defend: 35, stamina: 89 },
+                    { name: i18n.getText("player_lautaro"), shoot: 87, pass: 72, speed: 82, defend: 46, stamina: 87 },
+                    { name: i18n.getText("player_saka"), shoot: 85, pass: 82, speed: 93, defend: 50, stamina: 90 },
+                    { name: i18n.getText("player_rodrigo"), shoot: 83, pass: 83, speed: 90, defend: 42, stamina: 86 },
+                    { name: i18n.getText("player_griezmann"), shoot: 86, pass: 88, speed: 75, defend: 68, stamina: 84 },
+                    { name: i18n.getText("player_bellingham"), shoot: 84, pass: 86, speed: 85, defend: 70, stamina: 95 }
+                ];
+
+                const sortKey = type;
+                const sortedPlayers = [...playerData].sort((a, b) => b[sortKey] - a[sortKey]);
+                const players = sortedPlayers.map(p => p.name);
+                const dimensions = [i18n.getText("heatmap_shoot"), i18n.getText("heatmap_pass"), i18n.getText("heatmap_speed"), i18n.getText("heatmap_defend"), i18n.getText("heatmap_stamina")];
+                const heatData = [];
+
+                sortedPlayers.forEach((player, i) => {
+                    heatData.push([0, i, player.shoot]);
+                    heatData.push([1, i, player.pass]);
+                    heatData.push([2, i, player.speed]);
+                    heatData.push([3, i, player.defend]);
+                    heatData.push([4, i, player.stamina]);
+                });
+
+                const option = {
+                    backgroundColor: 'transparent',
+                    tooltip: { position: 'top', formatter: (p) => `${players[p.data[1]]} - ${dimensions[p.data[0]]}: ${p.data[2]}` },
+                    grid: { left: '15%', right: '5%', top: '8%', bottom: '10%' },
+                    xAxis: {
+                        type: 'category',
+                        data: dimensions,
+                        splitArea: { show: true, areaStyle: { color: 'rgba(255,255,255,0.02)' } },
+                        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                        axisLabel: { color: '#fff', fontSize: 12 }
+                    },
+                    yAxis: {
+                        type: 'category',
+                        data: players,
+                        inverse: true,
+                        axisLabel: { color: '#fff', fontSize: 11 },
+                        splitArea: { show: true, areaStyle: { color: 'rgba(255,255,255,0.02)' } },
+                        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    },
+                    graphic: [{
+                        type: 'text',
+                        left: '15%',
+                        top: '2%',
+                        style: { text: i18n.getText("heatmap_rank_title"), fill: '#cfff33', fontSize: 14, fontWeight: 'bold' }
+                    }],
+                    visualMap: {
+                        min: 30, max: 100, calculable: true,
+                        orient: 'horizontal', left: 'center', bottom: '0%',
+                        inRange: { color: ['#4169E1', '#6495ED', '#87CEEB', '#90EE90', '#ADFF2F', '#FFFFE0', '#FFD700', '#FFA07A', '#FA8072', '#CD5C5C'] },
+                        textStyle: { color: 'rgba(255,255,255,0.7)' }
+                    },
+                    series: [{
+                        type: 'heatmap',
+                        data: heatData,
+                        label: { show: true, color: '#1a1a2e', fontSize: 12, fontWeight: 'bold' },
+                        emphasis: { itemStyle: { shadowBlur: 15, shadowColor: 'rgba(207,255,51,0.5)', borderColor: '#cfff33', borderWidth: 2 } }
+                    }]
+                };
+
+                window.heatmapChart.setOption(option, true);
+
+                // 按钮高亮
+                document.querySelectorAll('.control-bar button').forEach(btn => {
+                    btn.style.borderColor = 'rgba(207,255,51,0.3)';
+                    btn.style.color = 'white';
+                });
+                const targetBtn = evt ? evt.target : null;
+                if (targetBtn) { targetBtn.style.borderColor = '#cfff33'; targetBtn.style.color = '#cfff33'; }
+            }
+
+            // ==================== 5. 交锋矩阵 ====================
+            function initMatrix() {
+                const dom = document.getElementById('matrixChart');
+                if (!dom) return;
+                const oldChart = echarts.getInstanceByDom(dom);
+                if (oldChart) oldChart.dispose();
+                
+                const chart = echarts.init(dom);
+                const teams = getMatrixTeams();
+                const matrixDataValues = getMatrixData();
+                const data = [];
+                for (let i = 0; i < teams.length; i++) {
+                    for (let j = 0; j < teams.length; j++) {
+                        if (matrixDataValues[i][j] !== null) {
+                            data.push([j, i, matrixDataValues[i][j]]);
+                        }
+                    }
+                }
+
+                const option = {
+                    backgroundColor: 'transparent',
+                    tooltip: { position: 'top', formatter: (p) => `${teams[p.data[1]]} vs ${teams[p.data[0]]}: ${p.data[2]}${i18n.getText('win_suffix')}` },
+                    grid: { left: '12%', right: '8%', top: '8%', bottom: '12%' },
+                    xAxis: {
+                        type: 'category',
+                        data: teams,
+                        splitArea: { show: true },
+                        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                        axisLabel: { color: '#fff', fontSize: 11, rotate: 30 }
+                    },
+                    yAxis: {
+                        type: 'category',
+                        data: teams,
+                        splitArea: { show: true },
+                        axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                        axisLabel: { color: '#fff', fontSize: 11 }
+                    },
+                    graphic: [
+                        {
+                            type: 'text',
+                            left: '12%',
+                            top: '3%',
+                            style: {
+                                text: i18n.getText('matrix_current_team'),
+                                fill: '#cfff33',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        {
+                            type: 'text',
+                            right: '2%',
+                            bottom: '9%',
+                            style: {
+                                text: i18n.getText('matrix_opponent_team'),
+                                fill: '#cfff33',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            }
+                        }
+                    ],
+                    visualMap: {
+                        min: 0, max: 45, calculable: true,
+                        orient: 'horizontal', left: 'center', bottom: '0%',
+                        inRange: {
+                            color: ['#4169E1', '#6495ED', '#87CEEB', '#90EE90', '#FFD700', '#FA8072']
+                        },
+                        textStyle: { color: 'rgba(255,255,255,0.7)' }
+                    },
+                    series: [{
+                        type: 'heatmap',
+                        data: data,
+                        label: { show: true, color: '#fff', fontSize: 12, fontWeight: 'bold' },
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 20,
+                                shadowColor: 'rgba(207,255,51,0.6)',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        }
+                    }]
+                };
+                chart.setOption(option);
+                window.addEventListener('resize', () => chart.resize());
+            }
+
+            // ==================== 6. 趋势折线 ====================
+            function initTrend() {
+                const dom = document.getElementById('trendChart');
+                if (!dom) return;
+                const oldChart = echarts.getInstanceByDom(dom);
+                if (oldChart) oldChart.dispose();
+                
+                const chart = echarts.init(dom);
+                const years = [1930, 1934, 1938, 1950, 1954, 1958, 1962, 1966, 1970, 1974, 1978, 1982, 1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022];
+                const option = {
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis' },
+                    legend: { 
+                        data: [i18n.getText('continent_south_america'), i18n.getText('continent_europe')], 
+                        textStyle: { color: '#fff', fontSize: 16 }, 
+                        top: 10,
+                        itemWidth: 25,
+                        itemHeight: 16
+                    },
+                    grid: { left: '3%', right: '4%', bottom: '3%', top: '15%', containLabel: true },
+                    xAxis: { type: 'category', boundaryGap: false, data: years, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } }, axisLabel: { color: '#fff', rotate: 45 } },
+                    yAxis: { type: 'value', name: i18n.getText('trend_yaxis_title'), nameTextStyle: { color: '#fff' }, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }, axisLabel: { color: '#fff' } },
+                    series: [
+                        {
+                            name: i18n.getText('continent_south_america'), type: 'line', smooth: true, symbol: 'circle', symbolSize: 8,
+                            data: [1, 1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9, 9, 10],
+                            lineStyle: { color: '#2ecc71', width: 3 }, itemStyle: { color: '#2ecc71', borderWidth: 2, borderColor: '#fff' },
+                            areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(46,204,113,0.3)' }, { offset: 1, color: 'rgba(46,204,113,0.01)' }] } }
+                        },
+                        {
+                            name: i18n.getText('continent_europe'), type: 'line', smooth: true, symbol: 'circle', symbolSize: 8,
+                            data: [0, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 12, 12],
+                            lineStyle: { color: '#3498db', width: 3 }, itemStyle: { color: '#3498db', borderWidth: 2, borderColor: '#fff' },
+                            areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(52,152,219,0.3)' }, { offset: 1, color: 'rgba(52,152,219,0.01)' }] } }
+                        }
+                    ]
+                };
+                chart.setOption(option);
+                window.addEventListener('resize', () => chart.resize());
+            }
+
+
+            // 背景模糊效果
+            const heroElement = document.querySelector('.hero');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const blurValue = scrollY > 250 ? 8 : 0;
+                heroElement.style.setProperty('--bg-blur', `${blurValue}px`);
+            });
+
+            // ==================== 倒计时 ====================
+            function updateCountdown() {
+                const target = new Date('2026-06-12T03:00:00+08:00');
+                const diff = target - new Date();
+                if (diff <= 0) return;
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById('days').textContent = String(d).padStart(2, '0');
+                document.getElementById('hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+            }
+
+            // ==================== 滚动动画 ====================
+            function checkFade() {
+                document.querySelectorAll('.fade-scroll').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                        el.classList.add('show');
+                    }
+                });
+            }
+
+            // ==================== 初始化所有图表 ====================
+            function initAllCharts() {
+                renderTimeline();
+                initSankey();
+                initRadar();
+                initHeatmap();
+                initMatrix();
+                initTrend();
+            }
+
+            // ==================== 主初始化 ====================
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(function() {
+                    initAllCharts();
+                }, 100);
+
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+                checkFade();
+
+                document.getElementById('radarTeam1').addEventListener('change', updateRadar);
+                document.getElementById('radarTeam2').addEventListener('change', updateRadar);
+
+                window.addEventListener('scroll', checkFade);
+
+                window.addEventListener('languageChanged', function(e) {
+                    console.log('[data] 语言切换为:', e.detail.lang);
+
+                    ['sankeyChart', 'radarChart', 'barChart', 'heatmapChart', 'matrixChart', 'trendChart'].forEach(function(id) {
+                        const dom = document.getElementById(id);
+                        if (dom) {
+                            const oldChart = echarts.getInstanceByDom(dom);
+                            if (oldChart) oldChart.dispose();
+                        }
+                    });
+                    
+                    radarChart = null;
+                    barChart = null;
+                    window.heatmapChart = null;
+
+                    setTimeout(function() {
+                        initAllCharts();
+                    }, 150);
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
