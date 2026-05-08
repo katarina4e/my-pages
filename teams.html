@@ -17,14 +17,27 @@
         .hero {
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url('https://1837570490.v.123pan.cn/1837570490/29527425');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: white;
             position: relative;
             padding-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://1837570490.v.123pan.cn/1837570490/29527425');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            transition: filter 0.5s ease;
+            filter: blur(var(--bg-blur, 0px));
         }
 
         /* 导航栏 */
@@ -73,7 +86,6 @@
             font-size: 1.35rem;
         }
 
-        /* 导航链接 */
         .nav-link {
             color: white;
             text-decoration: none;
@@ -114,6 +126,11 @@
 
         .nav-link:hover::after {
             width: 80%;
+        }
+
+        .nav-link.active {
+            background: rgba(207, 255, 51, 0.25);
+            border-color: #cfff33;
         }
 
         /* 倒计时 */
@@ -225,6 +242,7 @@
             color: white;
             font-size: 1.4rem;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .social-icon:hover {
@@ -299,7 +317,6 @@
         .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            /* 核心：一排3个 */
             gap: 30px;
             margin-bottom: 3rem;
         }
@@ -324,7 +341,6 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
-            /* 图片自适应填充，不变形 */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -345,7 +361,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /*悬浮窗*/
+        /* ===== 弹窗样式（修复） ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -362,19 +378,43 @@
             overflow-y: auto;
         }
 
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            transition: 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .modal-close:hover {
+            background: #cfff33;
+            color: #111;
+            border-color: #cfff33;
+        }
+
         .modal-box {
             background: #ffffff;
             border: 1px solid #ffffff;
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
-            /* 限制弹窗最大高度为视口90% */
             border-radius: 20px;
             overflow: hidden;
             color: #333333;
             display: flex;
             flex-direction: column;
-            /* 垂直布局，让内容区可滚动 */
+            position: relative;
         }
 
         .modal-img {
@@ -383,14 +423,12 @@
             object-fit: cover;
             border-bottom: 2px solid #ffffff;
             flex-shrink: 0;
-            /* 图片不压缩 */
         }
 
         .modal-content {
             padding: 30px;
             flex-grow: 1;
             overflow-y: auto;
-            /* 文字内容超出时可滚动 */
             line-height: 1.8;
         }
 
@@ -406,11 +444,18 @@
             color: #333;
         }
 
-        /* 适配弹窗内的标题样式 */
         .modal-info h3 {
             color: #161c03;
             margin: 16px 0 8px;
             font-size: 1.4rem;
+        }
+
+        .modal-info ul {
+            margin: 8px 0 8px 20px;
+        }
+
+        .modal-info li {
+            margin: 4px 0;
         }
 
         .back-btn {
@@ -437,31 +482,37 @@
             margin: 4rem 0;
         }
 
+        /* 👇 仅控制弹窗内【查看更多】按钮，不影响任何其他按钮 */
+        .modal-more-btn {
+            /* 基础颜色（你可以随便改） */
+            background: #cfff33; /* 蓝色示例 */
+            color: #000000;
+            /* 大小 */
+            padding: 0.5rem 1.4rem;
+            font-size: 1rem;
+
+            /* 圆角 */
+            border-radius: 10px;
+
+            /* 边框（可选） */
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,120,255,0.2);
+        }
+
+        /* 鼠标悬浮效果 */
+        .modal-more-btn:hover {
+            background: #97ff4d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,120,255,0.3);
+        }
+
         /* 响应式适配 */
         @media (max-width: 1200px) {
-            .nav-center {
-                flex: 2.5;
-            }
-
-            .nav-left,
-            .nav-right {
-                flex: 1.25;
-            }
-
-            .nav-left {
-                font-size: 1.35rem;
-            }
-
-            .nav-logo {
-                width: 32px;
-                height: 32px;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                padding: 0.5rem 1.8rem;
-            }
-
+            .nav-center { flex: 2.5; }
+            .nav-left, .nav-right { flex: 1.25; }
+            .nav-left { font-size: 1.35rem; }
+            .nav-logo { width: 32px; height: 32px; }
+            .nav-link { font-size: 1.2rem; padding: 0.5rem 1.8rem; }
             .countdown {
                 padding: 0.5rem 1.8rem;
             }
@@ -473,40 +524,19 @@
         }
 
         @media (max-width: 1024px) {
-            .nav-center {
-                flex: 2;
-            }
-
-            .nav-left,
-            .nav-right {
-                flex: 1.5;
-            }
-
-            .nav-link {
-                font-size: 1.15rem;
-                padding: 0.5rem 1.5rem;
-            }
-
+            .nav-center { flex: 2; }
+            .nav-left, .nav-right { flex: 1.5; }
+            .nav-link { font-size: 1.15rem; padding: 0.5rem 1.5rem; }
             .countdown {
                 padding: 0.5rem 1.5rem;
                 gap: 6px;
             }
-
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .modal-img {
-                height: 250px;
-            }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal-img { height: 250px; }
         }
 
         @media (max-width: 768px) {
-            .hero {
-                margin: 0;
-                border-radius: 0;
-            }
-
+            .hero { margin: 0; border-radius: 0; }
             nav {
                 padding: 1rem 1.5rem;
                 flex-wrap: wrap;
@@ -514,7 +544,6 @@
                 min-height: 80px;
                 gap: 0.5rem;
             }
-
             .nav-left {
                 width: 100%;
                 flex: none;
@@ -524,114 +553,37 @@
                 justify-content: center;
                 gap: 0.5rem;
             }
-
-            .nav-logo {
-                width: 28px;
-                height: 28px;
-            }
-
+            .nav-logo { width: 28px; height: 28px; }
             .nav-center {
                 width: 100%;
                 flex: none;
                 gap: 4px;
                 margin-bottom: 0.5rem;
             }
-
-            .nav-right {
-                width: 100%;
-                flex: none;
-                justify-content: center;
-            }
-
-            .nav-link {
-                font-size: 1.1rem;
-                padding: 0.4rem 1.2rem;
-            }
-
+            .nav-right { width: 100%; flex: none; justify-content: center; }
+            .nav-link { font-size: 1.1rem; padding: 0.4rem 1.2rem; }
             .countdown {
                 padding: 0.4rem 1.2rem;
                 gap: 4px;
             }
-
-            .footer {
-                padding: 1.5rem 1rem;
-                margin: 3rem auto 0.5rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-            }
-
-            .footer-col h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-                padding-bottom: 0.4rem;
-            }
-
-            .footer-links li a,
-            .footer-contact p {
-                font-size: 0.85rem;
-            }
-
-            .footer-links {
-                gap: 0.6rem;
-            }
-
-            .footer-bottom {
-                font-size: 0.8rem;
-                padding-top: 1rem;
-            }
-
-            .section {
-                width: 94%;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-card-img {
-                height: 250px;
-            }
-
-            .modal-img {
-                height: 200px;
-            }
-
-            .modal-title {
-                font-size: 1.6rem;
-            }
-
-            .modal-info {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width:600px) {
-            .system-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .flow-horizontal {
-                flex-direction: column;
-            }
-
-            .flow-arrow {
-                transform: rotate(90deg);
-            }
+            .footer { padding: 1.5rem 1rem; margin: 3rem auto 0.5rem; }
+            .footer-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.8rem; padding-bottom: 0.4rem; }
+            .footer-links li a, .footer-contact p { font-size: 0.85rem; }
+            .footer-links { gap: 0.6rem; }
+            .footer-bottom { font-size: 0.8rem; padding-top: 1rem; }
+            .section { width: 94%; }
+            .team-grid { grid-template-columns: 1fr; }
+            .team-card-img { height: 250px; }
+            .modal-img { height: 200px; }
+            .modal-title { font-size: 1.6rem; }
+            .modal-info { font-size: 1rem; }
+            .modal-close { top: 10px; right: 15px; width: 40px; height: 40px; font-size: 30px; }
         }
 
         @media (max-width: 480px) {
-            .nav-center {
-                gap: 2px;
-            }
-
-            .nav-link {
-                font-size: 0.95rem;
-                padding: 0.3rem 0.8rem;
-            }
-
+            .nav-center { gap: 2px; }
+            .nav-link { font-size: 0.95rem; padding: 0.3rem 0.8rem; }
             .countdown {
                 padding: 0.3rem 0.8rem;
                 gap: 2px;
@@ -643,23 +595,10 @@
             }
 
             .countdown-text {
-                font-size: 0.85rem;
-            }
-
-            .footer {
-                padding: 1.2rem 0.8rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-
-            .social-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 1.1rem;
-            }
+                font-size: 0.85re}
+            .footer { padding: 1.2rem 0.8rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .social-icon { width: 36px; height: 36px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -667,14 +606,19 @@
 <body>
 
     <!-- 悬浮弹窗 -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal-close" onclick="closeModal()">&times;</div>
+    <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+        <div class="modal-close" onclick="closeModal(event)">&times;</div>
         <div class="modal-box">
             <img src="" alt="球队详情图" class="modal-img" id="mImg">
             <div class="modal-content">
                 <h2 class="modal-title" id="mTitle">球队名称</h2>
                 <div class="modal-info" id="mInfo">
                     球队详细介绍...
+                </div>
+                <div style="text-align: right; margin-top: 25px;">
+                    <a id="modal-more-btn" class="back-btn modal-more-btn i18n" href="#" target="_blank">
+                        查看更多
+                    </a>
                 </div>
             </div>
         </div>
@@ -684,562 +628,623 @@
         <nav>
             <div class="nav-left">
                 <img src="https://1837570490.v.123pan.cn/1837570490/29803213" alt="世界杯图标" class="nav-logo">
-                2026美加墨世界杯
+                <span class="i18n" data-i18n="2026美加墨世界杯">2026美加墨世界杯</span>
             </div>
 
             <div class="nav-center">
-                <a href="index.html" class="nav-link">首页</a>
-                <a href="info.html" class="nav-link">赛事</a>
-                <a href="schedule.html" class="nav-link">赛程</a>
-                <a href="teams.html" class="nav-link active">球队</a>
+                <a href="index.html" class="nav-link i18n" data-i18n="首页">首页</a>
+                <a href="info.html" class="nav-link i18n" data-i18n="赛事">赛事</a>
+                <a href="schedule.html" class="nav-link i18n" data-i18n="赛程">赛程</a>
+                <a href="teams.html" class="nav-link active i18n" data-i18n="球队">球队</a>
+                <a href="data.html" class="nav-link i18n" data-i18n="数据">数据</a>
             </div>
 
             <div class="nav-right">
                 <div class="countdown">
-                    <span class="countdown-label">开赛倒计时：</span>
-                    <span class="countdown-num" id="days">44</span><span class="countdown-text">天</span>
-                    <span class="countdown-num" id="hours">06</span><span class="countdown-text">小时</span>
-                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text">分钟</span>
-                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text">秒</span>
+                    <span class="countdown-label i18n" data-i18n="开赛倒计时：">开赛倒计时：</span>
+                    <span class="countdown-num" id="days">44</span><span class="countdown-text i18n" data-i18n="天">天</span>
+                    <span class="countdown-num" id="hours">06</span><span class="countdown-text i18n" data-i18n="时">时</span>
+                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text i18n" data-i18n="分">分</span>
+                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text i18n" data-i18n="秒">秒</span>
                 </div>
             </div>
         </nav>
 
         <div class="page-header fade-scroll">
-            <h1 class="page-title">2026世界杯 · 48强参赛球队</h1>
-            <p class="page-subtitle">点击球队卡片查看详细介绍</p>
+            <h1 class="page-title i18n" data-i18n="page_teams_title">2026世界杯 · 48强参赛球队</h1>
+            <p class="page-subtitle i18n" data-i18n="page_teams_subtitle">点击球队卡片查看详细介绍</p>
         </div>
 
         <!-- 图片卡片（一排3个） -->
         <section class="section fade-scroll">
-            <h2 class="section-title">参赛球队</h2>
+            <h2 class="section-title i18n" data-i18n="section_teams_list">参赛球队</h2>
             <div class="team-grid">
 
                 <!-- 1 美国 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29558137','美国队','### 球队概况\n美国作为2026世界杯东道主之一，坐拥主场优势，球队以年轻球员为核心，体能充沛、边路突破能力突出，整体打法极具冲击力，攻防转换速度快，是中北美地区实力最强的队伍之一。\n\n### 世界杯历史\n共10次晋级世界杯决赛圈，最佳成绩为1930年首届世界杯季军，2022年卡塔尔世界杯成功打入16强，近年来青训体系完善，人才储备充足。\n\n### 核心阵容\n- 普利西奇（切尔西）\n- 麦肯尼（尤文图斯）\n- 雷纳（多特蒙德）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29558137"
+                     data-i18n-title="team_usa_title"
+                     data-i18n-content="team_usa_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/usa-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg" class="team-card-img" alt="美国">
                     <div class="team-card-text">
-                        <div class="team-name">美国</div>
-                        <div class="team-desc">东道主 | 年轻活力</div>
+                        <div class="team-name i18n" data-i18n="team_usa">美国</div>
+                        <div class="team-desc i18n" data-i18n="desc_usa">东道主 | 年轻活力</div>
                     </div>
                 </div>
 
                 <!-- 2 加拿大 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29439528','加拿大队','### 球队概况\n加拿大是2026世界杯东道主，近年足球实力飞速崛起，依靠高压逼抢和快速反击战术成为中北美顶级强队，球员身体素质出色，边路冲击力极强，整体战术纪律性优秀。\n\n### 世界杯历史\n1986年首次晋级世界杯决赛圈，2022年卡塔尔世界杯时隔36年重返世界杯舞台，2026年以东道主身份出战，迎来队史黄金时期。\n\n### 核心阵容\n- 阿方索·戴维斯（拜仁）\n- 乔纳森·戴维（里尔）\n- 利亚姆·米勒（巴塞尔）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29439528"
+                     data-i18n-title="team_canada_title"
+                     data-i18n-content="team_canada_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/canada-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg" class="team-card-img" alt="加拿大">
                     <div class="team-card-text">
-                        <div class="team-name">加拿大</div>
-                        <div class="team-desc">东道主 | 飞速崛起</div>
+                        <div class="team-name i18n" data-i18n="team_canada">加拿大</div>
+                        <div class="team-desc i18n" data-i18n="desc_canada">东道主 | 飞速崛起</div>
                     </div>
                 </div>
 
                 <!-- 3 墨西哥 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29558133','墨西哥队','### 球队概况\n墨西哥是中北美足坛绝对霸主，同时也是2026世界杯东道主之一，球队技术细腻，配合流畅，擅长地面传控和快速转移球，大赛经验丰富，是世界杯常客。\n\n### 世界杯历史\n共计17次晋级世界杯决赛圈，7次成功打入16强，最佳成绩为世界杯八强，是中北美地区世界杯战绩最出色的球队。\n\n### 核心阵容\n- 希门尼斯（狼队）\n- 洛萨诺（那不勒斯）\n- 罗德里格斯（蓝十字）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29558133"
+                     data-i18n-title="team_mexico_title"
+                     data-i18n-content="team_mexico_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/mexico-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" class="team-card-img" alt="墨西哥">
                     <div class="team-card-text">
-                        <div class="team-name">墨西哥</div>
-                        <div class="team-desc">东道主 | 中北美霸主</div>
+                        <div class="team-name i18n" data-i18n="team_mexico">墨西哥</div>
+                        <div class="team-desc i18n" data-i18n="desc_mexico">东道主 | 中北美霸主</div>
                     </div>
                 </div>
 
                 <!-- 4 德国 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29803209','德国队','### 球队概况\n四届世界杯冠军得主，传统铁血强队，战术整体性极强，攻防体系均衡完善，球员身体素质与战术素养兼备，擅长高强度对抗和高效攻防转换，是世界足坛传统顶级豪门。\n\n### 世界杯历史\n19次晋级世界杯决赛圈，斩获4次世界杯冠军，夺冠次数位居历史前列，是世界杯历史上成绩最稳定的球队之一。\n\n### 核心阵容\n- 哈弗茨\n- 基米希\n- 穆勒')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29803209"
+                     data-i18n-title="team_germany_title"
+                     data-i18n-content="team_germany_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/germany-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg" class="team-card-img" alt="德国">
                     <div class="team-card-text">
-                        <div class="team-name">德国</div>
-                        <div class="team-desc">四届冠军 | 铁血战车</div>
+                        <div class="team-name i18n" data-i18n="team_germany">德国</div>
+                        <div class="team-desc i18n" data-i18n="desc_germany">四届冠军 | 铁血战车</div>
                     </div>
                 </div>
 
                 <!-- 5 法国 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29470335','法国队','### 球队概况\n2018年世界杯冠军、2022年世界杯亚军，坐拥世界顶级阵容，攻防两端实力无解，球员天赋出众，战术选择丰富，是2026世界杯最大夺冠热门之一。\n\n### 世界杯历史\n16次晋级世界杯决赛圈，斩获2次世界杯冠军，近年来阵容深度冠绝全球，青训体系产出大量顶级球星。\n\n### 核心阵容\n- 姆巴佩（皇马）\n- 格列兹曼（马竞）\n- 坎特（吉达联合）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29470335"
+                     data-i18n-title="team_france_title"
+                     data-i18n-content="team_france_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/france-world-cup-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" class="team-card-img" alt="法国">
                     <div class="team-card-text">
-                        <div class="team-name">法国</div>
-                        <div class="team-desc">豪华阵容 | 卫冕热门</div>
+                        <div class="team-name i18n" data-i18n="team_france">法国</div>
+                        <div class="team-desc i18n" data-i18n="desc_france">豪华阵容 | 卫冕热门</div>
                     </div>
                 </div>
 
                 <!-- 6 英格兰 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29349428','英格兰队','### 球队概况\n年轻阵容豪华，由世界级射手凯恩领衔，球队边路突破犀利，中场创造力充足，大赛成绩稳定，战术打法兼具技术与冲击力，是欧洲传统强队。\n\n### 世界杯历史\n15次晋级世界杯决赛圈，1966年本土举办世界杯斩获冠军，近年来年轻球员快速成长，整体实力稳步提升。\n\n### 核心阵容\n- 凯恩\n- 福登\n- 贝林厄姆')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29349428"
+                     data-i18n-title="team_england_title"
+                     data-i18n-content="team_england_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/england-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg" class="team-card-img" alt="英格兰">
                     <div class="team-card-text">
-                        <div class="team-name">英格兰</div>
-                        <div class="team-desc">年轻豪华 | 凯恩领衔</div>
+                        <div class="team-name i18n" data-i18n="team_england">英格兰</div>
+                        <div class="team-desc i18n" data-i18n="desc_england">年轻豪华 | 凯恩领衔</div>
                     </div>
                 </div>
 
                 <!-- 7 西班牙 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29377951','西班牙队','### 球队概况\n传控足球的代表球队，技术细腻，配合流畅默契，年轻阵容成长迅速，中场控球能力顶级，擅长通过控球掌控比赛节奏，是欧洲技术流球队的标杆。\n\n### 世界杯历史\n15次晋级世界杯决赛圈，2010年南非世界杯夺得冠军，开创了传控足球的黄金时代，青训体系持续输出天才球员。\n\n### 核心阵容\n- 佩德里\n- 加维\n- 莫拉塔')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29377951"
+                     data-i18n-title="team_spain_title"
+                     data-i18n-content="team_spain_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg" class="team-card-img" alt="西班牙">
                     <div class="team-card-text">
-                        <div class="team-name">西班牙</div>
-                        <div class="team-desc">传控足球 | 技术流</div>
+                        <div class="team-name i18n" data-i18n="team_spain">西班牙</div>
+                        <div class="team-desc i18n" data-i18n="desc_spain">传控足球 | 技术流</div>
                     </div>
                 </div>
 
                 <!-- 8 葡萄牙 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29408821','葡萄牙队','### 球队概况\n由传奇球星C罗领衔，球队进攻火力极强，边路速度优势明显，中场组织能力出色，反击效率高，是欧洲足坛极具竞争力的球队。\n\n### 世界杯历史\n7次晋级世界杯决赛圈，最佳成绩为世界杯季军，球队大赛表现稳定，进攻端人才储备丰富。\n\n### 核心阵容\n- C罗\n- B费\n- 莱奥')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29408821"
+                     data-i18n-title="team_portugal_title"
+                     data-i18n-content="team_portugal_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/portugal-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg" class="team-card-img" alt="葡萄牙">
                     <div class="team-card-text">
-                        <div class="team-name">葡萄牙</div>
-                        <div class="team-desc">C罗领衔 | 火力强劲</div>
+                        <div class="team-name i18n" data-i18n="team_portugal">葡萄牙</div>
+                        <div class="team-desc i18n" data-i18n="desc_portugal">C罗领衔 | 火力强劲</div>
                     </div>
                 </div>
 
                 <!-- 9 荷兰 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29558129','荷兰队','### 球队概况\n被誉为无冕之王，全攻全守战术的开创者，比赛观赏性极高，球员技术全面，攻防两端极具层次感，后防线实力雄厚，多次冲击世界杯冠军。\n\n### 世界杯历史\n11次晋级世界杯决赛圈，3次获得世界杯亚军，是世界杯历史上最具悲情色彩的顶级强队，战术风格影响世界足坛。\n\n### 核心阵容\n- 德容\n- 德里赫特\n- 范戴克')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29558129"
+                     data-i18n-title="team_netherlands_title"
+                     data-i18n-content="team_netherlands_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/netherlands-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg" class="team-card-img" alt="荷兰">
                     <div class="team-card-text">
-                        <div class="team-name">荷兰</div>
-                        <div class="team-desc">无冕之王 | 全攻全守</div>
+                        <div class="team-name i18n" data-i18n="team_netherlands">荷兰</div>
+                        <div class="team-desc i18n" data-i18n="desc_netherlands">无冕之王 | 全攻全守</div>
                     </div>
                 </div>
 
                 <!-- 10 比利时 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29558124','比利时队','### 球队概况\n绰号欧洲红魔，迎来队史黄金一代，中场创造力顶级，锋线得分能力出色，门将位置实力顶尖，整体阵容配置均衡，是欧洲顶级强队。\n\n### 世界杯历史\n14次晋级世界杯决赛圈，最佳成绩为世界杯季军，近年来世界排名长期位居前列，大赛竞争力十足。\n\n### 核心阵容\n- 德布劳内\n- 卢卡库\n- 库尔图瓦')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29558124"
+                     data-i18n-title="team_belgium_title"
+                     data-i18n-content="team_belgium_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg" class="team-card-img" alt="比利时">
                     <div class="team-card-text">
-                        <div class="team-name">比利时</div>
-                        <div class="team-desc">欧洲红魔 | 黄金一代</div>
+                        <div class="team-name i18n" data-i18n="team_belgium">比利时</div>
+                        <div class="team-desc i18n" data-i18n="desc_belgium">欧洲红魔 | 黄金一代</div>
                     </div>
                 </div>
 
                 <!-- 11 克罗地亚 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29349423','克罗地亚队','### 球队概况\n2018年世界杯亚军，中场实力雄厚，球员技术细腻且韧性极强，大赛抗压能力出色，擅长硬仗，是东欧足坛的代表性强队。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，最佳成绩为世界杯亚军，球队以中场核心群为支柱，战术执行力拉满。\n\n### 核心阵容\n- 莫德里奇\n- 布罗佐维奇\n- 佩里西奇')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29349423"
+                     data-i18n-title="team_croatia_title"
+                     data-i18n-content="team_croatia_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/croatia-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" class="team-card-img" alt="克罗地亚">
                     <div class="team-card-text">
-                        <div class="team-name">克罗地亚</div>
-                        <div class="team-desc">中场强阵 | 铁血韧性</div>
+                        <div class="team-name i18n" data-i18n="team_croatia">克罗地亚</div>
+                        <div class="team-desc i18n" data-i18n="desc_croatia">中场强阵 | 铁血韧性</div>
                     </div>
                 </div>
 
                 <!-- 12 瑞士 -->
-                <div class="team-card"
-                    onclick="openTeam('https://1837570490.v.123pan.cn/1837570490/29803212','瑞士队','### 球队概况\n欧洲实力派劲旅，防守强硬且体系严密，发挥极其稳定，球员战术素养高，反击简洁高效，是世界杯上不容小觑的防守型强队。\n\n### 世界杯历史\n12次晋级世界杯决赛圈，多次在世界杯赛场逼平甚至击败顶级豪门，以铁血防守著称。\n\n### 核心阵容\n- 索默\n- 扎卡')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://1837570490.v.123pan.cn/1837570490/29803212"
+                     data-i18n-title="team_switzerland_title"
+                     data-i18n-content="team_switzerland_content"
+                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/switzerland-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg" class="team-card-img" alt="瑞士">
                     <div class="team-card-text">
-                        <div class="team-name">瑞士</div>
-                        <div class="team-desc">欧洲劲旅 | 防守强硬</div>
+                        <div class="team-name i18n" data-i18n="team_switzerland">瑞士</div>
+                        <div class="team-desc i18n" data-i18n="desc_switzerland">欧洲劲旅 | 防守强硬</div>
                     </div>
                 </div>
 
                 <!-- 13 奥地利 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg','奥地利队','### 球队概况\n欧洲中游球队，近年来稳步崛起，队内多名球员效力于欧洲五大联赛，球员个人能力不俗，打法硬朗，进攻端具备一定的冲击力。\n\n### 世界杯历史\n2次晋级世界杯决赛圈，球队正处于新老交替阶段，整体实力持续提升中。\n\n### 核心阵容\n- 阿瑙托维奇\n- 萨比策')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"
+                     data-i18n-title="team_austria_title"
+                     data-i18n-content="team_austria_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg" class="team-card-img" alt="奥地利">
                     <div class="team-card-text">
-                        <div class="team-name">奥地利</div>
-                        <div class="team-desc">稳步崛起 | 欧洲中游</div>
+                        <div class="team-name i18n" data-i18n="team_austria">奥地利</div>
+                        <div class="team-desc i18n" data-i18n="desc_austria">稳步崛起 | 欧洲中游</div>
                     </div>
                 </div>
 
                 <!-- 14 苏格兰 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg','苏格兰队','### 球队概况\n打法偏向北欧风格，球员身体硬朗，拼抢积极主动，中场对抗能力强，战术风格务实直接，大赛经验丰富，是英伦足坛的特色球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队作风顽强，擅长身体对抗，在欧洲赛场具备一定竞争力。\n\n### 核心阵容\n- 罗伯逊\n- 麦克托米奈')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"
+                     data-i18n-title="team_scotland_title"
+                     data-i18n-content="team_scotland_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg" class="team-card-img" alt="苏格兰">
                     <div class="team-card-text">
-                        <div class="team-name">苏格兰</div>
-                        <div class="team-desc">北欧风格 | 硬朗拼抢</div>
+                        <div class="team-name i18n" data-i18n="team_scotland">苏格兰</div>
+                        <div class="team-desc i18n" data-i18n="desc_scotland">北欧风格 | 硬朗拼抢</div>
                     </div>
                 </div>
 
                 <!-- 15 挪威 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg','挪威队','### 球队概况\n北欧传统劲旅，主打高中锋战术，前场冲击力极强，球员身体素质顶级，边路与中路配合直接高效，进攻端威胁巨大。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，队内拥有世界级球星，是北欧足坛进攻火力最猛的球队之一。\n\n### 核心阵容\n- 哈兰德\n- 厄德高')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"
+                     data-i18n-title="team_norway_title"
+                     data-i18n-content="team_norway_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" class="team-card-img" alt="挪威">
                     <div class="team-card-text">
-                        <div class="team-name">挪威</div>
-                        <div class="team-desc">北欧劲旅 | 高中锋战术</div>
+                        <div class="team-name i18n" data-i18n="team_norway">挪威</div>
+                        <div class="team-desc i18n" data-i18n="desc_norway">北欧劲旅 | 高中锋战术</div>
                     </div>
                 </div>
 
                 <!-- 16 波黑 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg','波黑队','### 球队概况\n典型的技术流球队，中场创造力极强，球员脚下技术细腻，传球配合流畅，进攻端组织能力出色，是东欧技术型球队代表。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，依靠中场核心球员带动整体进攻，打法极具观赏性。\n\n### 核心阵容\n- 皮亚尼奇\n- 哲科')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"
+                     data-i18n-title="team_bosnia_title"
+                     data-i18n-content="team_bosnia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg" class="team-card-img" alt="波黑">
                     <div class="team-card-text">
-                        <div class="team-name">波黑</div>
-                        <div class="team-desc">技术流 | 中场创造力</div>
+                        <div class="team-name i18n" data-i18n="team_bosnia">波黑</div>
+                        <div class="team-desc i18n" data-i18n="desc_bosnia">技术流 | 中场创造力</div>
                     </div>
                 </div>
 
                 <!-- 17 瑞典 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg','瑞典队','### 球队概况\n北欧传统劲旅，球员身体强悍，主打防守反击战术，战术纪律严明，防守体系严密，反击简洁致命，是典型的北欧实用型强队。\n\n### 世界杯历史\n12次晋级世界杯决赛圈，最佳成绩为世界杯亚军，球队大赛发挥稳定，擅长对抗高强度比赛。\n\n### 核心阵容\n- 伊萨克\n- 库卢塞夫斯基')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"
+                     data-i18n-title="team_sweden_title"
+                     data-i18n-content="team_sweden_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg" class="team-card-img" alt="瑞典">
                     <div class="team-card-text">
-                        <div class="team-name">瑞典</div>
-                        <div class="team-desc">北欧劲旅 | 身体强悍</div>
+                        <div class="team-name i18n" data-i18n="team_sweden">瑞典</div>
+                        <div class="team-desc i18n" data-i18n="desc_sweden">北欧劲旅 | 身体强悍</div>
                     </div>
                 </div>
 
                 <!-- 18 土耳其 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg','土耳其队','### 球队概况\n球风凶悍硬朗，具备十足的黑马潜质，青训体系出色，年轻球员成长迅速，攻防两端都具备极强的侵略性，大赛时常制造惊喜。\n\n### 世界杯历史\n2次晋级世界杯决赛圈，最佳成绩为世界杯季军，是欧洲足坛风格最鲜明的球队之一。\n\n### 核心阵容\n- 恰尔汉奥卢\n- 伊尔迪里姆')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"
+                     data-i18n-title="team_turkey_title"
+                     data-i18n-content="team_turkey_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg" class="team-card-img" alt="土耳其">
                     <div class="team-card-text">
-                        <div class="team-name">土耳其</div>
-                        <div class="team-desc">凶悍球风 | 黑马潜质</div>
+                        <div class="team-name i18n" data-i18n="team_turkey">土耳其</div>
+                        <div class="team-desc i18n" data-i18n="desc_turkey">凶悍球风 | 黑马潜质</div>
                     </div>
                 </div>
 
                 <!-- 19 捷克 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg','捷克队','### 球队概况\n东欧技术流代表球队，传球配合流畅，中场组织能力出色，大赛经验丰富，球员战术执行力强，是东欧足坛的传统强队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队打法成熟稳健，攻防两端均衡，具备不俗的竞争力。\n\n### 核心阵容\n- 绍切克\n- 希克')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"
+                     data-i18n-title="team_czech_title"
+                     data-i18n-content="team_czech_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg" class="team-card-img" alt="捷克">
                     <div class="team-card-text">
-                        <div class="team-name">捷克</div>
-                        <div class="team-desc">东欧技术流 | 配合流畅</div>
+                        <div class="team-name i18n" data-i18n="team_czech">捷克</div>
+                        <div class="team-desc i18n" data-i18n="desc_czech">东欧技术流 | 配合流畅</div>
                     </div>
                 </div>
 
                 <!-- 20 日本 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg','日本队','### 球队概况\n亚洲足坛顶级强队，技术细腻流畅，传控能力突出，队内旅欧球员众多，战术理念接轨欧洲，攻防转换快速，是亚洲足球的标杆球队。\n\n### 世界杯历史\n7次晋级世界杯决赛圈，最佳成绩为世界杯16强，多次在世界杯击败欧洲南美强队。\n\n### 核心阵容\n- 久保健英\n- 三笘薫\n- 富安健洋')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"
+                     data-i18n-title="team_japan_title"
+                     data-i18n-content="team_japan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg" class="team-card-img" alt="日本">
                     <div class="team-card-text">
-                        <div class="team-name">日本</div>
-                        <div class="team-desc">亚洲顶级 | 技术细腻</div>
+                        <div class="team-name i18n" data-i18n="team_japan">日本</div>
+                        <div class="team-desc i18n" data-i18n="desc_japan">亚洲顶级 | 技术细腻</div>
                     </div>
                 </div>
 
                 <!-- 21 韩国 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg','韩国队','### 球队概况\n由亚洲巨星孙兴慜领衔，球队整体速度极快，反击犀利，球员跑动积极，体能充沛，是亚洲足坛反击打法最具威胁的球队。\n\n### 世界杯历史\n11次晋级世界杯决赛圈，最佳成绩为世界杯四强，是亚洲世界杯战绩最出色的球队之一。\n\n### 核心阵容\n- 孙兴慜\n- 金玟哉\n- 李刚仁')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"
+                     data-i18n-title="team_korea_title"
+                     data-i18n-content="team_korea_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg" class="team-card-img" alt="韩国">
                     <div class="team-card-text">
-                        <div class="team-name">韩国</div>
-                        <div class="team-desc">孙兴慜领衔 | 速度反击</div>
+                        <div class="team-name i18n" data-i18n="team_korea">韩国</div>
+                        <div class="team-desc i18n" data-i18n="desc_korea">孙兴慜领衔 | 速度反击</div>
                     </div>
                 </div>
 
                 <!-- 22 伊朗 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg','伊朗队','### 球队概况\n亚洲顶级劲旅，球员身体强壮，防守体系稳固严密，对抗能力出色，擅长立足防守寻找反击机会，是亚洲足坛防守最强的球队之一。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，球队作风硬朗，大赛中常给豪门球队制造巨大麻烦。\n\n### 核心阵容\n- 阿兹蒙\n- 塔雷米')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"
+                     data-i18n-title="team_iran_title"
+                     data-i18n-content="team_iran_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg" class="team-card-img" alt="伊朗">
                     <div class="team-card-text">
-                        <div class="team-name">伊朗</div>
-                        <div class="team-desc">亚洲劲旅 | 防守稳固</div>
+                        <div class="team-name i18n" data-i18n="team_iran">伊朗</div>
+                        <div class="team-desc i18n" data-i18n="desc_iran">亚洲劲旅 | 防守稳固</div>
                     </div>
                 </div>
 
                 <!-- 23 澳大利亚 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg','澳大利亚队','### 球队概况\n球员身体硬朗，打法直接高效，擅长高空球争夺和边路冲击，战术风格务实，体能优势明显，是大洋洲与亚洲足坛的实力派球队。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，球队作风顽强，适应高强度对抗比赛。\n\n### 核心阵容\n- 赫鲁斯蒂奇\n- 马比尔')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"
+                     data-i18n-title="team_australia_title"
+                     data-i18n-content="team_australia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg" class="team-card-img" alt="澳大利亚">
                     <div class="team-card-text">
-                        <div class="team-name">澳大利亚</div>
-                        <div class="team-desc">身体硬朗 | 直接高效</div>
+                        <div class="team-name i18n" data-i18n="team_australia">澳大利亚</div>
+                        <div class="team-desc i18n" data-i18n="desc_australia">身体硬朗 | 直接高效</div>
                     </div>
                 </div>
 
                 <!-- 24 沙特 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg','沙特队','### 球队概况\n西亚传统强队，技术流畅细腻，球员脚下灵活，团队配合默契，控球能力出色，是西亚技术流足球的代表球队。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，球队打法观赏性强，青训体系完善。\n\n### 核心阵容\n- 萨勒姆\n- 菲尔斯')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"
+                     data-i18n-title="team_saudi_title"
+                     data-i18n-content="team_saudi_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg" class="team-card-img" alt="沙特">
                     <div class="team-card-text">
-                        <div class="team-name">沙特</div>
-                        <div class="team-desc">西亚强队 | 技术流畅</div>
+                        <div class="team-name i18n" data-i18n="team_saudi">沙特</div>
+                        <div class="team-desc i18n" data-i18n="desc_saudi">西亚强队 | 技术流畅</div>
                     </div>
                 </div>
 
                 <!-- 25 卡塔尔 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg','卡塔尔队','### 球队概况\n2022年世界杯东道主，依靠青训体系建队，技术风格偏向南美足球，控球与短传配合成熟，是西亚足坛新兴的实力派球队。\n\n### 世界杯历史\n1次晋级世界杯决赛圈，通过青训与归化结合的模式快速提升实力。\n\n### 核心阵容\n- 阿菲夫\n- 阿里')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"
+                     data-i18n-title="team_qatar_title"
+                     data-i18n-content="team_qatar_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg" class="team-card-img" alt="卡塔尔">
                     <div class="team-card-text">
-                        <div class="team-name">卡塔尔</div>
-                        <div class="team-desc">西亚新贵 | 青训建队</div>
+                        <div class="team-name i18n" data-i18n="team_qatar">卡塔尔</div>
+                        <div class="team-desc i18n" data-i18n="desc_qatar">西亚新贵 | 青训建队</div>
                     </div>
                 </div>
 
                 <!-- 26 乌兹别克斯坦 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg','乌兹别克斯坦队','### 球队概况\n中亚顶级劲旅，球员身体强壮，中场对抗能力强，近年来进步迅速，战术打法日趋成熟，是中亚足球的领军球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队整体风格硬朗，攻防两端稳步提升。\n\n### 核心阵容\n- 艾哈迈多夫\n- 舒库罗夫')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"
+                     data-i18n-title="team_uzbekistan_title"
+                     data-i18n-content="team_uzbekistan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg" class="team-card-img" alt="乌兹别克斯坦">
                     <div class="team-card-text">
-                        <div class="team-name">乌兹别克斯坦</div>
-                        <div class="team-desc">中亚劲旅 | 身体强壮</div>
+                        <div class="team-name i18n" data-i18n="team_uzbekistan">乌兹别克斯坦</div>
+                        <div class="team-desc i18n" data-i18n="desc_uzbekistan">中亚劲旅 | 身体强壮</div>
                     </div>
                 </div>
 
                 <!-- 27 约旦 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg','约旦队','### 球队概况\n西亚实力派劲旅，防守稳固，战术风格务实，球员执行力强，擅长以防守为基础寻找进攻机会，是西亚足坛不可忽视的球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队作风顽强，大赛表现稳定。\n\n### 核心阵容\n- 哈姆多恩\n- 法迪勒')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"
+                     data-i18n-title="team_jordan_title"
+                     data-i18n-content="team_jordan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg" class="team-card-img" alt="约旦">
                     <div class="team-card-text">
-                        <div class="team-name">约旦</div>
-                        <div class="team-desc">西亚劲旅 | 防守稳固</div>
+                        <div class="team-name i18n" data-i18n="team_jordan">约旦</div>
+                        <div class="team-desc i18n" data-i18n="desc_jordan">西亚劲旅 | 防守稳固</div>
                     </div>
                 </div>
 
                 <!-- 28 伊拉克 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg','伊拉克队','### 球队概况\n亚洲老牌传统强队，球员斗志旺盛，团队凝聚力极强，曾夺得亚洲杯冠军，球风硬朗，大赛精神属性拉满。\n\n### 世界杯历史\n2次晋级世界杯决赛圈，球队以顽强的斗志和拼搏精神著称。\n\n### 核心阵容\n- 阿里\n- 侯赛因')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"
+                     data-i18n-title="team_iraq_title"
+                     data-i18n-content="team_iraq_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg" class="team-card-img" alt="伊拉克">
                     <div class="team-card-text">
-                        <div class="team-name">伊拉克</div>
-                        <div class="team-desc">亚洲老牌 | 斗志旺盛</div>
+                        <div class="team-name i18n" data-i18n="team_iraq">伊拉克</div>
+                        <div class="team-desc i18n" data-i18n="desc_iraq">亚洲老牌 | 斗志旺盛</div>
                     </div>
                 </div>
 
                 <!-- 29 摩洛哥 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg','摩洛哥队','### 球队概况\n2022年世界杯四强球队，非洲足坛顶级强队，被誉为防守铁军，防守体系严密，反击快速致命，旅欧球员众多，实力接轨欧洲球队。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，最佳成绩为世界杯四强，是非洲足球在世界杯的标杆球队。\n\n### 核心阵容\n- 齐耶赫\n- 阿什拉夫')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"
+                     data-i18n-title="team_morocco_title"
+                     data-i18n-content="team_morocco_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg" class="team-card-img" alt="摩洛哥">
                     <div class="team-card-text">
-                        <div class="team-name">摩洛哥</div>
-                        <div class="team-desc">非洲顶级 | 防守铁军</div>
+                        <div class="team-name i18n" data-i18n="team_morocco">摩洛哥</div>
+                        <div class="team-desc i18n" data-i18n="desc_morocco">非洲顶级 | 防守铁军</div>
                     </div>
                 </div>
 
                 <!-- 30 塞内加尔 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg','塞内加尔队','### 球队概况\n非洲国家杯冠军，由马内领衔，球员身体强壮，速度与力量兼备，攻防两端极具冲击力，是非洲足坛实力最强的球队之一。\n\n### 世界杯历史\n3次晋级世界杯决赛圈，最佳成绩为世界杯八强，球队天赋出众，大赛竞争力十足。\n\n### 核心阵容\n- 马内\n- 库利巴利')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"
+                     data-i18n-title="team_senegal_title"
+                     data-i18n-content="team_senegal_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg" class="team-card-img" alt="塞内加尔">
                     <div class="team-card-text">
-                        <div class="team-name">塞内加尔</div>
-                        <div class="team-desc">非洲冠军 | 马内领衔</div>
+                        <div class="team-name i18n" data-i18n="team_senegal">塞内加尔</div>
+                        <div class="team-desc i18n" data-i18n="desc_senegal">非洲冠军 | 马内领衔</div>
                     </div>
                 </div>
 
                 <!-- 31 科特迪瓦 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg','科特迪瓦队','### 球队概况\n非洲传统强队，队内球星众多，球员身体天赋顶级，爆发力与对抗能力出色，进攻端人才济济，是非洲足坛的豪门球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，依靠球星个人能力与团队配合立足世界杯赛场。\n\n### 核心阵容\n- 扎哈\n- 凯西')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"
+                     data-i18n-title="team_ivory_title"
+                     data-i18n-content="team_ivory_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg" class="team-card-img" alt="科特迪瓦">
                     <div class="team-card-text">
-                        <div class="team-name">科特迪瓦</div>
-                        <div class="team-desc">非洲强队 | 球星众多</div>
+                        <div class="team-name i18n" data-i18n="team_ivory">科特迪瓦</div>
+                        <div class="team-desc i18n" data-i18n="desc_ivory">非洲强队 | 球星众多</div>
                     </div>
                 </div>
 
                 <!-- 32 埃及 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg','埃及队','### 球队概况\n非洲传统顶级强队，由萨拉赫领衔，进攻端创造力十足，球员技术细腻，是北非足球的代表球队。\n\n### 世界杯历史\n3次晋级世界杯决赛圈，球队大赛经验丰富，进攻核心能力突出。\n\n### 核心阵容\n- 萨拉赫')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"
+                     data-i18n-title="team_egypt_title"
+                     data-i18n-content="team_egypt_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg" class="team-card-img" alt="埃及">
                     <div class="team-card-text">
-                        <div class="team-name">埃及</div>
-                        <div class="team-desc">非洲传统 | 萨拉赫领衔</div>
+                        <div class="team-name i18n" data-i18n="team_egypt">埃及</div>
+                        <div class="team-desc i18n" data-i18n="desc_egypt">非洲传统 | 萨拉赫领衔</div>
                     </div>
                 </div>
 
                 <!-- 33 加纳 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg','加纳队','### 球队概况\n被誉为非洲青年军，球员天赋出众，跑动能力强，进攻打法开放，冲击力十足，是非洲足坛最具活力的球队。\n\n### 世界杯历史\n4次晋级世界杯决赛圈，最佳成绩为世界杯八强，年轻球员储备充足。\n\n### 核心阵容\n- 托马斯\n- 库杜斯')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"
+                     data-i18n-title="team_ghana_title"
+                     data-i18n-content="team_ghana_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg" class="team-card-img" alt="加纳">
                     <div class="team-card-text">
-                        <div class="team-name">加纳</div>
-                        <div class="team-desc">非洲青年军 | 天赋出众</div>
+                        <div class="team-name i18n" data-i18n="team_ghana">加纳</div>
+                        <div class="team-desc i18n" data-i18n="desc_ghana">非洲青年军 | 天赋出众</div>
                     </div>
                 </div>
 
                 <!-- 34 南非 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg','南非队','### 球队概况\n非洲传统强队，2010年世界杯东道主，拥有深厚的足球底蕴，球员战术素养良好，打法务实，是非洲足坛的代表性球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，凭借东道主身份积累了丰富的大赛经验。\n\n### 核心阵容\n- 塔瓦雷斯\n- 姆菲拉')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"
+                     data-i18n-title="team_south_africa_title"
+                     data-i18n-content="team_south_africa_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" class="team-card-img" alt="南非">
                     <div class="team-card-text">
-                        <div class="team-name">南非</div>
-                        <div class="team-desc">非洲传统 | 东道主底蕴</div>
+                        <div class="team-name i18n" data-i18n="team_south_africa">南非</div>
+                        <div class="team-desc i18n" data-i18n="desc_south_africa">非洲传统 | 东道主底蕴</div>
                     </div>
                 </div>
 
                 <!-- 35 突尼斯 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg','突尼斯队','### 球队概况\n世界杯常客，打法接轨欧洲足球，防守稳固，战术纪律严明，球员旅欧经验丰富，是北非足坛的实力派球队。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，球队发挥稳定，擅长防守反击战术。\n\n### 核心阵容\n- 斯希里\n- 哈兹里')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"
+                     data-i18n-title="team_tunisia_title"
+                     data-i18n-content="team_tunisia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg" class="team-card-img" alt="突尼斯">
                     <div class="team-card-text">
-                        <div class="team-name">突尼斯</div>
-                        <div class="team-desc">非洲常客 | 欧式打法</div>
+                        <div class="team-name i18n" data-i18n="team_tunisia">突尼斯</div>
+                        <div class="team-desc i18n" data-i18n="desc_tunisia">非洲常客 | 欧式打法</div>
                     </div>
                 </div>
 
                 <!-- 36 阿尔及利亚 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg','阿尔及利亚队','### 球队概况\n球员技术流畅，中场创造力极强，传球配合细腻，进攻组织能力出色，是北非技术流足球的代表。\n\n### 世界杯历史\n4次晋级世界杯决赛圈，队内拥有多名五大联赛球员，实力不容小觑。\n\n### 核心阵容\n- 马赫雷斯\n- 本纳赛尔')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"
+                     data-i18n-title="team_algeria_title"
+                     data-i18n-content="team_algeria_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg" class="team-card-img" alt="阿尔及利亚">
                     <div class="team-card-text">
-                        <div class="team-name">阿尔及利亚</div>
-                        <div class="team-desc">技术流畅 | 中场创造力</div>
+                        <div class="team-name i18n" data-i18n="team_algeria">阿尔及利亚</div>
+                        <div class="team-desc i18n" data-i18n="desc_algeria">技术流畅 | 中场创造力</div>
                     </div>
                 </div>
 
                 <!-- 37 佛得角 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg','佛得角队','### 球队概况\n非洲新兴实力球队，技术细腻，反击快速高效，球员机动性强，是非洲足坛冉冉升起的新星球队。\n\n### 世界杯历史\n队史首次晋级世界杯决赛圈，迎来足球发展的黄金时期。\n\n### 核心阵容\n- 热尔松\n- 门德斯')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"
+                     data-i18n-title="team_cape_verde_title"
+                     data-i18n-content="team_cape_verde_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg" class="team-card-img" alt="佛得角">
                     <div class="team-card-text">
-                        <div class="team-name">佛得角</div>
-                        <div class="team-desc">非洲新兴 | 反击快速</div>
+                        <div class="team-name i18n" data-i18n="team_cape_verde">佛得角</div>
+                        <div class="team-desc i18n" data-i18n="desc_cape_verde">非洲新兴 | 反击快速</div>
                     </div>
                 </div>
 
                 <!-- 38 民主刚果 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg','民主刚果队','### 球队概况\n非洲实力派强队，球员身体天赋出色，爆发力与对抗能力顶级，进攻犀利，边路冲击力强，是中非足球的领军球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队依靠身体优势和犀利进攻立足赛场。\n\n### 核心阵容\n- 邦戈\n- 姆本巴')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"
+                     data-i18n-title="team_dr_congo_title"
+                     data-i18n-content="team_dr_congo_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg" class="team-card-img" alt="民主刚果">
                     <div class="team-card-text">
-                        <div class="team-name">民主刚果</div>
-                        <div class="team-desc">非洲强队 | 身体天赋</div>
+                        <div class="team-name i18n" data-i18n="team_dr_congo">民主刚果</div>
+                        <div class="team-desc i18n" data-i18n="desc_dr_congo">非洲强队 | 身体天赋</div>
                     </div>
                 </div>
 
                 <!-- 39 阿根廷 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg','阿根廷队','### 球队概况\n2022年卡塔尔世界杯冠军，由传奇球星梅西领衔，球队攻守均衡，团队凝聚力极强，战术配合默契，打法兼具技术与韧性，是世界足坛顶级豪门。\n\n### 世界杯历史\n18次晋级世界杯决赛圈，斩获3次世界杯冠军（1978/1986/2022），是世界杯历史上最成功的球队之一。\n\n### 核心阵容\n- 梅西（迈阿密）\n- 劳塔罗（国米）\n- 德保罗（马竞）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"
+                     data-i18n-title="team_argentina_title"
+                     data-i18n-content="team_argentina_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg" class="team-card-img" alt="阿根廷">
                     <div class="team-card-text">
-                        <div class="team-name">阿根廷</div>
-                        <div class="team-desc">卫冕冠军 | 梅西领衔</div>
+                        <div class="team-name i18n" data-i18n="team_argentina">阿根廷</div>
+                        <div class="team-desc i18n" data-i18n="desc_argentina">卫冕冠军 | 梅西领衔</div>
                     </div>
                 </div>
 
                 <!-- 40 巴西 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg','巴西队','### 球队概况\n五星巴西，世界杯历史夺冠次数第一，技术风格华丽，进攻天赋顶级，中前场人才济济，攻防体系完善，2026世界杯目标直指第六座冠军奖杯。\n\n### 世界杯历史\n22次晋级世界杯决赛圈，5次夺得世界杯冠军，是唯一一支从未缺席过世界杯的球队，足球底蕴无人能及。\n\n### 核心阵容\n- 维尼修斯（皇马）\n- 罗德里戈（皇马）\n- 卡塞米罗（曼联）')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"
+                     data-i18n-title="team_brazil_title"
+                     data-i18n-content="team_brazil_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg" class="team-card-img" alt="巴西">
                     <div class="team-card-text">
-                        <div class="team-name">巴西</div>
-                        <div class="team-desc">五星巴西 | 技术华丽</div>
+                        <div class="team-name i18n" data-i18n="team_brazil">巴西</div>
+                        <div class="team-desc i18n" data-i18n="desc_brazil">五星巴西 | 技术华丽</div>
                     </div>
                 </div>
 
                 <!-- 41 乌拉圭 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg','乌拉圭队','### 球队概况\n两届世界杯冠军得主，球风强硬硬朗，球员斗志旺盛，攻防两端极具韧性，锋线与中场人才储备充足，是南美足坛传统豪门。\n\n### 世界杯历史\n13次晋级世界杯决赛圈，2次夺得世界杯冠军，是南美足球的开创者之一，大赛底蕴深厚。\n\n### 核心阵容\n- 苏亚雷斯\n- 巴尔韦德\n- 努涅斯')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"
+                     data-i18n-title="team_uruguay_title"
+                     data-i18n-content="team_uruguay_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg" class="team-card-img" alt="乌拉圭">
                     <div class="team-card-text">
-                        <div class="team-name">乌拉圭</div>
-                        <div class="team-desc">两届冠军 | 球风强硬</div>
+                        <div class="team-name i18n" data-i18n="team_uruguay">乌拉圭</div>
+                        <div class="team-desc i18n" data-i18n="desc_uruguay">两届冠军 | 球风强硬</div>
                     </div>
                 </div>
 
                 <!-- 42 哥伦比亚 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg','哥伦比亚队','### 球队概况\n南美实力派劲旅，进攻犀利，边路快马众多，反击速度极快，球员技术出色，是南美足坛进攻最具威胁的球队之一。\n\n### 世界杯历史\n6次晋级世界杯决赛圈，最佳成绩为世界杯八强，球队打法观赏性强，球星特点鲜明。\n\n### 核心阵容\n- 迪亚斯\n- J罗')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"
+                     data-i18n-title="team_colombia_title"
+                     data-i18n-content="team_colombia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg" class="team-card-img" alt="哥伦比亚">
                     <div class="team-card-text">
-                        <div class="team-name">哥伦比亚</div>
-                        <div class="team-desc">进攻犀利 | 边路快马</div>
+                        <div class="team-name i18n" data-i18n="team_colombia">哥伦比亚</div>
+                        <div class="team-desc i18n" data-i18n="desc_colombia">进攻犀利 | 边路快马</div>
                     </div>
                 </div>
 
                 <!-- 43 厄瓜多尔 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg','厄瓜多尔队','### 球队概况\n球队以年轻球员为主，活力十足，体能充沛，是南美足坛新势力，打法硬朗，中场防守强硬，整体实力稳步提升。\n\n### 世界杯历史\n4次晋级世界杯决赛圈，年轻球员成长迅速，是南美足坛的潜力球队。\n\n### 核心阵容\n- 凯塞多\n- 因卡皮耶')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"
+                     data-i18n-title="team_ecuador_title"
+                     data-i18n-content="team_ecuador_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg" class="team-card-img" alt="厄瓜多尔">
                     <div class="team-card-text">
-                        <div class="team-name">厄瓜多尔</div>
-                        <div class="team-desc">年轻活力 | 体能充沛</div>
+                        <div class="team-name i18n" data-i18n="team_ecuador">厄瓜多尔</div>
+                        <div class="team-desc i18n" data-i18n="desc_ecuador">年轻活力 | 体能充沛</div>
                     </div>
                 </div>
 
                 <!-- 44 巴拉圭 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg','巴拉圭队','### 球队概况\n被誉为南美铁军，防守坚固严密，战术务实高效，主打防守反击，球员执行力极强，是南美足坛最擅长防守的球队之一。\n\n### 世界杯历史\n4次晋级世界杯决赛圈，球队以铁血防守立足世界杯赛场，擅长逼平强敌。\n\n### 核心阵容\n- 阿尔米隆\n- 萨瓦里塔')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"
+                     data-i18n-title="team_paraguay_title"
+                     data-i18n-content="team_paraguay_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg" class="team-card-img" alt="巴拉圭">
                     <div class="team-card-text">
-                        <div class="team-name">巴拉圭</div>
-                        <div class="team-desc">防守坚固 | 务实战术</div>
+                        <div class="team-name i18n" data-i18n="team_paraguay">巴拉圭</div>
+                        <div class="team-desc i18n" data-i18n="desc_paraguay">防守坚固 | 务实战术</div>
                     </div>
                 </div>
 
                 <!-- 45 巴拿马 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg','巴拿马队','### 球队概况\n中北美足坛新贵，球队年轻活力十足，球员拼抢积极，战术风格务实，是中北美地区快速崛起的新兴球队。\n\n### 世界杯历史\n1次晋级世界杯决赛圈，队史世界杯经验正在逐步积累。\n\n### 核心阵容\n- 埃里克\n- 巴尔塞纳斯')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"
+                     data-i18n-title="team_panama_title"
+                     data-i18n-content="team_panama_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg" class="team-card-img" alt="巴拿马">
                     <div class="team-card-text">
-                        <div class="team-name">巴拿马</div>
-                        <div class="team-desc">中北美新贵 | 活力年轻</div>
+                        <div class="team-name i18n" data-i18n="team_panama">巴拿马</div>
+                        <div class="team-desc i18n" data-i18n="desc_panama">中北美新贵 | 活力年轻</div>
                     </div>
                 </div>
 
                 <!-- 46 库拉索 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg','库拉索队','### 球队概况\n中北美地区特色球队，技术细腻，反击快速灵活，球员个人技术出色，是中北美足坛的技术流代表。\n\n### 世界杯历史\n队史首次晋级世界杯决赛圈，迎来足球发展的突破期。\n\n### 核心阵容\n- 莱安德罗\n- 朱尼尼奥')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"
+                     data-i18n-title="team_curacao_title"
+                     data-i18n-content="team_curacao_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg" class="team-card-img" alt="库拉索">
                     <div class="team-card-text">
-                        <div class="team-name">库拉索</div>
-                        <div class="team-desc">中北美 | 技术细腻</div>
+                        <div class="team-name i18n" data-i18n="team_curacao">库拉索</div>
+                        <div class="team-desc i18n" data-i18n="desc_curacao">中北美 | 技术细腻</div>
                     </div>
                 </div>
 
                 <!-- 47 海地 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg','海地队','### 球队概况\n中北美地区实力派球队，球员身体强壮，拼抢积极主动，跑动能力强，打法硬朗，是中北美足坛的顽强型球队。\n\n### 世界杯历史\n多次晋级世界杯决赛圈，球队作风顽强，具备一定的竞争力。\n\n### 核心阵容\n- 拉沃尼尔\n- 皮埃尔')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"
+                     data-i18n-title="team_haiti_title"
+                     data-i18n-content="team_haiti_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg" class="team-card-img" alt="海地">
                     <div class="team-card-text">
-                        <div class="team-name">海地</div>
-                        <div class="team-desc">中北美 | 身体强壮</div>
+                        <div class="team-name i18n" data-i18n="team_haiti">海地</div>
+                        <div class="team-desc i18n" data-i18n="desc_haiti">中北美 | 身体强壮</div>
                     </div>
                 </div>
 
                 <!-- 48 新西兰 -->
-                <div class="team-card"
-                    onclick="openTeam('https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg','新西兰队','### 球队概况\n大洋洲足坛绝对霸主，球员身体强悍，主打高举高打战术，高空球优势明显，打法直接高效，是大洋洲足球的领军球队。\n\n### 世界杯历史\n2次晋级世界杯决赛圈，依靠身体优势和务实打法立足世界杯赛场。\n\n### 核心阵容\n- 伍德\n- 斯密茨')">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"
-                        class="team-card-img">
+                <div class="team-card" onclick="openTeam(this)"
+                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"
+                     data-i18n-title="team_new_zealand_title"
+                     data-i18n-content="team_new_zealand_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg" class="team-card-img" alt="新西兰">
                     <div class="team-card-text">
-                        <div class="team-name">新西兰</div>
-                        <div class="team-desc">大洋洲霸主 | 身体强悍</div>
+                        <div class="team-name i18n" data-i18n="team_new_zealand">新西兰</div>
+                        <div class="team-desc i18n" data-i18n="desc_new_zealand">大洋洲霸主 | 身体强悍</div>
                     </div>
                 </div>
 
@@ -1247,7 +1252,7 @@
         </section>
 
         <div class="btn-center fade-scroll">
-            <a href="index.html#teams" class="back-btn">
+            <a href="index.html#teams" class="back-btn i18n" data-i18n="btn_back_home">
                 <i class="bi bi-arrow-left"></i> 返回首页
             </a>
         </div>
@@ -1255,29 +1260,30 @@
         <footer class="footer fade-scroll">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>快速导航</h3>
+                    <h3 class="i18n" data-i18n="快速导航">快速导航</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="info.html">赛事信息</a></li>
-                        <li><a href="schedule.html">赛事赛程</a></li>
-                        <li><a href="teams.html">参赛球队</a></li>
+                        <li><a href="index.html" class="i18n" data-i18n="首页">首页</a></li>
+                        <li><a href="info.html" class="i18n" data-i18n="赛事信息">赛事信息</a></li>
+                        <li><a href="schedule.html" class="i18n" data-i18n="赛程安排">赛程安排</a></li>
+                        <li><a href="teams.html" class="i18n" data-i18n="参赛球队">参赛球队</a></li>
+                        <li><a href="data.html" class="i18n" data-i18n="数据洞察">数据洞察</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>主办信息</h3>
+                    <h3 class="i18n" data-i18n="主办信息">主办信息</h3>
                     <ul class="footer-links">
-                        <li><a href="https://www.ussoccer.com/">美国足协</a></li>
-                        <li><a href="https://canadasoccer.com/">加拿大足协</a></li>
-                        <li><a href="https://fmf.mx/">墨西哥足协</a></li>
-                        <li><a href="https://www.fifa.com/">国际足联(FIFA)</a></li>
+                        <li><a href="https://www.ussoccer.com/" target="_blank" class="i18n" data-i18n="美国足协">美国足协</a></li>
+                        <li><a href="https://canadasoccer.com/" target="_blank" class="i18n" data-i18n="加拿大足协">加拿大足协</a></li>
+                        <li><a href="https://fmf.mx/" target="_blank" class="i18n" data-i18n="墨西哥足协">墨西哥足协</a></li>
+                        <li><a href="https://www.fifa.com/" target="_blank" class="i18n" data-i18n="国际足联(FIFA)">国际足联(FIFA)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>联系我们</h3>
+                    <h3 class="i18n" data-i18n="联系我们">联系我们</h3>
                     <div class="footer-contact">
-                        <p>邮箱：contact@2026worldcup.com</p>
-                        <p>电话：+1 202-555-0199</p>
-                        <p>地址：美国纽约曼哈顿第五大道</p>
+                        <p class="i18n" data-i18n="邮箱：contact@2026worldcup.com">邮箱：contact@2026worldcup.com</p>
+                        <p class="i18n" data-i18n="电话：+1 202-555-0199">电话：+1 202-555-0199</p>
+                        <p class="i18n" data-i18n="地址：美国纽约曼哈顿第五大道">地址：美国纽约曼哈顿第五大道</p>
                     </div>
                     <div class="footer-social">
                         <a href="#" class="social-icon">📱</a>
@@ -1288,17 +1294,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2026 美加墨世界杯官方网站 版权所有</p>
-                <p>本网站仅用于展示，非官方赛事网站</p>
+                <p class="copyright i18n" data-i18n="© 2026 美加墨世界杯官方网站 版权所有">© 2026 美加墨世界杯官方网站 版权所有</p>
+                <p class="i18n" data-i18n="本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有">本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
             </div>
         </footer>
 
     </div>
 
     <script>
-        // 倒计时
+        // ========== 倒计时 ==========
         function updateCountdown() {
-            // 目标日期：2026年美加墨世界杯开幕时间（北京时间 6月12日 03:00）
             const target = new Date('2026-06-12T03:00:00+08:00');
             const now = new Date();
             const diff = target - now;
@@ -1315,6 +1320,7 @@
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
             const s = Math.floor((diff % 60000) / 1000);
+            
             document.getElementById('days').innerText = String(d).padStart(2, '0');
             document.getElementById('hours').innerText = String(h).padStart(2, '0');
             document.getElementById('minutes').innerText = String(m).padStart(2, '0');
@@ -1323,38 +1329,88 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // 滚动渐入
+        // ========== 滚动渐入 ==========
         const fadeEls = document.querySelectorAll('.fade-scroll');
-        function check() {
+        function checkFade() {
             fadeEls.forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) {
                     el.classList.add('show');
                 }
             });
         }
-        window.addEventListener('scroll', check);
-        window.addEventListener('load', check);
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
 
-        // 球队弹窗（白色背景 + 完整显示）
-        function openTeam(imgUrl, title, info) {
+        // ========== 球队弹窗（核心修复） ==========
+        function openTeam(el) {
+            // 使用 i18n 对象的 currentLang，而不是 localStorage
+            const lang = (typeof i18n !== 'undefined' && i18n.currentLang) ? i18n.currentLang : 'zh';
+            
+            const imgUrl = el.dataset.img;
+            const titleKey = el.dataset.i18nTitle;
+            const contentKey = el.dataset.i18nContent;
+            
+            // 正确访问 translations[lang][key]
+            let title, info;
+            
+            if (typeof i18n !== 'undefined' && i18n.translations && i18n.translations[lang]) {
+                title = i18n.translations[lang][titleKey] || titleKey;
+                info = i18n.translations[lang][contentKey] || contentKey;
+            } else {
+                // 如果 i18n 还没加载，显示 key 作为后备
+                title = titleKey;
+                info = contentKey;
+                console.warn('[teams] i18n 未加载，使用默认 key');
+            }
+
             document.getElementById('mImg').src = imgUrl;
             document.getElementById('mTitle').innerText = title;
-            const formattedInfo = info.replace(/\n/g, '<br>').replace(/### /g, '<h3>');
+            
+            // 处理 markdown 格式：### 标题 和 - 列表
+            let formattedInfo = info
+                .replace(/\n/g, '<br>')
+                .replace(/###\s*(.+)/g, '<h3>$1</h3>')
+                .replace(/-\s*(.+)/g, '<li>$1</li>');
+            
+            // 如果有 li 但没有 ul 包裹，加上 ul
+            if (formattedInfo.includes('<li>') && !formattedInfo.includes('<ul>')) {
+                formattedInfo = formattedInfo.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+            }
+            
             document.getElementById('mInfo').innerHTML = formattedInfo;
             document.getElementById('modal').style.display = 'flex';
-            document.querySelector('.modal-content').scrollTop = 0;
-        }
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+            
+            const content = document.querySelector('.modal-content');
+            if (content) content.scrollTop = 0;
+
+            document.getElementById('modal-more-btn').href = el.dataset.link;
         }
 
-        document.getElementById('modal').addEventListener('click', function (e) {
-            if (e.target === this) {
+        function closeModal(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = ''; // 恢复背景滚动
+        }
+
+        function closeModalOutside(e) {
+            // 只有点击遮罩层本身（不是子元素）才关闭
+            if (e.target === document.getElementById('modal')) {
                 closeModal();
             }
-        });
-    </script>
+        }
 
+        // ========== 背景模糊效果 ==========
+        const heroElement = document.querySelector('.hero');
+        if (heroElement) {
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const blurValue = scrollY > 250 ? 8 : 0;
+                heroElement.style.setProperty('--bg-blur', blurValue + 'px');
+            });
+        }
+    </script>
+    <script src="i18n-lang.js"></script>
 </body>
 
 </html>
