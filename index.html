@@ -18,15 +18,34 @@
         .hero {
             width: 100%;
             min-height: 100vh;
+            color: white;
+            position: relative;
+            padding-bottom: 1rem;
+            overflow: hidden;
+            /* 防止模糊溢出 */
+        }
+
+        /* 抽离背景图到伪元素，单独控制模糊 */
+        .hero::before {
+            content: '';
+            position: fixed;
+            /* 固定背景，滚动时不跟随 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url('https://1837570490.v.123pan.cn/1837570490/29527422');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: white;
-            position: relative;
-            padding-bottom: 1rem;
+            z-index: -1;
+            /* 放在内容下方 */
+            transition: filter 0.5s ease;
+            /* 模糊过渡动画 */
+            filter: blur(var(--bg-blur, 0px));
         }
+
 
         nav {
             display: flex;
@@ -113,6 +132,10 @@
 
         .nav-link:hover::after {
             width: 80%;
+        }
+        .nav-link.active {
+            background: rgba(207, 255, 51, 0.25);
+            border-color: #cfff33;
         }
 
         /* 倒计时 */
@@ -959,8 +982,9 @@
             opacity: 1;
             transform: translateY(0);
         }
-        #teams{
-            scroll-margin-top: 120px ;
+
+        #teams {
+            scroll-margin-top: 120px;
         }
 
         /* 移动端适配 */
@@ -1279,861 +1303,855 @@
             }
         }
     </style>
-<base target="_blank">
 </head>
 
 <body>
     <div class="hero">
         <!-- 导航栏 -->
-        <nav>
+        <nav class="i18n">
             <!-- 左侧：图片+2026美加墨世界杯文字 -->
             <div class="nav-left">
-                <img src="https://1837570490.v.123pan.cn/1837570490/29803213" alt="世界杯图标" class="nav-logo">
-                2026美加墨世界杯
+                <img alt="世界杯图标" class="nav-logo " src="https://1837570490.v.123pan.cn/1837570490/29803213" />
+                 <span class="i18n" data-i18n="2026美加墨世界杯">2026美加墨世界杯</span>
             </div>
-
             <!-- 中间：导航菜单 -->
             <div class="nav-center">
-                <a href="index.html" class="nav-link">首页</a>
-                <a href="info.html" class="nav-link">赛事</a>
-                <a href="schedule.html" class="nav-link">赛程</a>
-                <a href="teams.html" class="nav-link">球队</a>
+                <a class="nav-link i18n active" href="index.html">首页</a>
+                <a class="nav-link i18n" href="info.html">赛事</a>
+                <a class="nav-link i18n" href="schedule.html">赛程</a>
+                <a class="nav-link i18n" href="teams.html">球队</a>
+                <a class="nav-link i18n" href="data.html">数据</a>
             </div>
-
             <!-- 右侧：倒计时 -->
             <div class="nav-right">
                 <!-- 世界杯倒计时模块 -->
                 <div class="countdown">
-                    <span class="countdown-label">开赛倒计时：</span>
-                    <span class="countdown-num" id="days">44</span><span class="countdown-text">天</span>
-                    <span class="countdown-num" id="hours">06</span><span class="countdown-text">小时</span>
-                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text">分钟</span>
-                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text">秒</span>
+                    <span class="countdown-label i18n">开赛倒计时：</span>
+                    <span class="countdown-num i18n" id="days">44</span><span class="countdown-text i18n">天</span>
+                    <span class="countdown-num i18n" id="hours">06</span><span class="countdown-text i18n">时</span>
+                    <span class="countdown-num i18n" id="minutes">26</span><span class="countdown-text i18n">分</span>
+                    <span class="countdown-num i18n" id="seconds">55</span><span class="countdown-text i18n">秒</span>
                 </div>
             </div>
         </nav>
-
         <!-- 主内容（2026美加墨世界杯专属介绍） -->
         <div class="content fade-scroll">
-            <div class="tag">
+            <div class="tag i18n">
                 <span class="new">2026</span>
-                美加墨世界杯官方指南
+                <span class="i18n" data-i18n="美加墨世界杯官方指南">美加墨世界杯官方指南</span>
             </div>
-            <h1>2026美加墨世界杯 足球盛宴再升级</h1>
-            <p class="desc">
+            <h1 class="i18n" data-i18n="main_title">2026美加墨世界杯 足球盛宴再升级</h1>
+            <p class="desc i18n" data-i18n="desc_1">
                 2026年美加墨世界杯不仅是一场足球盛宴，更是全球体育格局的全新里程碑。作为世界杯历史上首次三国联办、首次扩军至48支球队的划时代赛事，它打破了传统举办模式，让更多足球新星与黑马球队站上世界之巅。全新的赛制结构、横跨北美的顶级球场、更密集的强强对话，让悬念与激情贯穿全程。这场盛会不仅重新定义现代足球的影响力，更将足球文化、城市魅力与全球热爱融为一体，成为一代人心中最难忘的足球记忆。
             </p>
             <div class="buttons">
-                <a href="#info" class="btn btn-primary">
-                    了解详情
+                <a class="btn btn-primary" href="#info">
+                    <span class="i18n">了解详情</span>
                     <i class="bi bi-arrow-right btn-icon"></i>
                 </a>
-
-                <a href="#schedule" class="btn btn-secondary">
-                    赛事赛程
+                <a class="btn btn-secondary" href="#schedule">
+                    <span class="i18n">赛事赛程</span>
                     <i class="bi bi-calendar3 btn-icon"></i>
                 </a>
             </div>
             <div class="cards">
                 <div class="card" data-video="https://1837570490.v.123pan.cn/1837570490/29470340">
-                    <img src="https://1837570490.v.123pan.cn/1837570490/29558131" alt="世界杯发展">
-                    <div class="play-btn">▶</div>
-                    <span class="card-desc">历史回顾</span>
+                    <img alt="世界杯发展" src="https://1837570490.v.123pan.cn/1837570490/29558131" />
+                    <div class="play-btn i18n">▶</div>
+                    <span class="card-desc i18n">历史回顾</span>
                 </div>
-
                 <div class="card" data-video="https://1837570490.v.123pan.cn/1837570490/29527426">
-                    <img src="https://1837570490.v.123pan.cn/1837570490/29558135" alt="美加墨">
-                    <div class="play-btn">▶</div>
-                    <span class="card-desc">2026世界杯前瞻</span>
+                    <img alt="美加墨" src="https://1837570490.v.123pan.cn/1837570490/29558135" />
+                    <div class="play-btn i18n">▶</div>
+                    <span class="card-desc i18n">2026世界杯前瞻</span>
                 </div>
             </div>
         </div>
-
         <!-- 视频弹窗 -->
         <div class="video-modal" id="videoModal">
             <div class="modal-content">
-                <div class="close-btn" id="closeModal">✕</div>
-                <video id="modalVideo" controls autoplay></video>
+                <div class="close-btn i18n" id="closeModal">✕</div>
+                <video autoplay="" controls="" id="modalVideo"></video>
             </div>
         </div>
-
         <!-- 赛事核心信息模块（左图+右文+底部数据图标） -->
         <div class="worldcup-info fade-scroll" id="info" style="padding: 3rem 2.5rem;">
-            <h2 class="info-title" style="margin-bottom: 2.5rem;">2026世界杯核心信息</h2>
-
+            <h2 class="info-title i18n" style="margin-bottom: 2.5rem;">2026世界杯核心信息</h2>
             <!-- 核心布局：左图 + 右侧内容 -->
             <div
                 style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: center; margin-bottom: 2.5rem;">
-
                 <!-- 左侧：大图 -->
                 <div style="width: 100%; height: 100%; border-radius: 18px; overflow: hidden;">
-                    <img src="https://1837570490.v.123pan.cn/1837570490/29803214" style="width: 100%; height: 100%; object-fit: cover; display: block;"
-                        alt="2026世界杯">
+                    <img alt="2026世界杯" src="https://1837570490.v.123pan.cn/1837570490/29803214"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
-
                 <!-- 右侧：文字介绍 + 底部数据小图标 -->
-                <div style="display: flex; flex-direction: column; gap: 2rem; color: white; text-align: left;">
-
+                <div
+                    style="display: flex; flex-direction: column; gap: 2rem; color: white; text-align: left;">
                     <!-- 右侧文字 -->
-                    <div style="font-size: 1.15rem; line-height: 1.8; opacity: 0.95;">
+                    <div style="font-size: 1.15rem; line-height: 1.8; opacity: 0.95;" class="desc i18n" data-i18n="desc_2">
                         本届世界杯赛事将于2026年6月12日至7月20日举行，横跨北美三大国家，共计16座承办城市、104场精彩对决。其中73场比赛在美国举办，加拿大与墨西哥各承办13场。揭幕战便充满“宿命感”：墨西哥与南非继2010年后再次在揭幕战相遇。此外，尽管扩军，仍有强队遗憾缺席，如连续无缘三届大赛的传统劲旅意大利，以及波兰与尼日利亚等。卫冕冠军阿根廷、拥有姆巴佩的法国以及西班牙等依旧是夺冠大热。超长赛程、更多强队对决、更激烈的晋级悬念，将为全球球迷带来前所未有的足球盛宴，也让2026年成为世界杯历史上极具里程碑意义的一年。
                     </div>
-
                     <!-- 底部：4个小数据图标卡片 -->
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
-
                         <!-- 天数 -->
                         <div
                             style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 1.2rem 0.6rem; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #cfff33;">39</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">赛事天数</div>
+                            <div class="i18n" style="font-size: 2rem; font-weight: 700; color: #cfff33;">39</div>
+                            <div class="i18n" style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">赛事天数</div>
                         </div>
-
                         <!-- 球队 -->
                         <div
                             style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 1.2rem 0.6rem; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #cfff33;">48</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">参赛球队</div>
+                            <div class="i18n" style="font-size: 2rem; font-weight: 700; color: #cfff33;">48</div>
+                            <div class="i18n" style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">参赛球队</div>
                         </div>
-
                         <!-- 场次 -->
                         <div
                             style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 1.2rem 0.6rem; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #cfff33;">104</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">总比赛场</div>
+                            <div class="i18n" style="font-size: 2rem; font-weight: 700; color: #cfff33;">104</div>
+                            <div class="i18n" style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">总比赛场</div>
                         </div>
-
                         <!-- 主办国 -->
                         <div
                             style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 1.2rem 0.6rem; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: 700; color: #cfff33;">3</div>
-                            <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">主办国家</div>
+                            <div class="i18n" style="font-size: 2rem; font-weight: 700; color: #cfff33;">3</div>
+                            <div class="i18n" style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem;">主办国家</div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
             <!-- 底部按钮 -->
-            <a href="info.html" class="module-btn" style="margin-top: 1rem;">查看完整核心信息</a>
+            <a class="module-btn i18n" href="info.html" style="margin-top: 1rem;">查看完整核心信息</a>
         </div>
-
         <!-- 球队滚动展示模块（底部按钮：跳转到【全部球队页面】） -->
         <div class="teams-scroll fade-scroll" id="teams">
-            <h2 class="teams-title">2026世界杯参赛球队</h2>
-            <div class="scroll-container">
+            <h2 class="teams-title i18n">2026世界杯参赛球队</h2>
+            <div class="scroll-container i18n">
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg"></div>
-                    <div class="team-name">美国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg" /></div>
+                    <div class="team-name i18n">美国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg"></div>
-                    <div class="team-name">加拿大</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg" /></div>
+                    <div class="team-name i18n">加拿大</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg"></div>
-                    <div class="team-name">墨西哥</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" /></div>
+                    <div class="team-name i18n">墨西哥</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg"></div>
-                    <div class="team-name">德国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg" /></div>
+                    <div class="team-name i18n">德国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg"></div>
-                    <div class="team-name">法国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" /></div>
+                    <div class="team-name i18n">法国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg"></div>
-                    <div class="team-name">英格兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg" /></div>
+                    <div class="team-name i18n">英格兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg"></div>
-                    <div class="team-name">西班牙</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg" /></div>
+                    <div class="team-name i18n">西班牙</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg"></div>
-                    <div class="team-name">葡萄牙</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg" /></div>
+                    <div class="team-name i18n">葡萄牙</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg"></div>
-                    <div class="team-name">荷兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg" /></div>
+                    <div class="team-name i18n">荷兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg"></div>
-                    <div class="team-name">比利时</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg" /></div>
+                    <div class="team-name i18n">比利时</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg"></div>
-                    <div class="team-name">克罗地亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" /></div>
+                    <div class="team-name i18n">克罗地亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg"></div>
-                    <div class="team-name">瑞士</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg" /></div>
+                    <div class="team-name i18n">瑞士</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"></div>
-                    <div class="team-name">奥地利</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg" /></div>
+                    <div class="team-name i18n">奥地利</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"></div>
-                    <div class="team-name">苏格兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg" /></div>
+                    <div class="team-name i18n">苏格兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"></div>
-                    <div class="team-name">挪威</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" /></div>
+                    <div class="team-name i18n">挪威</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"></div>
-                    <div class="team-name">波黑</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg" /></div>
+                    <div class="team-name i18n">波黑</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"></div>
-                    <div class="team-name">瑞典</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg" /></div>
+                    <div class="team-name i18n">瑞典</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"></div>
-                    <div class="team-name">土耳其</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg" /></div>
+                    <div class="team-name i18n">土耳其</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"></div>
-                    <div class="team-name">捷克</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg" /></div>
+                    <div class="team-name i18n">捷克</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"></div>
-                    <div class="team-name">日本</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg" /></div>
+                    <div class="team-name i18n">日本</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"></div>
-                    <div class="team-name">韩国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg" /></div>
+                    <div class="team-name i18n">韩国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"></div>
-                    <div class="team-name">伊朗</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg" /></div>
+                    <div class="team-name i18n">伊朗</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"></div>
-                    <div class="team-name">澳大利亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg" /></div>
+                    <div class="team-name i18n">澳大利亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"></div>
-                    <div class="team-name">沙特阿拉伯</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg" /></div>
+                    <div class="team-name i18n">沙特阿拉伯</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"></div>
-                    <div class="team-name">卡塔尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg" /></div>
+                    <div class="team-name i18n">卡塔尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"></div>
-                    <div class="team-name">乌兹别克斯坦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg" /></div>
+                    <div class="team-name i18n">乌兹别克斯坦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"></div>
-                    <div class="team-name">约旦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg" /></div>
+                    <div class="team-name i18n">约旦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"></div>
-                    <div class="team-name">伊拉克</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg" /></div>
+                    <div class="team-name i18n">伊拉克</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"></div>
-                    <div class="team-name">摩洛哥</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg" /></div>
+                    <div class="team-name i18n">摩洛哥</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"></div>
-                    <div class="team-name">塞内加尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg" /></div>
+                    <div class="team-name i18n">塞内加尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"></div>
-                    <div class="team-name">科特迪瓦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg" /></div>
+                    <div class="team-name i18n">科特迪瓦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"></div>
-                    <div class="team-name">埃及</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg" /></div>
+                    <div class="team-name i18n">埃及</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"></div>
-                    <div class="team-name">加纳</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg" /></div>
+                    <div class="team-name i18n">加纳</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"></div>
-                    <div class="team-name">南非</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" /></div>
+                    <div class="team-name i18n">南非</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"></div>
-                    <div class="team-name">突尼斯</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg" /></div>
+                    <div class="team-name i18n">突尼斯</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"></div>
-                    <div class="team-name">阿尔及利亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg" /></div>
+                    <div class="team-name i18n">阿尔及利亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"></div>
-                    <div class="team-name">佛得角</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg" /></div>
+                    <div class="team-name i18n">佛得角</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"></div>
-                    <div class="team-name">民主刚果</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg" /></div>
+                    <div class="team-name i18n">民主刚果</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"></div>
-                    <div class="team-name">阿根廷</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg" /></div>
+                    <div class="team-name i18n">阿根廷</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"></div>
-                    <div class="team-name">巴西</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg" /></div>
+                    <div class="team-name i18n">巴西</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"></div>
-                    <div class="team-name">乌拉圭</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg" /></div>
+                    <div class="team-name i18n">乌拉圭</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"></div>
-                    <div class="team-name">哥伦比亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg" /></div>
+                    <div class="team-name i18n">哥伦比亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"></div>
-                    <div class="team-name">厄瓜多尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg" /></div>
+                    <div class="team-name i18n">厄瓜多尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"></div>
-                    <div class="team-name">巴拉圭</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg" /></div>
+                    <div class="team-name i18n">巴拉圭</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"></div>
-                    <div class="team-name">巴拿马</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg" /></div>
+                    <div class="team-name i18n">巴拿马</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"></div>
-                    <div class="team-name">库拉索</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg" /></div>
+                    <div class="team-name i18n">库拉索</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"></div>
-                    <div class="team-name">海地</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg" /></div>
+                    <div class="team-name i18n">海地</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"></div>
-                    <div class="team-name">新西兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg" /></div>
+                    <div class="team-name i18n">新西兰</div>
                 </div>
                 <!-- 复制一遍实现无缝滚动 -->
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg"></div>
-                    <div class="team-name">美国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg" /></div>
+                    <div class="team-name i18n">美国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg"></div>
-                    <div class="team-name">加拿大</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg" /></div>
+                    <div class="team-name i18n">加拿大</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg"></div>
-                    <div class="team-name">墨西哥</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" /></div>
+                    <div class="team-name i18n">墨西哥</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg"></div>
-                    <div class="team-name">德国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg" /></div>
+                    <div class="team-name i18n">德国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg"></div>
-                    <div class="team-name">法国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" /></div>
+                    <div class="team-name i18n">法国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg"></div>
-                    <div class="team-name">英格兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg" /></div>
+                    <div class="team-name i18n">英格兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg"></div>
-                    <div class="team-name">西班牙</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg" /></div>
+                    <div class="team-name i18n">西班牙</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg"></div>
-                    <div class="team-name">葡萄牙</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg" /></div>
+                    <div class="team-name i18n">葡萄牙</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg"></div>
-                    <div class="team-name">荷兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg" /></div>
+                    <div class="team-name i18n">荷兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg"></div>
-                    <div class="team-name">比利时</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg" /></div>
+                    <div class="team-name i18n">比利时</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg"></div>
-                    <div class="team-name">克罗地亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" /></div>
+                    <div class="team-name i18n">克罗地亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg"></div>
-                    <div class="team-name">瑞士</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg" /></div>
+                    <div class="team-name i18n">瑞士</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"></div>
-                    <div class="team-name">奥地利</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg" /></div>
+                    <div class="team-name i18n">奥地利</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"></div>
-                    <div class="team-name">苏格兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg" /></div>
+                    <div class="team-name i18n">苏格兰</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"></div>
-                    <div class="team-name">挪威</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" /></div>
+                    <div class="team-name i18n">挪威</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"></div>
-                    <div class="team-name">波黑</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg" /></div>
+                    <div class="team-name i18n">波黑</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"></div>
-                    <div class="team-name">瑞典</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg" /></div>
+                    <div class="team-name i18n">瑞典</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"></div>
-                    <div class="team-name">土耳其</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg" /></div>
+                    <div class="team-name i18n">土耳其</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"></div>
-                    <div class="team-name">捷克</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg" /></div>
+                    <div class="team-name i18n">捷克</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"></div>
-                    <div class="team-name">日本</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg" /></div>
+                    <div class="team-name i18n">日本</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"></div>
-                    <div class="team-name">韩国</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg" /></div>
+                    <div class="team-name i18n">韩国</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"></div>
-                    <div class="team-name">伊朗</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg" /></div>
+                    <div class="team-name i18n">伊朗</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"></div>
-                    <div class="team-name">澳大利亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg" /></div>
+                    <div class="team-name i18n">澳大利亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"></div>
-                    <div class="team-name">沙特阿拉伯</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg" /></div>
+                    <div class="team-name i18n">沙特阿拉伯</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"></div>
-                    <div class="team-name">卡塔尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg" /></div>
+                    <div class="team-name i18n">卡塔尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"></div>
-                    <div class="team-name">乌兹别克斯坦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg" /></div>
+                    <div class="team-name i18n">乌兹别克斯坦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"></div>
-                    <div class="team-name">约旦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg" /></div>
+                    <div class="team-name i18n">约旦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"></div>
-                    <div class="team-name">伊拉克</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg" /></div>
+                    <div class="team-name i18n">伊拉克</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"></div>
-                    <div class="team-name">摩洛哥</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg" /></div>
+                    <div class="team-name i18n">摩洛哥</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"></div>
-                    <div class="team-name">塞内加尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg" /></div>
+                    <div class="team-name i18n">塞内加尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"></div>
-                    <div class="team-name">科特迪瓦</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg" /></div>
+                    <div class="team-name i18n">科特迪瓦</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"></div>
-                    <div class="team-name">埃及</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg" /></div>
+                    <div class="team-name i18n">埃及</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"></div>
-                    <div class="team-name">加纳</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg" /></div>
+                    <div class="team-name i18n">加纳</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"></div>
-                    <div class="team-name">南非</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" /></div>
+                    <div class="team-name i18n">南非</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"></div>
-                    <div class="team-name">突尼斯</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg" /></div>
+                    <div class="team-name i18n">突尼斯</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"></div>
-                    <div class="team-name">阿尔及利亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg" /></div>
+                    <div class="team-name i18n">阿尔及利亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"></div>
-                    <div class="team-name">佛得角</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg" /></div>
+                    <div class="team-name i18n">佛得角</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"></div>
-                    <div class="team-name">民主刚果</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg" /></div>
+                    <div class="team-name i18n">民主刚果</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"></div>
-                    <div class="team-name">阿根廷</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg" /></div>
+                    <div class="team-name i18n">阿根廷</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"></div>
-                    <div class="team-name">巴西</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg" /></div>
+                    <div class="team-name i18n">巴西</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"></div>
-                    <div class="team-name">乌拉圭</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg" /></div>
+                    <div class="team-name i18n">乌拉圭</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"></div>
-                    <div class="team-name">哥伦比亚</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg" /></div>
+                    <div class="team-name i18n">哥伦比亚</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"></div>
-                    <div class="team-name">厄瓜多尔</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg" /></div>
+                    <div class="team-name i18n">厄瓜多尔</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"></div>
-                    <div class="team-name">巴拉圭</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg" /></div>
+                    <div class="team-name i18n">巴拉圭</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"></div>
-                    <div class="team-name">巴拿马</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg" /></div>
+                    <div class="team-name i18n">巴拿马</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"></div>
-                    <div class="team-name">库拉索</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg" /></div>
+                    <div class="team-name i18n">库拉索</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"></div>
-                    <div class="team-name">海地</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg" /></div>
+                    <div class="team-name i18n">海地</div>
                 </div>
                 <div class="team-item">
                     <div class="team-logo"><img
-                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"></div>
-                    <div class="team-name">新西兰</div>
+                            src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg" /></div>
+                    <div class="team-name i18n">新西兰</div>
                 </div>
             </div>
-
             <!--  参赛球队底部：跳转到球队球星页面 -->
-            <a href="teams.html" class="module-btn">查看更多球队信息</a>
+            <a class="module-btn i18n" href="teams.html">查看更多球队信息</a>
         </div>
-
         <!-- 热门球星模块 -->
         <div class="players-section fade-scroll" id="players">
-            <h2 class="info-title">值得关注的顶级球星</h2>
-
+            <h2 class="info-title i18n">值得关注的顶级球星</h2>
             <div class="players-glass-container">
-                <div class="players-grid">
-
+                <div class="players-grid i18n">
                     <!-- 梅西 -->
                     <div class="player-card">
                         <div class="card-inner">
                             <div class="card-front">
-                                <img src="https://1837570490.v.123pan.cn/1837570490/29527423" alt="利昂内尔·梅西" class="player-img">
+                                <img alt="利昂内尔·梅西" class="player-img"
+                                    src="https://1837570490.v.123pan.cn/1837570490/29527423" />
                                 <div class="card-info">
-                                    <p class="name">利昂内尔·梅西</p>
-                                    <p class="position">前锋 / 进攻中场</p>
-                                    <p class="number">#10</p>
+                                    <p class="name i18n">利昂内尔·梅西</p>
+                                    <p class="position i18n">前锋 / 进攻中场</p>
+                                    <p class="number i18n">#10</p>
                                 </div>
                             </div>
                             <div class="card-back">
                                 <div class="back-content">
-                                    <h4>利昂内尔·梅西</h4>
-                                    <p class="back-team">阿根廷 | 迈阿密国际 | 年龄：38岁</p>
-                                    <p class="back-desc">
+                                    <h4 class="i18n">利昂内尔·梅西</h4>
+                                    <p class="back-team i18n">阿根廷 | 迈阿密国际 | 年龄：38岁</p>
+                                    <p class="back-desc i18n" data-i18n="desc_messi">
                                         2022年卡塔尔世界杯冠军队长，足坛公认的第三代球王。拥有历史级的盘带、视野、传球与终结能力，球感与技术完美无瑕。2026年美加墨世界杯将是他职业生涯最后一届世界杯，全力带队冲击卫冕，书写传奇终章。
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- C罗 -->
                     <div class="player-card">
                         <div class="card-inner">
                             <div class="card-front">
-                                <img src="https://1837570490.v.123pan.cn/1837570490/29527418" alt="克里斯蒂亚诺·罗纳尔多" class="player-img">
+                                <img alt="克里斯蒂亚诺·罗纳尔多" class="player-img"
+                                    src="https://1837570490.v.123pan.cn/1837570490/29527418" />
                                 <div class="card-info">
-                                    <p class="name">克里斯蒂亚诺·罗纳尔多</p>
-                                    <p class="position">前锋</p>
-                                    <p class="number">#7</p>
+                                    <p class="name i18n">克里斯蒂亚诺·罗纳尔多</p>
+                                    <p class="position i18n">前锋</p>
+                                    <p class="number i18n">#7</p>
                                 </div>
                             </div>
                             <div class="card-back">
                                 <div class="back-content">
-                                    <h4>克里斯蒂亚诺·罗纳尔多</h4>
-                                    <p class="back-team">葡萄牙 | 利雅得胜利 | 年龄：41岁</p>
-                                    <p class="back-desc">
+                                    <h4 class="i18n">克里斯蒂亚诺·罗纳尔多</h4>
+                                    <p class="back-team i18n">葡萄牙 | 利雅得胜利 | 年龄：41岁</p>
+                                    <p class="back-desc i18n" data-i18n="desc_ronaldo">
                                         足坛历史顶级射手与传奇巨星，国家队历史射手王，五座金球奖得主。以极致自律、超强身体素质和恐怖进球效率闻名。2026年将是他第六次征战世界杯，继续刷新纪录，冲击职业生涯最后一座世界杯冠军。
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- 姆巴佩 -->
                     <div class="player-card">
                         <div class="card-inner">
                             <div class="card-front">
-                                <img src="https://1837570490.v.123pan.cn/1837570490/29558134" alt="基利安·姆巴佩" class="player-img">
+                                <img alt="基利安·姆巴佩" class="player-img"
+                                    src="https://1837570490.v.123pan.cn/1837570490/29558134" />
                                 <div class="card-info">
-                                    <p class="name">基利安·姆巴佩</p>
-                                    <p class="position">前锋</p>
-                                    <p class="number">#10</p>
+                                    <p class="name i18n">基利安·姆巴佩</p>
+                                    <p class="position i18n">前锋</p>
+                                    <p class="number i18n">#10</p>
                                 </div>
                             </div>
                             <div class="card-back">
                                 <div class="back-content">
-                                    <h4>基利安·姆巴佩</h4>
-                                    <p class="back-team">法国 | 皇家马德里 | 年龄：27岁</p>
-                                    <p class="back-desc">
+                                    <h4 class="i18n">基利安·姆巴佩</h4>
+                                    <p class="back-team i18n">法国 | 皇家马德里 | 年龄：27岁</p>
+                                    <p class="back-desc i18n" data-i18n="desc_mbappe">
                                         当今足坛速度与爆发力的天花板，2018年世界杯冠军核心成员，世界杯历史最年轻进球者之一。技术全面、门前终结能力极强，2026年将以法国队领军人物身份，带队冲击卫冕，立志成为新一代足坛领军者。
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- 哈兰德 -->
                     <div class="player-card">
                         <div class="card-inner">
                             <div class="card-front">
-                                <img src="https://1837570490.v.123pan.cn/1837570490/29349422" alt="埃尔林·哈兰德" class="player-img">
+                                <img alt="埃尔林·哈兰德" class="player-img"
+                                    src="https://1837570490.v.123pan.cn/1837570490/29349422" />
                                 <div class="card-info">
-                                    <p class="name">埃尔林·哈兰德</p>
-                                    <p class="position">中锋</p>
-                                    <p class="number">#9</p>
+                                    <p class="name i18n">埃尔林·哈兰德</p>
+                                    <p class="position i18n">中锋</p>
+                                    <p class="number i18n">#9</p>
                                 </div>
                             </div>
                             <div class="card-back">
                                 <div class="back-content">
-                                    <h4>埃尔林·哈兰德</h4>
-                                    <p class="back-team">挪威 | 曼城 | 年龄：26岁</p>
-                                    <p class="back-desc">
+                                    <h4 class="i18n">埃尔林·哈兰德</h4>
+                                    <p class="back-team i18n">挪威 | 曼城 | 年龄：26岁</p>
+                                    <p class="back-desc i18n" data-i18n="desc_haaland">
                                         现役足坛第一中锋，身体强壮如坦克，抢点、头球、远射样样精通，门前终结效率冠绝欧洲。作为挪威队绝对核心，他将带领北欧劲旅征战2026世界杯，力争实现挪威足球的历史性突破。
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a class="module-btn i18n" href="data.html">查看更多球星数据</a>
                 </div>
             </div>
         </div>
-
         <!-- 赛程模块 -->
         <div class="schedule-section fade-scroll" id="schedule">
-            <h2 class="info-title">2026世界杯赛事</h2>
-            <div class="schedule-grid">
+            <h2 class="info-title i18n">2026世界杯赛事</h2>
+            <div class="schedule-grid i18n">
                 <!-- 第一场比赛 -->
                 <div class="match-card">
-                    <div class="match-time">2026-06-12 3:00</div>
+                    <div class="match-time i18n">2026-06-12 3:00</div>
                     <div class="match-teams">
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" alt="墨西哥">
+                                <img alt="墨西哥"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" />
                             </div>
-                            <div class="team-name">墨西哥</div>
+                            <div class="team-name i18n">墨西哥</div>
                         </div>
-                        <div class="vs">VS</div>
+                        <div class="vs i18n">VS</div>
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"
-                                    alt="南非">
+                                <img alt="南非"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" />
                             </div>
-                            <div class="team-name">南非</div>
+                            <div class="team-name i18n">南非</div>
                         </div>
                     </div>
-                    <div class="match-stage">揭幕战 | 墨西哥城</div>
+                    <div class="match-stage i18n">揭幕战 | 墨西哥城</div>
                 </div>
-
                 <!-- 第二场比赛 -->
                 <div class="match-card">
-                    <div class="match-time">2026-06-18 4:00</div>
+                    <div class="match-time i18n">2026-06-18 4:00</div>
                     <div class="match-teams">
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg"
-                                    alt="英格兰">
+                                <img alt="英格兰"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg" />
                             </div>
-                            <div class="team-name">英格兰</div>
+                            <div class="team-name i18n">英格兰</div>
                         </div>
-                        <div class="vs">VS</div>
+                        <div class="vs i18n">VS</div>
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg"
-                                    alt="克罗地亚">
+                                <img alt="克罗地亚"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" />
                             </div>
-                            <div class="team-name">克罗地亚</div>
+                            <div class="team-name i18n">克罗地亚</div>
                         </div>
                     </div>
-                    <div class="match-stage">小组赛L组 | 达拉斯AT&T</div>
+                    <div class="match-stage i18n">小组赛L组 | 达拉斯AT&amp;T</div>
                 </div>
-
                 <!-- 第三场比赛 -->
                 <div class="match-card">
-                    <div class="match-time">2026-06-27 3:00</div>
+                    <div class="match-time i18n">2026-06-27 3:00</div>
                     <div class="match-teams">
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" alt="挪威">
+                                <img alt="挪威"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" />
                             </div>
-                            <div class="team-name">挪威</div>
+                            <div class="team-name i18n">挪威</div>
                         </div>
-                        <div class="vs">VS</div>
+                        <div class="vs i18n">VS</div>
                         <div class="team">
                             <div class="team-flag">
-                                <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" alt="法国">
+                                <img alt="法国"
+                                    src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" />
                             </div>
-                            <div class="team-name">法国</div>
+                            <div class="team-name i18n">法国</div>
                         </div>
                     </div>
-                    <div class="match-stage">小组赛I组 | 波士顿体育场</div>
+                    <div class="match-stage i18n">小组赛I组 | 波士顿体育场</div>
                 </div>
             </div>
             <!-- 跳转按钮 -->
-            <a href="schedule.html" class="module-btn">查看完整赛程表</a>
+            <a class="module-btn i18n" href="schedule.html">查看完整赛程表</a>
         </div>
-
         <!--页尾HTML结构 -->
         <footer class="footer fade-scroll">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>快速导航</h3>
+                    <h3 class="i18n">快速导航</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="info.html">赛事信息</a></li>
-                        <li><a href="schedule.html">赛事赛程</a></li>
-                        <li><a href="teams.html">参赛球队</a></li>
+                        <li><a class="i18n" href="index.html">首页</a></li>
+                        <li><a class="i18n" href="info.html">赛事信息</a></li>
+                        <li><a class="i18n" href="schedule.html">赛程安排</a></li>
+                        <li><a class="i18n" href="teams.html">参赛球队</a></li>
+                        <li><a class="i18n" href="data.html">数据洞察</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>主办信息</h3>
+                    <h3 class="i18n">主办信息</h3>
                     <ul class="footer-links">
-                        <li><a href="https://www.ussoccer.com/">美国足协</a></li>
-                        <li><a href="https://canadasoccer.com/">加拿大足协</a></li>
-                        <li><a href="https://fmf.mx/">墨西哥足协</a></li>
-                        <li><a href="https://www.fifa.com/">国际足联(FIFA)</a></li>
+                        <li><a class="i18n" href="https://www.ussoccer.com/">美国足协</a></li>
+                        <li><a class="i18n" href="https://canadasoccer.com/">加拿大足协</a></li>
+                        <li><a class="i18n" href="https://fmf.mx/">墨西哥足协</a></li>
+                        <li><a class="i18n" href="https://www.fifa.com/">国际足联(FIFA)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>联系我们</h3>
+                    <h3 class="i18n">联系我们</h3>
                     <div class="footer-contact">
-                        <p>邮箱：contact@2026worldcup.com</p>
-                        <p>电话：+1 202-555-0199</p>
-                        <p>地址：美国纽约曼哈顿第五大道</p>
+                        <p class="i18n">邮箱：contact@2026worldcup.com</p>
+                        <p class="i18n">电话：+1 202-555-0199</p>
+                        <p class="i18n">地址：美国纽约曼哈顿第五大道</p>
                     </div>
                     <div class="footer-social">
-                        <a href="#" class="social-icon">📱</a>
-                        <a href="#" class="social-icon">🔵</a>
-                        <a href="#" class="social-icon">📷</a>
-                        <a href="#" class="social-icon">𝕏</a>
+                        <a class="social-icon i18n" href="#">📱</a>
+                        <a class="social-icon i18n" href="#">🔵</a>
+                        <a class="social-icon i18n" href="#">📷</a>
+                        <a class="social-icon i18n" href="#">𝕏</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2026 美加墨世界杯官方网站 版权所有</p>
-                <p>本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
+                <p class="copyright i18n">© 2026 美加墨世界杯官方网站 版权所有</p>
+                <p class="i18n">本网站仅用于展示，非官方赛事网站 | 赛事最终解释权归国际足联所有</p>
             </div>
         </footer>
-
     </div>
     <script>
         const cards = document.querySelectorAll('.card');
         const modal = document.getElementById('videoModal');
         const video = document.getElementById('modalVideo');
         const close = document.getElementById('closeModal');
+
+        // 1. 背景模糊效果
+        const heroBg = document.querySelector('.hero::before'); // 伪元素无法直接获取，通过根元素控制
+        const heroElement = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // 滑到 200px 时 → 直接变成 4px 模糊
+            const blurValue = scrollY > 250 ? 8 : 0;
+
+            heroElement.style.setProperty('--bg-blur', `${blurValue}px`);
+        });
+
 
         // 打开弹窗
         cards.forEach(card => {
@@ -2210,432 +2228,9 @@
         window.addEventListener('scroll', checkFade);
     </script>
 
-    <!-- 页面翻译功能 -->
-    <div id="translate-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 99999;">
-        <button id="translate-btn" onclick="toggleTranslateMenu()" style="
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #cfff33, #bfff33);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(207, 255, 51, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            color: #111;
-            font-weight: bold;
-        " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(207, 255, 51, 0.6)'" 
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(207, 255, 51, 0.4)'">
-            🌐
-        </button>
-        <div id="translate-menu" style="
-            display: none;
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: rgba(20, 20, 20, 0.95);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 12px;
-            min-width: 180px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-            border: 1px solid rgba(207, 255, 51, 0.2);
-        ">
-            <div style="color: #cfff33; font-size: 14px; font-weight: 600; margin-bottom: 10px; padding: 4px 8px; border-bottom: 1px solid rgba(207, 255, 51, 0.2);">
-                🌐 选择语言 / Select Language
-            </div>
-            <button onclick="doTranslate('zh-CN')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇨🇳 简体中文 (Chinese)
-            </button>
-            <button onclick="doTranslate('en')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇺🇸 English
-            </button>
-            <button onclick="doTranslate('ja')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇯🇵 日本語 (Japanese)
-            </button>
-            <button onclick="doTranslate('ko')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇰🇷 한국어 (Korean)
-            </button>
-            <button onclick="doTranslate('es')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇪🇸 Español (Spanish)
-            </button>
-            <button onclick="doTranslate('fr')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇫🇷 Français (French)
-            </button>
-            <button onclick="doTranslate('de')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇩🇪 Deutsch (German)
-            </button>
-            <button onclick="doTranslate('pt')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇵🇹 Português (Portuguese)
-            </button>
-            <button onclick="doTranslate('ar')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇸🇦 العربية (Arabic)
-            </button>
-            <button onclick="doTranslate('ru')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇷🇺 Русский (Russian)
-            </button>
-            <button onclick="doTranslate('it')" class="lang-option" style="
-                display: block;
-                width: 100%;
-                padding: 10px 12px;
-                margin: 4px 0;
-                background: transparent;
-                border: none;
-                color: white;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(207, 255, 51, 0.15)'" onmouseout="this.style.background='transparent'">
-                🇮🇹 Italiano (Italian)
-            </button>
-        </div>
-    </div>
-
-    <!-- Google Translate 隐藏元素 -->
-    <div id="google_translate_element" style="display:none;"></div>
-
-    <script>
-        // ===== Google Translate 初始化 =====
-        window.googleTranslateElementInit = function() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'zh-CN',
-                includedLanguages: 'zh-CN,en,ja,ko,es,fr,de,pt,ar,ru,it',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-
-            console.log('Google Translate 初始化完成');
-            window.googleTranslateLoaded = true;
-
-            // 如果有待执行的翻译，立即执行
-            if (window.pendingTranslateLang) {
-                setTimeout(function() {
-                    executeTranslate(window.pendingTranslateLang);
-                    window.pendingTranslateLang = null;
-                }, 500);
-            }
-        };
-
-        // ===== 切换翻译菜单 =====
-        function toggleTranslateMenu() {
-            const menu = document.getElementById('translate-menu');
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'block';
-                menu.style.opacity = '0';
-                menu.style.transform = 'translateY(10px)';
-                setTimeout(function() {
-                    menu.style.transition = 'all 0.3s ease';
-                    menu.style.opacity = '1';
-                    menu.style.transform = 'translateY(0)';
-                }, 10);
-            } else {
-                menu.style.opacity = '0';
-                menu.style.transform = 'translateY(10px)';
-                setTimeout(function() {
-                    menu.style.display = 'none';
-                }, 300);
-            }
-        }
-
-        // ===== 执行翻译 =====
-        function doTranslate(lang) {
-            // 隐藏菜单
-            const menu = document.getElementById('translate-menu');
-            menu.style.opacity = '0';
-            menu.style.transform = 'translateY(10px)';
-            setTimeout(function() {
-                menu.style.display = 'none';
-            }, 300);
-
-            // 显示加载提示
-            showNotification('🔄 正在翻译页面... / Translating...');
-
-            // 检查Google Translate是否已加载
-            if (window.googleTranslateLoaded) {
-                executeTranslate(lang);
-            } else {
-                // 如果未加载，先等待
-                window.pendingTranslateLang = lang;
-                // 尝试强制触发Google Translate
-                forceGoogleTranslate(lang);
-            }
-
-            // 保存语言偏好
-            localStorage.setItem('preferred_language', lang);
-        }
-
-        // ===== 强制触发Google Translate =====
-        function forceGoogleTranslate(lang) {
-            // 方法1: 通过修改cookie触发
-            var googTransCookie = '/zh-CN/' + lang;
-            document.cookie = 'googtrans=' + googTransCookie + '; path=/; domain=' + window.location.hostname;
-            document.cookie = 'googtrans=' + googTransCookie + '; path=/; domain=.' + window.location.hostname;
-
-            // 方法2: 通过URL参数触发
-            var currentUrl = window.location.href;
-            if (currentUrl.indexOf('?') === -1) {
-                // 不刷新页面，使用iframe方法
-            }
-
-            // 方法3: 尝试直接操作Google Translate控件
-            setTimeout(function() {
-                var select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    select.value = lang;
-                    select.dispatchEvent(new Event('change'));
-                    showTranslateSuccess(lang);
-                } else {
-                    // 如果控件不存在，使用iframe方法
-                    useIframeTranslate(lang);
-                }
-            }, 1500);
-        }
-
-        // ===== 使用iframe进行翻译（备用方案）=====
-        function useIframeTranslate(lang) {
-            // 创建一个隐藏的iframe来触发翻译
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = 'https://translate.google.com/translate?sl=zh-CN&tl=' + lang + '&u=' + encodeURIComponent(window.location.href);
-            document.body.appendChild(iframe);
-
-            setTimeout(function() {
-                iframe.remove();
-                showTranslateSuccess(lang);
-            }, 3000);
-        }
-
-        // ===== 执行翻译（通过Google Translate控件）=====
-        function executeTranslate(lang) {
-            var select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-                showTranslateSuccess(lang);
-            } else {
-                // 如果找不到控件，尝试其他方法
-                forceGoogleTranslate(lang);
-            }
-        }
-
-        // ===== 显示翻译成功提示 =====
-        function showTranslateSuccess(lang) {
-            var langNames = {
-                'zh-CN': '简体中文',
-                'en': 'English',
-                'ja': '日本語',
-                'ko': '한국어',
-                'es': 'Español',
-                'fr': 'Français',
-                'de': 'Deutsch',
-                'pt': 'Português',
-                'ar': 'العربية',
-                'ru': 'Русский',
-                'it': 'Italiano'
-            };
-            showNotification('✅ 已切换至 ' + (langNames[lang] || lang));
-        }
-
-        // ===== 显示通知 =====
-        function showNotification(text) {
-            var existing = document.getElementById('translate-notification');
-            if (existing) existing.remove();
-
-            var notification = document.createElement('div');
-            notification.id = 'translate-notification';
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%) translateY(-20px);
-                background: rgba(20, 20, 20, 0.95);
-                backdrop-filter: blur(12px);
-                color: #cfff33;
-                padding: 14px 28px;
-                border-radius: 50px;
-                font-size: 15px;
-                font-weight: 500;
-                z-index: 999999;
-                border: 1px solid rgba(207, 255, 51, 0.3);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                opacity: 0;
-                transition: all 0.4s ease;
-                white-space: nowrap;
-            `;
-            notification.textContent = text;
-            document.body.appendChild(notification);
-
-            setTimeout(function() {
-                notification.style.opacity = '1';
-                notification.style.transform = 'translateX(-50%) translateY(0)';
-            }, 10);
-
-            setTimeout(function() {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(function() { notification.remove(); }, 400);
-            }, 2500);
-        }
-
-        // ===== 页面加载时恢复语言设置 =====
-        document.addEventListener('DOMContentLoaded', function() {
-            var savedLang = localStorage.getItem('preferred_language');
-            if (savedLang && savedLang !== 'zh-CN') {
-                setTimeout(function() {
-                    doTranslate(savedLang);
-                }, 3000);
-            }
-        });
-
-        // ===== 点击页面其他地方关闭菜单 =====
-        document.addEventListener('click', function(e) {
-            var container = document.getElementById('translate-container');
-            var menu = document.getElementById('translate-menu');
-            if (container && !container.contains(e.target) && menu.style.display === 'block') {
-                menu.style.opacity = '0';
-                menu.style.transform = 'translateY(10px)';
-                setTimeout(function() {
-                    menu.style.display = 'none';
-                }, 300);
-            }
-        });
-    </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+    <!-- 国际化组件 -->
+    <script src="i18n-lang.js"></script>
+</body>
 </body>
 
 </html>
