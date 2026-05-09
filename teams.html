@@ -31,7 +31,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                        url('https://1837570490.v.123pan.cn/1837570490/29527425');
+                url('https://1837570490.v.123pan.cn/1837570490/29527425');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -391,10 +391,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             transition: 0.3s;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .modal-close:hover {
@@ -485,7 +485,8 @@
         /* 👇 仅控制弹窗内【查看更多】按钮，不影响任何其他按钮 */
         .modal-more-btn {
             /* 基础颜色（你可以随便改） */
-            background: #cfff33; /* 蓝色示例 */
+            background: #cfff33;
+            /* 蓝色示例 */
             color: #000000;
             /* 大小 */
             padding: 0.5rem 1.4rem;
@@ -496,23 +497,41 @@
 
             /* 边框（可选） */
             border: none;
-            box-shadow: 0 4px 10px rgba(0,120,255,0.2);
+            box-shadow: 0 4px 10px rgba(0, 120, 255, 0.2);
         }
 
         /* 鼠标悬浮效果 */
         .modal-more-btn:hover {
             background: #97ff4d;
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,120,255,0.3);
+            box-shadow: 0 6px 16px rgba(0, 120, 255, 0.3);
         }
 
         /* 响应式适配 */
         @media (max-width: 1200px) {
-            .nav-center { flex: 2.5; }
-            .nav-left, .nav-right { flex: 1.25; }
-            .nav-left { font-size: 1.35rem; }
-            .nav-logo { width: 32px; height: 32px; }
-            .nav-link { font-size: 1.2rem; padding: 0.5rem 1.8rem; }
+            .nav-center {
+                flex: 2.5;
+            }
+
+            .nav-left,
+            .nav-right {
+                flex: 1.25;
+            }
+
+            .nav-left {
+                font-size: 1.35rem;
+            }
+
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                padding: 0.5rem 1.8rem;
+            }
+
             .countdown {
                 padding: 0.5rem 1.8rem;
             }
@@ -524,19 +543,40 @@
         }
 
         @media (max-width: 1024px) {
-            .nav-center { flex: 2; }
-            .nav-left, .nav-right { flex: 1.5; }
-            .nav-link { font-size: 1.15rem; padding: 0.5rem 1.5rem; }
+            .nav-center {
+                flex: 2;
+            }
+
+            .nav-left,
+            .nav-right {
+                flex: 1.5;
+            }
+
+            .nav-link {
+                font-size: 1.15rem;
+                padding: 0.5rem 1.5rem;
+            }
+
             .countdown {
                 padding: 0.5rem 1.5rem;
                 gap: 6px;
             }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .modal-img { height: 250px; }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-img {
+                height: 250px;
+            }
         }
 
         @media (max-width: 768px) {
-            .hero { margin: 0; border-radius: 0; }
+            .hero {
+                margin: 0;
+                border-radius: 0;
+            }
+
             nav {
                 padding: 1rem 1.5rem;
                 flex-wrap: wrap;
@@ -544,6 +584,7 @@
                 min-height: 80px;
                 gap: 0.5rem;
             }
+
             .nav-left {
                 width: 100%;
                 flex: none;
@@ -553,37 +594,108 @@
                 justify-content: center;
                 gap: 0.5rem;
             }
-            .nav-logo { width: 28px; height: 28px; }
+
+            .nav-logo {
+                width: 28px;
+                height: 28px;
+            }
+
             .nav-center {
                 width: 100%;
                 flex: none;
                 gap: 4px;
                 margin-bottom: 0.5rem;
             }
-            .nav-right { width: 100%; flex: none; justify-content: center; }
-            .nav-link { font-size: 1.1rem; padding: 0.4rem 1.2rem; }
+
+            .nav-right {
+                width: 100%;
+                flex: none;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 0.4rem 1.2rem;
+            }
+
             .countdown {
                 padding: 0.4rem 1.2rem;
                 gap: 4px;
             }
-            .footer { padding: 1.5rem 1rem; margin: 3rem auto 0.5rem; }
-            .footer-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-            .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.8rem; padding-bottom: 0.4rem; }
-            .footer-links li a, .footer-contact p { font-size: 0.85rem; }
-            .footer-links { gap: 0.6rem; }
-            .footer-bottom { font-size: 0.8rem; padding-top: 1rem; }
-            .section { width: 94%; }
-            .team-grid { grid-template-columns: 1fr; }
-            .team-card-img { height: 250px; }
-            .modal-img { height: 200px; }
-            .modal-title { font-size: 1.6rem; }
-            .modal-info { font-size: 1rem; }
-            .modal-close { top: 10px; right: 15px; width: 40px; height: 40px; font-size: 30px; }
+
+            .footer {
+                padding: 1.5rem 1rem;
+                margin: 3rem auto 0.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .footer-col h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.4rem;
+            }
+
+            .footer-links li a,
+            .footer-contact p {
+                font-size: 0.85rem;
+            }
+
+            .footer-links {
+                gap: 0.6rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+                padding-top: 1rem;
+            }
+
+            .section {
+                width: 94%;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card-img {
+                height: 250px;
+            }
+
+            .modal-img {
+                height: 200px;
+            }
+
+            .modal-title {
+                font-size: 1.6rem;
+            }
+
+            .modal-info {
+                font-size: 1rem;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
         }
 
         @media (max-width: 480px) {
-            .nav-center { gap: 2px; }
-            .nav-link { font-size: 0.95rem; padding: 0.3rem 0.8rem; }
+            .nav-center {
+                gap: 2px;
+            }
+
+            .nav-link {
+                font-size: 0.95rem;
+                padding: 0.3rem 0.8rem;
+            }
+
             .countdown {
                 padding: 0.3rem 0.8rem;
                 gap: 2px;
@@ -595,10 +707,23 @@
             }
 
             .countdown-text {
-                font-size: 0.85re}
-            .footer { padding: 1.2rem 0.8rem; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .social-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+                font-size: 0.85rem;
+            }
+
+            .footer {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            .social-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -642,10 +767,14 @@
             <div class="nav-right">
                 <div class="countdown">
                     <span class="countdown-label i18n" data-i18n="开赛倒计时：">开赛倒计时：</span>
-                    <span class="countdown-num" id="days">44</span><span class="countdown-text i18n" data-i18n="天">天</span>
-                    <span class="countdown-num" id="hours">06</span><span class="countdown-text i18n" data-i18n="时">时</span>
-                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text i18n" data-i18n="分">分</span>
-                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text i18n" data-i18n="秒">秒</span>
+                    <span class="countdown-num" id="days">44</span><span class="countdown-text i18n"
+                        data-i18n="天">天</span>
+                    <span class="countdown-num" id="hours">06</span><span class="countdown-text i18n"
+                        data-i18n="时">时</span>
+                    <span class="countdown-num" id="minutes">26</span><span class="countdown-text i18n"
+                        data-i18n="分">分</span>
+                    <span class="countdown-num" id="seconds">55</span><span class="countdown-text i18n"
+                        data-i18n="秒">秒</span>
                 </div>
             </div>
         </nav>
@@ -662,11 +791,11 @@
 
                 <!-- 1 美国 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29558137"
-                     data-i18n-title="team_usa_title"
-                     data-i18n-content="team_usa_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/usa-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg" class="team-card-img" alt="美国">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29558137" data-i18n-title="team_usa_title"
+                    data-i18n-content="team_usa_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/usa-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/us.svg" class="team-card-img"
+                        alt="美国">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_usa">美国</div>
                         <div class="team-desc i18n" data-i18n="desc_usa">东道主 | 年轻活力</div>
@@ -675,11 +804,11 @@
 
                 <!-- 2 加拿大 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29439528"
-                     data-i18n-title="team_canada_title"
-                     data-i18n-content="team_canada_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/canada-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg" class="team-card-img" alt="加拿大">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29439528" data-i18n-title="team_canada_title"
+                    data-i18n-content="team_canada_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/canada-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ca.svg" class="team-card-img"
+                        alt="加拿大">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_canada">加拿大</div>
                         <div class="team-desc i18n" data-i18n="desc_canada">东道主 | 飞速崛起</div>
@@ -688,11 +817,11 @@
 
                 <!-- 3 墨西哥 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29558133"
-                     data-i18n-title="team_mexico_title"
-                     data-i18n-content="team_mexico_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/mexico-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" class="team-card-img" alt="墨西哥">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29558133" data-i18n-title="team_mexico_title"
+                    data-i18n-content="team_mexico_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/mexico-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/mx.svg" class="team-card-img"
+                        alt="墨西哥">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_mexico">墨西哥</div>
                         <div class="team-desc i18n" data-i18n="desc_mexico">东道主 | 中北美霸主</div>
@@ -701,11 +830,11 @@
 
                 <!-- 4 德国 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29803209"
-                     data-i18n-title="team_germany_title"
-                     data-i18n-content="team_germany_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/germany-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg" class="team-card-img" alt="德国">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29803209" data-i18n-title="team_germany_title"
+                    data-i18n-content="team_germany_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/germany-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/de.svg" class="team-card-img"
+                        alt="德国">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_germany">德国</div>
                         <div class="team-desc i18n" data-i18n="desc_germany">四届冠军 | 铁血战车</div>
@@ -714,11 +843,11 @@
 
                 <!-- 5 法国 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29470335"
-                     data-i18n-title="team_france_title"
-                     data-i18n-content="team_france_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/france-world-cup-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" class="team-card-img" alt="法国">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29470335" data-i18n-title="team_france_title"
+                    data-i18n-content="team_france_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/france-world-cup-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/fr.svg" class="team-card-img"
+                        alt="法国">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_france">法国</div>
                         <div class="team-desc i18n" data-i18n="desc_france">豪华阵容 | 卫冕热门</div>
@@ -727,11 +856,11 @@
 
                 <!-- 6 英格兰 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29349428"
-                     data-i18n-title="team_england_title"
-                     data-i18n-content="team_england_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/england-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg" class="team-card-img" alt="英格兰">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29349428" data-i18n-title="team_england_title"
+                    data-i18n-content="team_england_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/england-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-eng.svg"
+                        class="team-card-img" alt="英格兰">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_england">英格兰</div>
                         <div class="team-desc i18n" data-i18n="desc_england">年轻豪华 | 凯恩领衔</div>
@@ -740,11 +869,11 @@
 
                 <!-- 7 西班牙 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29377951"
-                     data-i18n-title="team_spain_title"
-                     data-i18n-content="team_spain_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg" class="team-card-img" alt="西班牙">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29377951" data-i18n-title="team_spain_title"
+                    data-i18n-content="team_spain_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/es.svg" class="team-card-img"
+                        alt="西班牙">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_spain">西班牙</div>
                         <div class="team-desc i18n" data-i18n="desc_spain">传控足球 | 技术流</div>
@@ -753,11 +882,11 @@
 
                 <!-- 8 葡萄牙 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29408821"
-                     data-i18n-title="team_portugal_title"
-                     data-i18n-content="team_portugal_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/portugal-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg" class="team-card-img" alt="葡萄牙">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29408821" data-i18n-title="team_portugal_title"
+                    data-i18n-content="team_portugal_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/portugal-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pt.svg" class="team-card-img"
+                        alt="葡萄牙">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_portugal">葡萄牙</div>
                         <div class="team-desc i18n" data-i18n="desc_portugal">C罗领衔 | 火力强劲</div>
@@ -766,11 +895,11 @@
 
                 <!-- 9 荷兰 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29558129"
-                     data-i18n-title="team_netherlands_title"
-                     data-i18n-content="team_netherlands_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/netherlands-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg" class="team-card-img" alt="荷兰">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29558129"
+                    data-i18n-title="team_netherlands_title" data-i18n-content="team_netherlands_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/netherlands-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nl.svg" class="team-card-img"
+                        alt="荷兰">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_netherlands">荷兰</div>
                         <div class="team-desc i18n" data-i18n="desc_netherlands">无冕之王 | 全攻全守</div>
@@ -779,11 +908,11 @@
 
                 <!-- 10 比利时 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29558124"
-                     data-i18n-title="team_belgium_title"
-                     data-i18n-content="team_belgium_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg" class="team-card-img" alt="比利时">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29558124" data-i18n-title="team_belgium_title"
+                    data-i18n-content="team_belgium_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/belgium-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/be.svg" class="team-card-img"
+                        alt="比利时">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_belgium">比利时</div>
                         <div class="team-desc i18n" data-i18n="desc_belgium">欧洲红魔 | 黄金一代</div>
@@ -792,11 +921,11 @@
 
                 <!-- 11 克罗地亚 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29349423"
-                     data-i18n-title="team_croatia_title"
-                     data-i18n-content="team_croatia_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/croatia-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" class="team-card-img" alt="克罗地亚">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29349423" data-i18n-title="team_croatia_title"
+                    data-i18n-content="team_croatia_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/croatia-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/hr.svg" class="team-card-img"
+                        alt="克罗地亚">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_croatia">克罗地亚</div>
                         <div class="team-desc i18n" data-i18n="desc_croatia">中场强阵 | 铁血韧性</div>
@@ -805,11 +934,11 @@
 
                 <!-- 12 瑞士 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://1837570490.v.123pan.cn/1837570490/29803212"
-                     data-i18n-title="team_switzerland_title"
-                     data-i18n-content="team_switzerland_content"
-                     data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/switzerland-team-profile-history">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg" class="team-card-img" alt="瑞士">
+                    data-img="https://1837570490.v.123pan.cn/1837570490/29803212"
+                    data-i18n-title="team_switzerland_title" data-i18n-content="team_switzerland_content"
+                    data-link="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/switzerland-team-profile-history">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ch.svg" class="team-card-img"
+                        alt="瑞士">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_switzerland">瑞士</div>
                         <div class="team-desc i18n" data-i18n="desc_switzerland">欧洲劲旅 | 防守强硬</div>
@@ -818,10 +947,10 @@
 
                 <!-- 13 奥地利 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"
-                     data-i18n-title="team_austria_title"
-                     data-i18n-content="team_austria_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg" class="team-card-img" alt="奥地利">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg"
+                    data-i18n-title="team_austria_title" data-i18n-content="team_austria_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/at.svg" class="team-card-img"
+                        alt="奥地利">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_austria">奥地利</div>
                         <div class="team-desc i18n" data-i18n="desc_austria">稳步崛起 | 欧洲中游</div>
@@ -830,10 +959,10 @@
 
                 <!-- 14 苏格兰 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"
-                     data-i18n-title="team_scotland_title"
-                     data-i18n-content="team_scotland_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg" class="team-card-img" alt="苏格兰">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"
+                    data-i18n-title="team_scotland_title" data-i18n-content="team_scotland_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gb-sct.svg"
+                        class="team-card-img" alt="苏格兰">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_scotland">苏格兰</div>
                         <div class="team-desc i18n" data-i18n="desc_scotland">北欧风格 | 硬朗拼抢</div>
@@ -842,10 +971,10 @@
 
                 <!-- 15 挪威 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"
-                     data-i18n-title="team_norway_title"
-                     data-i18n-content="team_norway_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" class="team-card-img" alt="挪威">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg"
+                    data-i18n-title="team_norway_title" data-i18n-content="team_norway_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/no.svg" class="team-card-img"
+                        alt="挪威">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_norway">挪威</div>
                         <div class="team-desc i18n" data-i18n="desc_norway">北欧劲旅 | 高中锋战术</div>
@@ -854,10 +983,10 @@
 
                 <!-- 16 波黑 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"
-                     data-i18n-title="team_bosnia_title"
-                     data-i18n-content="team_bosnia_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg" class="team-card-img" alt="波黑">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg"
+                    data-i18n-title="team_bosnia_title" data-i18n-content="team_bosnia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ba.svg" class="team-card-img"
+                        alt="波黑">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_bosnia">波黑</div>
                         <div class="team-desc i18n" data-i18n="desc_bosnia">技术流 | 中场创造力</div>
@@ -866,10 +995,10 @@
 
                 <!-- 17 瑞典 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"
-                     data-i18n-title="team_sweden_title"
-                     data-i18n-content="team_sweden_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg" class="team-card-img" alt="瑞典">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg"
+                    data-i18n-title="team_sweden_title" data-i18n-content="team_sweden_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/se.svg" class="team-card-img"
+                        alt="瑞典">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_sweden">瑞典</div>
                         <div class="team-desc i18n" data-i18n="desc_sweden">北欧劲旅 | 身体强悍</div>
@@ -878,10 +1007,10 @@
 
                 <!-- 18 土耳其 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"
-                     data-i18n-title="team_turkey_title"
-                     data-i18n-content="team_turkey_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg" class="team-card-img" alt="土耳其">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg"
+                    data-i18n-title="team_turkey_title" data-i18n-content="team_turkey_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tr.svg" class="team-card-img"
+                        alt="土耳其">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_turkey">土耳其</div>
                         <div class="team-desc i18n" data-i18n="desc_turkey">凶悍球风 | 黑马潜质</div>
@@ -890,10 +1019,10 @@
 
                 <!-- 19 捷克 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"
-                     data-i18n-title="team_czech_title"
-                     data-i18n-content="team_czech_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg" class="team-card-img" alt="捷克">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg"
+                    data-i18n-title="team_czech_title" data-i18n-content="team_czech_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cz.svg" class="team-card-img"
+                        alt="捷克">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_czech">捷克</div>
                         <div class="team-desc i18n" data-i18n="desc_czech">东欧技术流 | 配合流畅</div>
@@ -902,10 +1031,10 @@
 
                 <!-- 20 日本 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"
-                     data-i18n-title="team_japan_title"
-                     data-i18n-content="team_japan_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg" class="team-card-img" alt="日本">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg"
+                    data-i18n-title="team_japan_title" data-i18n-content="team_japan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jp.svg" class="team-card-img"
+                        alt="日本">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_japan">日本</div>
                         <div class="team-desc i18n" data-i18n="desc_japan">亚洲顶级 | 技术细腻</div>
@@ -914,10 +1043,10 @@
 
                 <!-- 21 韩国 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"
-                     data-i18n-title="team_korea_title"
-                     data-i18n-content="team_korea_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg" class="team-card-img" alt="韩国">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg"
+                    data-i18n-title="team_korea_title" data-i18n-content="team_korea_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/kr.svg" class="team-card-img"
+                        alt="韩国">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_korea">韩国</div>
                         <div class="team-desc i18n" data-i18n="desc_korea">孙兴慜领衔 | 速度反击</div>
@@ -926,10 +1055,10 @@
 
                 <!-- 22 伊朗 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"
-                     data-i18n-title="team_iran_title"
-                     data-i18n-content="team_iran_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg" class="team-card-img" alt="伊朗">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg"
+                    data-i18n-title="team_iran_title" data-i18n-content="team_iran_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ir.svg" class="team-card-img"
+                        alt="伊朗">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_iran">伊朗</div>
                         <div class="team-desc i18n" data-i18n="desc_iran">亚洲劲旅 | 防守稳固</div>
@@ -938,10 +1067,10 @@
 
                 <!-- 23 澳大利亚 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"
-                     data-i18n-title="team_australia_title"
-                     data-i18n-content="team_australia_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg" class="team-card-img" alt="澳大利亚">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg"
+                    data-i18n-title="team_australia_title" data-i18n-content="team_australia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/au.svg" class="team-card-img"
+                        alt="澳大利亚">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_australia">澳大利亚</div>
                         <div class="team-desc i18n" data-i18n="desc_australia">身体硬朗 | 直接高效</div>
@@ -950,10 +1079,10 @@
 
                 <!-- 24 沙特 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"
-                     data-i18n-title="team_saudi_title"
-                     data-i18n-content="team_saudi_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg" class="team-card-img" alt="沙特">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg"
+                    data-i18n-title="team_saudi_title" data-i18n-content="team_saudi_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sa.svg" class="team-card-img"
+                        alt="沙特">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_saudi">沙特</div>
                         <div class="team-desc i18n" data-i18n="desc_saudi">西亚强队 | 技术流畅</div>
@@ -962,10 +1091,10 @@
 
                 <!-- 25 卡塔尔 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"
-                     data-i18n-title="team_qatar_title"
-                     data-i18n-content="team_qatar_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg" class="team-card-img" alt="卡塔尔">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg"
+                    data-i18n-title="team_qatar_title" data-i18n-content="team_qatar_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/qa.svg" class="team-card-img"
+                        alt="卡塔尔">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_qatar">卡塔尔</div>
                         <div class="team-desc i18n" data-i18n="desc_qatar">西亚新贵 | 青训建队</div>
@@ -974,10 +1103,10 @@
 
                 <!-- 26 乌兹别克斯坦 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"
-                     data-i18n-title="team_uzbekistan_title"
-                     data-i18n-content="team_uzbekistan_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg" class="team-card-img" alt="乌兹别克斯坦">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg"
+                    data-i18n-title="team_uzbekistan_title" data-i18n-content="team_uzbekistan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uz.svg" class="team-card-img"
+                        alt="乌兹别克斯坦">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_uzbekistan">乌兹别克斯坦</div>
                         <div class="team-desc i18n" data-i18n="desc_uzbekistan">中亚劲旅 | 身体强壮</div>
@@ -986,10 +1115,10 @@
 
                 <!-- 27 约旦 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"
-                     data-i18n-title="team_jordan_title"
-                     data-i18n-content="team_jordan_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg" class="team-card-img" alt="约旦">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg"
+                    data-i18n-title="team_jordan_title" data-i18n-content="team_jordan_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/jo.svg" class="team-card-img"
+                        alt="约旦">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_jordan">约旦</div>
                         <div class="team-desc i18n" data-i18n="desc_jordan">西亚劲旅 | 防守稳固</div>
@@ -998,10 +1127,10 @@
 
                 <!-- 28 伊拉克 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"
-                     data-i18n-title="team_iraq_title"
-                     data-i18n-content="team_iraq_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg" class="team-card-img" alt="伊拉克">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg"
+                    data-i18n-title="team_iraq_title" data-i18n-content="team_iraq_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/iq.svg" class="team-card-img"
+                        alt="伊拉克">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_iraq">伊拉克</div>
                         <div class="team-desc i18n" data-i18n="desc_iraq">亚洲老牌 | 斗志旺盛</div>
@@ -1010,10 +1139,10 @@
 
                 <!-- 29 摩洛哥 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"
-                     data-i18n-title="team_morocco_title"
-                     data-i18n-content="team_morocco_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg" class="team-card-img" alt="摩洛哥">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg"
+                    data-i18n-title="team_morocco_title" data-i18n-content="team_morocco_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ma.svg" class="team-card-img"
+                        alt="摩洛哥">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_morocco">摩洛哥</div>
                         <div class="team-desc i18n" data-i18n="desc_morocco">非洲顶级 | 防守铁军</div>
@@ -1022,10 +1151,10 @@
 
                 <!-- 30 塞内加尔 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"
-                     data-i18n-title="team_senegal_title"
-                     data-i18n-content="team_senegal_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg" class="team-card-img" alt="塞内加尔">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg"
+                    data-i18n-title="team_senegal_title" data-i18n-content="team_senegal_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/sn.svg" class="team-card-img"
+                        alt="塞内加尔">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_senegal">塞内加尔</div>
                         <div class="team-desc i18n" data-i18n="desc_senegal">非洲冠军 | 马内领衔</div>
@@ -1034,10 +1163,10 @@
 
                 <!-- 31 科特迪瓦 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"
-                     data-i18n-title="team_ivory_title"
-                     data-i18n-content="team_ivory_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg" class="team-card-img" alt="科特迪瓦">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg"
+                    data-i18n-title="team_ivory_title" data-i18n-content="team_ivory_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ci.svg" class="team-card-img"
+                        alt="科特迪瓦">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_ivory">科特迪瓦</div>
                         <div class="team-desc i18n" data-i18n="desc_ivory">非洲强队 | 球星众多</div>
@@ -1046,10 +1175,10 @@
 
                 <!-- 32 埃及 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"
-                     data-i18n-title="team_egypt_title"
-                     data-i18n-content="team_egypt_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg" class="team-card-img" alt="埃及">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg"
+                    data-i18n-title="team_egypt_title" data-i18n-content="team_egypt_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/eg.svg" class="team-card-img"
+                        alt="埃及">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_egypt">埃及</div>
                         <div class="team-desc i18n" data-i18n="desc_egypt">非洲传统 | 萨拉赫领衔</div>
@@ -1058,10 +1187,10 @@
 
                 <!-- 33 加纳 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"
-                     data-i18n-title="team_ghana_title"
-                     data-i18n-content="team_ghana_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg" class="team-card-img" alt="加纳">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg"
+                    data-i18n-title="team_ghana_title" data-i18n-content="team_ghana_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/gh.svg" class="team-card-img"
+                        alt="加纳">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_ghana">加纳</div>
                         <div class="team-desc i18n" data-i18n="desc_ghana">非洲青年军 | 天赋出众</div>
@@ -1070,10 +1199,10 @@
 
                 <!-- 34 南非 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"
-                     data-i18n-title="team_south_africa_title"
-                     data-i18n-content="team_south_africa_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" class="team-card-img" alt="南非">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg"
+                    data-i18n-title="team_south_africa_title" data-i18n-content="team_south_africa_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/za.svg" class="team-card-img"
+                        alt="南非">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_south_africa">南非</div>
                         <div class="team-desc i18n" data-i18n="desc_south_africa">非洲传统 | 东道主底蕴</div>
@@ -1082,10 +1211,10 @@
 
                 <!-- 35 突尼斯 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"
-                     data-i18n-title="team_tunisia_title"
-                     data-i18n-content="team_tunisia_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg" class="team-card-img" alt="突尼斯">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg"
+                    data-i18n-title="team_tunisia_title" data-i18n-content="team_tunisia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/tn.svg" class="team-card-img"
+                        alt="突尼斯">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_tunisia">突尼斯</div>
                         <div class="team-desc i18n" data-i18n="desc_tunisia">非洲常客 | 欧式打法</div>
@@ -1094,10 +1223,10 @@
 
                 <!-- 36 阿尔及利亚 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"
-                     data-i18n-title="team_algeria_title"
-                     data-i18n-content="team_algeria_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg" class="team-card-img" alt="阿尔及利亚">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg"
+                    data-i18n-title="team_algeria_title" data-i18n-content="team_algeria_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/dz.svg" class="team-card-img"
+                        alt="阿尔及利亚">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_algeria">阿尔及利亚</div>
                         <div class="team-desc i18n" data-i18n="desc_algeria">技术流畅 | 中场创造力</div>
@@ -1106,10 +1235,10 @@
 
                 <!-- 37 佛得角 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"
-                     data-i18n-title="team_cape_verde_title"
-                     data-i18n-content="team_cape_verde_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg" class="team-card-img" alt="佛得角">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg"
+                    data-i18n-title="team_cape_verde_title" data-i18n-content="team_cape_verde_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cv.svg" class="team-card-img"
+                        alt="佛得角">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_cape_verde">佛得角</div>
                         <div class="team-desc i18n" data-i18n="desc_cape_verde">非洲新兴 | 反击快速</div>
@@ -1118,10 +1247,10 @@
 
                 <!-- 38 民主刚果 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"
-                     data-i18n-title="team_dr_congo_title"
-                     data-i18n-content="team_dr_congo_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg" class="team-card-img" alt="民主刚果">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg"
+                    data-i18n-title="team_dr_congo_title" data-i18n-content="team_dr_congo_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cd.svg" class="team-card-img"
+                        alt="民主刚果">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_dr_congo">民主刚果</div>
                         <div class="team-desc i18n" data-i18n="desc_dr_congo">非洲强队 | 身体天赋</div>
@@ -1130,10 +1259,10 @@
 
                 <!-- 39 阿根廷 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"
-                     data-i18n-title="team_argentina_title"
-                     data-i18n-content="team_argentina_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg" class="team-card-img" alt="阿根廷">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg"
+                    data-i18n-title="team_argentina_title" data-i18n-content="team_argentina_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ar.svg" class="team-card-img"
+                        alt="阿根廷">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_argentina">阿根廷</div>
                         <div class="team-desc i18n" data-i18n="desc_argentina">卫冕冠军 | 梅西领衔</div>
@@ -1142,10 +1271,10 @@
 
                 <!-- 40 巴西 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"
-                     data-i18n-title="team_brazil_title"
-                     data-i18n-content="team_brazil_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg" class="team-card-img" alt="巴西">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg"
+                    data-i18n-title="team_brazil_title" data-i18n-content="team_brazil_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/br.svg" class="team-card-img"
+                        alt="巴西">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_brazil">巴西</div>
                         <div class="team-desc i18n" data-i18n="desc_brazil">五星巴西 | 技术华丽</div>
@@ -1154,10 +1283,10 @@
 
                 <!-- 41 乌拉圭 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"
-                     data-i18n-title="team_uruguay_title"
-                     data-i18n-content="team_uruguay_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg" class="team-card-img" alt="乌拉圭">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg"
+                    data-i18n-title="team_uruguay_title" data-i18n-content="team_uruguay_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/uy.svg" class="team-card-img"
+                        alt="乌拉圭">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_uruguay">乌拉圭</div>
                         <div class="team-desc i18n" data-i18n="desc_uruguay">两届冠军 | 球风强硬</div>
@@ -1166,10 +1295,10 @@
 
                 <!-- 42 哥伦比亚 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"
-                     data-i18n-title="team_colombia_title"
-                     data-i18n-content="team_colombia_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg" class="team-card-img" alt="哥伦比亚">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg"
+                    data-i18n-title="team_colombia_title" data-i18n-content="team_colombia_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/co.svg" class="team-card-img"
+                        alt="哥伦比亚">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_colombia">哥伦比亚</div>
                         <div class="team-desc i18n" data-i18n="desc_colombia">进攻犀利 | 边路快马</div>
@@ -1178,10 +1307,10 @@
 
                 <!-- 43 厄瓜多尔 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"
-                     data-i18n-title="team_ecuador_title"
-                     data-i18n-content="team_ecuador_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg" class="team-card-img" alt="厄瓜多尔">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg"
+                    data-i18n-title="team_ecuador_title" data-i18n-content="team_ecuador_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ec.svg" class="team-card-img"
+                        alt="厄瓜多尔">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_ecuador">厄瓜多尔</div>
                         <div class="team-desc i18n" data-i18n="desc_ecuador">年轻活力 | 体能充沛</div>
@@ -1190,10 +1319,10 @@
 
                 <!-- 44 巴拉圭 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"
-                     data-i18n-title="team_paraguay_title"
-                     data-i18n-content="team_paraguay_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg" class="team-card-img" alt="巴拉圭">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg"
+                    data-i18n-title="team_paraguay_title" data-i18n-content="team_paraguay_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/py.svg" class="team-card-img"
+                        alt="巴拉圭">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_paraguay">巴拉圭</div>
                         <div class="team-desc i18n" data-i18n="desc_paraguay">防守坚固 | 务实战术</div>
@@ -1202,10 +1331,10 @@
 
                 <!-- 45 巴拿马 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"
-                     data-i18n-title="team_panama_title"
-                     data-i18n-content="team_panama_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg" class="team-card-img" alt="巴拿马">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg"
+                    data-i18n-title="team_panama_title" data-i18n-content="team_panama_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/pa.svg" class="team-card-img"
+                        alt="巴拿马">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_panama">巴拿马</div>
                         <div class="team-desc i18n" data-i18n="desc_panama">中北美新贵 | 活力年轻</div>
@@ -1214,10 +1343,10 @@
 
                 <!-- 46 库拉索 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"
-                     data-i18n-title="team_curacao_title"
-                     data-i18n-content="team_curacao_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg" class="team-card-img" alt="库拉索">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg"
+                    data-i18n-title="team_curacao_title" data-i18n-content="team_curacao_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/cw.svg" class="team-card-img"
+                        alt="库拉索">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_curacao">库拉索</div>
                         <div class="team-desc i18n" data-i18n="desc_curacao">中北美 | 技术细腻</div>
@@ -1226,10 +1355,10 @@
 
                 <!-- 47 海地 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"
-                     data-i18n-title="team_haiti_title"
-                     data-i18n-content="team_haiti_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg" class="team-card-img" alt="海地">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg"
+                    data-i18n-title="team_haiti_title" data-i18n-content="team_haiti_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/ht.svg" class="team-card-img"
+                        alt="海地">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_haiti">海地</div>
                         <div class="team-desc i18n" data-i18n="desc_haiti">中北美 | 身体强壮</div>
@@ -1238,10 +1367,10 @@
 
                 <!-- 48 新西兰 -->
                 <div class="team-card" onclick="openTeam(this)"
-                     data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"
-                     data-i18n-title="team_new_zealand_title"
-                     data-i18n-content="team_new_zealand_content">
-                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg" class="team-card-img" alt="新西兰">
+                    data-img="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg"
+                    data-i18n-title="team_new_zealand_title" data-i18n-content="team_new_zealand_content">
+                    <img src="https://cdn.bootcdn.net/ajax/libs/flag-icons/7.2.0/flags/4x3/nz.svg" class="team-card-img"
+                        alt="新西兰">
                     <div class="team-card-text">
                         <div class="team-name i18n" data-i18n="team_new_zealand">新西兰</div>
                         <div class="team-desc i18n" data-i18n="desc_new_zealand">大洋洲霸主 | 身体强悍</div>
@@ -1272,10 +1401,13 @@
                 <div class="footer-col">
                     <h3 class="i18n" data-i18n="主办信息">主办信息</h3>
                     <ul class="footer-links">
-                        <li><a href="https://www.ussoccer.com/" target="_blank" class="i18n" data-i18n="美国足协">美国足协</a></li>
-                        <li><a href="https://canadasoccer.com/" target="_blank" class="i18n" data-i18n="加拿大足协">加拿大足协</a></li>
+                        <li><a href="https://www.ussoccer.com/" target="_blank" class="i18n" data-i18n="美国足协">美国足协</a>
+                        </li>
+                        <li><a href="https://canadasoccer.com/" target="_blank" class="i18n" data-i18n="加拿大足协">加拿大足协</a>
+                        </li>
                         <li><a href="https://fmf.mx/" target="_blank" class="i18n" data-i18n="墨西哥足协">墨西哥足协</a></li>
-                        <li><a href="https://www.fifa.com/" target="_blank" class="i18n" data-i18n="国际足联(FIFA)">国际足联(FIFA)</a></li>
+                        <li><a href="https://www.fifa.com/" target="_blank" class="i18n"
+                                data-i18n="国际足联(FIFA)">国际足联(FIFA)</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1320,7 +1452,7 @@
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
             const s = Math.floor((diff % 60000) / 1000);
-            
+
             document.getElementById('days').innerText = String(d).padStart(2, '0');
             document.getElementById('hours').innerText = String(h).padStart(2, '0');
             document.getElementById('minutes').innerText = String(m).padStart(2, '0');
@@ -1345,14 +1477,14 @@
         function openTeam(el) {
             // 使用 i18n 对象的 currentLang，而不是 localStorage
             const lang = (typeof i18n !== 'undefined' && i18n.currentLang) ? i18n.currentLang : 'zh';
-            
+
             const imgUrl = el.dataset.img;
             const titleKey = el.dataset.i18nTitle;
             const contentKey = el.dataset.i18nContent;
-            
+
             // 正确访问 translations[lang][key]
             let title, info;
-            
+
             if (typeof i18n !== 'undefined' && i18n.translations && i18n.translations[lang]) {
                 title = i18n.translations[lang][titleKey] || titleKey;
                 info = i18n.translations[lang][contentKey] || contentKey;
@@ -1365,22 +1497,22 @@
 
             document.getElementById('mImg').src = imgUrl;
             document.getElementById('mTitle').innerText = title;
-            
+
             // 处理 markdown 格式：### 标题 和 - 列表
             let formattedInfo = info
                 .replace(/\n/g, '<br>')
                 .replace(/###\s*(.+)/g, '<h3>$1</h3>')
                 .replace(/-\s*(.+)/g, '<li>$1</li>');
-            
+
             // 如果有 li 但没有 ul 包裹，加上 ul
             if (formattedInfo.includes('<li>') && !formattedInfo.includes('<ul>')) {
                 formattedInfo = formattedInfo.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
             }
-            
+
             document.getElementById('mInfo').innerHTML = formattedInfo;
             document.getElementById('modal').style.display = 'flex';
             document.body.style.overflow = 'hidden'; // 禁止背景滚动
-            
+
             const content = document.querySelector('.modal-content');
             if (content) content.scrollTop = 0;
 
