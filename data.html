@@ -136,6 +136,7 @@
         .nav-link:hover::after {
             width: 80%;
         }
+
         .nav-link.active {
             background: rgba(207, 255, 51, 0.25);
             border-color: #cfff33;
@@ -370,6 +371,7 @@
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(-50%);
             }
@@ -709,6 +711,40 @@
             margin: 2rem 0 4rem;
         }
 
+        @media (max-width: 1200px) {
+            .nav-center {
+                flex: 2.5;
+            }
+
+            .nav-left,
+            .nav-right {
+                flex: 1.25;
+            }
+
+            .nav-left {
+                font-size: 1.35rem;
+            }
+
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                padding: 0.5rem 1.8rem;
+            }
+
+            .countdown {
+                padding: 0.5rem 1.8rem;
+            }
+
+            .countdown-label,
+            .countdown-num {
+                font-size: 1.2rem;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-center {
                 flex: 2;
@@ -768,6 +804,11 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                margin: 0;
+                border-radius: 0;
+            }
+
             nav {
                 padding: 1rem 1.5rem;
                 flex-wrap: wrap;
@@ -809,6 +850,11 @@
                 padding: 0.4rem 1.2rem;
             }
 
+            .countdown {
+                padding: 0.4rem 1.2rem;
+                gap: 4px;
+            }
+
             .viz-block {
                 padding: 1.2rem;
             }
@@ -824,11 +870,6 @@
             .control-bar {
                 flex-direction: column;
                 align-items: stretch;
-            }
-
-            .countdown {
-                padding: 0.4rem 1.2rem;
-                gap: 4px;
             }
 
             .footer {
@@ -860,6 +901,51 @@
                 font-size: 0.8rem;
                 padding-top: 1rem;
             }
+
+            .section {
+                width: 94%;
+            }
+
+            @media (max-width: 480px) {
+                .nav-center {
+                    gap: 2px;
+                }
+
+                .nav-link {
+                    font-size: 0.95rem;
+                    padding: 0.3rem 0.8rem;
+                }
+
+                .countdown {
+                    padding: 0.3rem 0.8rem;
+                    gap: 2px;
+                }
+
+                .countdown-label,
+                .countdown-num {
+                    font-size: 0.95rem;
+                }
+
+                .countdown-text {
+                    font-size: 0.85rem;
+                }
+
+                .footer {
+                    padding: 1.2rem 0.8rem;
+                }
+
+                .footer-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0.8rem;
+                }
+
+                .social-icon {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 1.1rem;
+                }
+            }
+
         }
     </style>
 </head>
@@ -899,7 +985,8 @@
 
             <!-- 1. 历届冠军荣誉殿堂 + 队徽时间轴 -->
             <h3 class="viz-title"><i class="bi bi-trophy-fill"></i> <span data-i18n="module1_title">历届冠军荣誉殿堂</span></h3>
-            <p style="font-size:1rem; opacity:0.7; margin:-0.8rem 0 1.2rem 1.5rem; line-height:1.5;" data-i18n="module1_desc">
+            <p style="font-size:1rem; opacity:0.7; margin:-0.8rem 0 1.2rem 1.5rem; line-height:1.5;"
+                data-i18n="module1_desc">
                 ⭐ 星级代表该国家队累计获得的世界杯冠军次数（五星巴西为历史最高）
             </p>
             <div class="viz-module">
@@ -962,7 +1049,8 @@
             </div>
 
             <!-- 4. 球员热力矩阵 -->
-            <h3 class="viz-title"><i class="bi bi-grid-3x3-gap"></i> <span data-i18n="module4_title">球员表现热力矩阵</span></h3>
+            <h3 class="viz-title"><i class="bi bi-grid-3x3-gap"></i> <span data-i18n="module4_title">球员表现热力矩阵</span>
+            </h3>
             <div class="viz-block fade-scroll">
                 <div class="viz-header">
                     <div>
@@ -972,10 +1060,14 @@
                 <div class="control-bar">
                     <button class="control-select" onclick="renderHeatmap('shoot', event)"
                         style="border-color:#cfff33;color:#cfff33;" data-i18n="btn_shoot">⚽ 射门</button>
-                    <button class="control-select" onclick="renderHeatmap('pass', event)" data-i18n="btn_pass">🅰️传球</button>
-                    <button class="control-select" onclick="renderHeatmap('speed', event)" data-i18n="btn_speed">📈速度</button>
-                    <button class="control-select" onclick="renderHeatmap('defend', event)" data-i18n="btn_defend">🧤防守</button>
-                    <button class="control-select" onclick="renderHeatmap('stamina', event)" data-i18n="btn_stamina">🏃体能</button>
+                    <button class="control-select" onclick="renderHeatmap('pass', event)"
+                        data-i18n="btn_pass">🅰️传球</button>
+                    <button class="control-select" onclick="renderHeatmap('speed', event)"
+                        data-i18n="btn_speed">📈速度</button>
+                    <button class="control-select" onclick="renderHeatmap('defend', event)"
+                        data-i18n="btn_defend">🧤防守</button>
+                    <button class="control-select" onclick="renderHeatmap('stamina', event)"
+                        data-i18n="btn_stamina">🏃体能</button>
                 </div>
                 <div id="heatmapChart" style="width:100%;height:680px;"></div>
                 <div style="margin-top:12px; font-size:1rem; opacity:0.85; line-height:1.5;" data-i18n="heatmap_note">
@@ -998,7 +1090,8 @@
             </div>
 
             <!-- 6. 夺冠趋势折线 -->
-            <h3 class="viz-title"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="module6_title">夺冠势力变迁</span></h3>
+            <h3 class="viz-title"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="module6_title">夺冠势力变迁</span>
+            </h3>
             <div class="viz-block fade-scroll">
                 <div class="viz-header">
                     <div>
@@ -1010,7 +1103,8 @@
 
         </div>
 
-        <div class="btn-center fade-scroll" style="display: flex; justify-content: center; align-items: center; margin: 4rem 0;">
+        <div class="btn-center fade-scroll"
+            style="display: flex; justify-content: center; align-items: center; margin: 4rem 0;">
             <a href="index.html#players" class="back-btn">
                 <i class="bi bi-arrow-left"></i> <span data-i18n="back_home">返回首页</span>
             </a>
@@ -1166,7 +1260,7 @@
                 if (!dom) return;
                 const oldChart = echarts.getInstanceByDom(dom);
                 if (oldChart) oldChart.dispose();
-                
+
                 const chart = echarts.init(dom);
                 const option = {
                     backgroundColor: 'transparent',
@@ -1174,7 +1268,7 @@
                     series: [{
                         type: 'sankey',
                         layout: 'force',
-                        left:'14%',
+                        left: '14%',
                         emphasis: { focus: 'adjacency' },
                         data: [
                             { name: i18n.getText("continent_south_america"), itemStyle: { color: '#2ecc71' } },
@@ -1225,18 +1319,18 @@
                 const radarDom = document.getElementById('radarChart');
                 const barDom = document.getElementById('barChart');
                 if (!radarDom || !barDom) return;
-                
+
                 const oldRadar = echarts.getInstanceByDom(radarDom);
                 if (oldRadar) oldRadar.dispose();
                 const oldBar = echarts.getInstanceByDom(barDom);
                 if (oldBar) oldBar.dispose();
-                
+
                 radarChart = echarts.init(radarDom);
                 barChart = echarts.init(barDom);
                 updateRadar();
-                window.addEventListener('resize', () => { 
-                    radarChart && radarChart.resize(); 
-                    barChart && barChart.resize(); 
+                window.addEventListener('resize', () => {
+                    radarChart && radarChart.resize();
+                    barChart && barChart.resize();
                 });
             }
 
@@ -1294,7 +1388,7 @@
                 if (!dom) return;
                 const oldChart = echarts.getInstanceByDom(dom);
                 if (oldChart) oldChart.dispose();
-                
+
                 window.heatmapChart = echarts.init(dom);
                 renderHeatmap('shoot', null);
                 window.addEventListener('resize', () => window.heatmapChart && window.heatmapChart.resize());
@@ -1302,7 +1396,7 @@
 
             function renderHeatmap(type, evt) {
                 if (!window.heatmapChart) return;
-                
+
                 const playerData = [
                     { name: i18n.getText("player_mbappe"), shoot: 95, pass: 78, speed: 98, defend: 45, stamina: 92 },
                     { name: i18n.getText("player_haaland"), shoot: 96, pass: 65, speed: 88, defend: 40, stamina: 90 },
@@ -1388,7 +1482,7 @@
                 if (!dom) return;
                 const oldChart = echarts.getInstanceByDom(dom);
                 if (oldChart) oldChart.dispose();
-                
+
                 const chart = echarts.init(dom);
                 const teams = getMatrixTeams();
                 const matrixDataValues = getMatrixData();
@@ -1475,15 +1569,15 @@
                 if (!dom) return;
                 const oldChart = echarts.getInstanceByDom(dom);
                 if (oldChart) oldChart.dispose();
-                
+
                 const chart = echarts.init(dom);
                 const years = [1930, 1934, 1938, 1950, 1954, 1958, 1962, 1966, 1970, 1974, 1978, 1982, 1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022];
                 const option = {
                     backgroundColor: 'transparent',
                     tooltip: { trigger: 'axis' },
-                    legend: { 
-                        data: [i18n.getText('continent_south_america'), i18n.getText('continent_europe')], 
-                        textStyle: { color: '#fff', fontSize: 16 }, 
+                    legend: {
+                        data: [i18n.getText('continent_south_america'), i18n.getText('continent_europe')],
+                        textStyle: { color: '#fff', fontSize: 16 },
                         top: 10,
                         itemWidth: 25,
                         itemHeight: 16
@@ -1555,7 +1649,7 @@
 
             // ==================== 主初始化 ====================
             document.addEventListener('DOMContentLoaded', function () {
-                setTimeout(function() {
+                setTimeout(function () {
                     initAllCharts();
                 }, 100);
 
@@ -1568,22 +1662,22 @@
 
                 window.addEventListener('scroll', checkFade);
 
-                window.addEventListener('languageChanged', function(e) {
+                window.addEventListener('languageChanged', function (e) {
                     console.log('[data] 语言切换为:', e.detail.lang);
 
-                    ['sankeyChart', 'radarChart', 'barChart', 'heatmapChart', 'matrixChart', 'trendChart'].forEach(function(id) {
+                    ['sankeyChart', 'radarChart', 'barChart', 'heatmapChart', 'matrixChart', 'trendChart'].forEach(function (id) {
                         const dom = document.getElementById(id);
                         if (dom) {
                             const oldChart = echarts.getInstanceByDom(dom);
                             if (oldChart) oldChart.dispose();
                         }
                     });
-                    
+
                     radarChart = null;
                     barChart = null;
                     window.heatmapChart = null;
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         initAllCharts();
                     }, 150);
                 });
@@ -1591,4 +1685,5 @@
         </script>
     </div>
 </body>
+
 </html>
