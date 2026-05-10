@@ -361,7 +361,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* ===== 弹窗样式（修复） ===== */
+        /* 弹窗样式 */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -482,20 +482,13 @@
             margin: 4rem 0;
         }
 
-        /* 👇 仅控制弹窗内【查看更多】按钮，不影响任何其他按钮 */
+        /* 弹窗内查看更多按钮 */
         .modal-more-btn {
-            /* 基础颜色（你可以随便改） */
             background: #cfff33;
-            /* 蓝色示例 */
             color: #000000;
-            /* 大小 */
             padding: 0.5rem 1.4rem;
             font-size: 1rem;
-
-            /* 圆角 */
             border-radius: 10px;
-
-            /* 边框（可选） */
             border: none;
             box-shadow: 0 4px 10px rgba(0, 120, 255, 0.2);
         }
@@ -1434,7 +1427,7 @@
     </div>
 
     <script>
-        // ========== 倒计时 ==========
+        // 倒计时 
         function updateCountdown() {
             const target = new Date('2026-06-12T03:00:00+08:00');
             const now = new Date();
@@ -1461,7 +1454,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // ========== 滚动渐入 ==========
+        // 滚动渐入 
         const fadeEls = document.querySelectorAll('.fade-scroll');
         function checkFade() {
             fadeEls.forEach(el => {
@@ -1473,9 +1466,9 @@
         window.addEventListener('scroll', checkFade);
         window.addEventListener('load', checkFade);
 
-        // ========== 球队弹窗（核心修复） ==========
+        // 球队弹窗
         function openTeam(el) {
-            // 使用 i18n 对象的 currentLang，而不是 localStorage
+            // 使用 i18n 对象的 currentLang
             const lang = (typeof i18n !== 'undefined' && i18n.currentLang) ? i18n.currentLang : 'zh';
 
             const imgUrl = el.dataset.img;
@@ -1498,7 +1491,7 @@
             document.getElementById('mImg').src = imgUrl;
             document.getElementById('mTitle').innerText = title;
 
-            // 处理 markdown 格式：### 标题 和 - 列表
+            // 处理 markdown
             let formattedInfo = info
                 .replace(/\n/g, '<br>')
                 .replace(/###\s*(.+)/g, '<h3>$1</h3>')
@@ -1532,7 +1525,7 @@
             }
         }
 
-        // ========== 背景模糊效果 ==========
+        // 背景模糊效果
         const heroElement = document.querySelector('.hero');
         if (heroElement) {
             window.addEventListener('scroll', () => {
