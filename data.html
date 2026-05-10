@@ -711,6 +711,12 @@
             margin: 2rem 0 4rem;
         }
 
+        body,
+        select,
+        option {
+            font-family: "Twemoji Country Flags", 'Segoe UI', sans-serif;
+        }
+
         @media (max-width: 1200px) {
             .nav-center {
                 flex: 2.5;
@@ -1152,8 +1158,12 @@
             </div>
         </footer>
         <script src="i18n-lang.js"></script>
+        <script type="module" defer>
+            import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
+            polyfillCountryFlagEmojis();
+        </script>
         <script>
-            // ==================== 数据获取函数（每次都重新获取翻译） ====================
+            // 数据获取函数（每次都重新获取翻译）
             function getChampionsData() {
                 return [
                     { year: 1930, country: i18n.getText("team_uruguay"), flag: "uy", stars: 2 },
@@ -1230,7 +1240,7 @@
                 ];
             }
 
-            //冠军时间轴
+            // 冠军时间轴
             function renderTimeline() {
                 const container = document.getElementById('timelineItems');
                 const championsData = getChampionsData();
@@ -1254,7 +1264,7 @@
                 container.innerHTML = html;
             }
 
-            // ==================== 2. 桑基图 ====================
+            // 2. 桑基图
             function initSankey() {
                 const dom = document.getElementById('sankeyChart');
                 if (!dom) return;
@@ -1313,7 +1323,7 @@
                 window.addEventListener('resize', () => chart.resize());
             }
 
-            // ==================== 3. 雷达图 ====================
+            // 3. 雷达图
             let radarChart, barChart;
             function initRadar() {
                 const radarDom = document.getElementById('radarChart');
@@ -1382,7 +1392,7 @@
                 barChart.setOption(barOption);
             }
 
-            // ==================== 4. 热力矩阵 ====================
+            // 4. 热力矩阵
             function initHeatmap() {
                 const dom = document.getElementById('heatmapChart');
                 if (!dom) return;
@@ -1476,7 +1486,7 @@
                 if (targetBtn) { targetBtn.style.borderColor = '#cfff33'; targetBtn.style.color = '#cfff33'; }
             }
 
-            // ==================== 5. 交锋矩阵 ====================
+            // 5. 交锋矩阵
             function initMatrix() {
                 const dom = document.getElementById('matrixChart');
                 if (!dom) return;
@@ -1563,7 +1573,7 @@
                 window.addEventListener('resize', () => chart.resize());
             }
 
-            // ==================== 6. 趋势折线 ====================
+            // 6. 趋势折线
             function initTrend() {
                 const dom = document.getElementById('trendChart');
                 if (!dom) return;
@@ -1613,7 +1623,7 @@
                 heroElement.style.setProperty('--bg-blur', `${blurValue}px`);
             });
 
-            // ==================== 倒计时 ====================
+            // 倒计时
             function updateCountdown() {
                 const target = new Date('2026-06-12T03:00:00+08:00');
                 const diff = target - new Date();
@@ -1628,7 +1638,7 @@
                 document.getElementById('seconds').textContent = String(s).padStart(2, '0');
             }
 
-            // ==================== 滚动动画 ====================
+            // 滚动动画
             function checkFade() {
                 document.querySelectorAll('.fade-scroll').forEach(el => {
                     if (el.getBoundingClientRect().top < window.innerHeight - 80) {
@@ -1637,7 +1647,7 @@
                 });
             }
 
-            // ==================== 初始化所有图表 ====================
+            // 初始化所有图表
             function initAllCharts() {
                 renderTimeline();
                 initSankey();
@@ -1647,7 +1657,7 @@
                 initTrend();
             }
 
-            // ==================== 主初始化 ====================
+            // 主初始化
             document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(function () {
                     initAllCharts();
