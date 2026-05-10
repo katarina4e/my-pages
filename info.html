@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* 主容器 Banner - 新增/修改部分 */
+        /* 主容器 Banner */
         .hero {
             width: 100%;
             min-height: 100vh;
@@ -22,14 +22,11 @@
             position: relative;
             padding-bottom: 1rem;
             overflow: hidden;
-            /* 防止模糊溢出 */
         }
 
-        /* 抽离背景图到伪元素，单独控制模糊 */
         .hero::before {
             content: '';
-            position: fixed;
-            /* 固定背景，滚动时不跟随 */
+            position: fixed;/* 固定背景，滚动时不跟随 */
             top: 0;
             left: 0;
             width: 100%;
@@ -40,9 +37,7 @@
             background-position: center;
             background-attachment: fixed;
             z-index: -1;
-            /* 放在内容下方 */
             transition: filter 0.5s ease;
-            /* 模糊过渡动画 */
             filter: blur(var(--bg-blur, 0px));
         }
 
@@ -352,7 +347,6 @@
         .timeline-image {
             width: 42%;
             aspect-ratio: 3 / 2;
-            /* 统一比例 */
             flex-shrink: 0;
         }
 
@@ -1375,8 +1369,8 @@
         window.addEventListener('scroll', check);
         window.addEventListener('load', check);
 
-        // 1. 背景模糊效果
-        const heroBg = document.querySelector('.hero::before'); // 伪元素无法直接获取，通过根元素控制
+        //背景模糊效果
+        const heroBg = document.querySelector('.hero::before');
         const heroElement = document.querySelector('.hero');
 
         window.addEventListener('scroll', () => {
