@@ -22,10 +22,8 @@
             position: relative;
             padding-bottom: 1rem;
             overflow: hidden;
-            /* 防止模糊溢出 */
         }
 
-        /* 抽离背景图到伪元素，单独控制模糊 */
         .hero::before {
             content: '';
             position: fixed;
@@ -1421,10 +1419,10 @@
                     </div>
                 </div>
             </div>
-            <!-- 底部按钮 -->
+            <!-- 跳转按钮 -->
             <a class="module-btn i18n" href="info.html" style="margin-top: 1rem;">查看完整核心信息</a>
         </div>
-        <!-- 球队滚动展示模块（底部按钮：跳转到【全部球队页面】） -->
+        <!-- 球队滚动展示模块 -->
         <div class="teams-scroll fade-scroll" id="teams">
             <h2 class="teams-title i18n">2026世界杯参赛球队</h2>
             <div class="scroll-container i18n">
@@ -1910,7 +1908,7 @@
                     <div class="team-name i18n">新西兰</div>
                 </div>
             </div>
-            <!--  参赛球队底部：跳转到球队球星页面 -->
+            <!-- 跳转按钮 -->
             <a class="module-btn i18n" href="teams.html">查看更多球队信息</a>
         </div>
         <!-- 热门球星模块 -->
@@ -2145,8 +2143,6 @@
 
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-
-            // 滑到 200px 时 → 直接变成 4px 模糊
             const blurValue = scrollY > 250 ? 8 : 0;
 
             heroElement.style.setProperty('--bg-blur', `${blurValue}px`);
